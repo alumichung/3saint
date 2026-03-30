@@ -1143,371 +1143,129 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 
     <!-- ⑤ 會員申請表單 -->
     <div id="a-apply" class="tab-content" style="display:none">
-      <style>
-        .apply-section{background:white;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden;}
-        .apply-section-header{background:linear-gradient(135deg,var(--blue),var(--blue-l));padding:13px 18px;display:flex;align-items:center;gap:10px;}
-        .apply-section-header h3{color:white;font-family:var(--serif);font-size:17px;font-weight:700;}
-        .apply-body{padding:20px 22px;}
-        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
-        .form-row.full{grid-template-columns:1fr;}
-        @media(max-width:600px){.form-row{grid-template-columns:1fr;}}
-        .form-group{display:flex;flex-direction:column;gap:6px;}
-        .form-group label{font-size:14px;font-weight:700;color:var(--ink2);}
-        .form-group .req{color:var(--vermillion);margin-left:2px;}
-        .form-group input,.form-group select,.form-group textarea{
-          padding:10px 14px;border:1.5px solid var(--cream3);border-radius:8px;
-          font-family:var(--sans);font-size:15px;color:var(--ink);
-          transition:var(--transition);background:white;width:100%;
-        }
-        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{
-          outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,58,92,0.1);
-        }
-        .form-group textarea{resize:vertical;min-height:80px;line-height:1.6;}
-        .form-group .hint{font-size:12px;color:var(--grey);margin-top:2px;}
-        /* 上傳區 */
-        .upload-box{
-          border:2px dashed var(--cream3);border-radius:10px;padding:18px;
-          text-align:center;cursor:pointer;transition:var(--transition);background:var(--cream);
-          position:relative;
-        }
-        .upload-box:hover{border-color:var(--blue);background:var(--blue-pale);}
-        .upload-box input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
-        .upload-box .up-icon{font-size:28px;margin-bottom:6px;}
-        .upload-box .up-text{font-size:14px;font-weight:600;color:var(--blue);}
-        .upload-box .up-sub{font-size:12px;color:var(--grey);margin-top:3px;}
-        .img-preview{display:none;margin-top:10px;text-align:center;}
-        .img-preview img{max-width:100%;max-height:180px;border-radius:8px;border:2px solid var(--cream3);object-fit:cover;}
-        .img-preview .remove-btn{display:inline-block;margin-top:6px;font-size:12px;color:var(--vermillion);cursor:pointer;font-weight:600;}
-        /* Pledge */
-        .pledge-box{background:var(--cream2);border-radius:10px;padding:16px 18px;border-left:4px solid var(--jade);}
-        .pledge-box h4{font-size:15px;font-weight:700;color:var(--jade);margin-bottom:10px;}
-        .pledge-box ul{font-size:14px;color:var(--ink3);line-height:2;padding-left:18px;}
-        .pledge-check{display:flex;align-items:flex-start;gap:10px;margin-top:14px;cursor:pointer;}
-        .pledge-check input{width:20px;height:20px;flex-shrink:0;margin-top:2px;cursor:pointer;accent-color:var(--jade);}
-        .pledge-check span{font-size:14px;color:var(--ink2);line-height:1.6;}
-        /* Submit */
-        .submit-btn{
-          width:100%;padding:15px;background:var(--blue);color:white;
-          border:none;border-radius:10px;font-size:17px;font-weight:700;
-          font-family:var(--serif);cursor:pointer;transition:var(--transition);
-          box-shadow:0 4px 16px rgba(26,58,92,0.3);letter-spacing:1px;
-        }
-        .submit-btn:hover{background:var(--blue-l);transform:translateY(-2px);}
-        .submit-btn:disabled{background:var(--grey-l);cursor:not-allowed;transform:none;}
-        .apply-success{display:none;background:var(--jade-pale);border:2px solid var(--jade);
-          border-radius:10px;padding:24px;text-align:center;}
-        .apply-success .s-icon{font-size:48px;margin-bottom:12px;}
-        .apply-success h3{font-family:var(--serif);font-size:22px;color:var(--jade);margin-bottom:8px;}
-        .apply-success p{font-size:15px;color:var(--ink3);line-height:1.8;}
-        .field-error{border-color:var(--vermillion) !important;background:#FFF5F5 !important;}
-        .error-msg{font-size:12px;color:var(--vermillion);margin-top:3px;display:none;}
-      </style>
 
-      <!-- 說明橫幅 -->
-      <div style="background:linear-gradient(135deg,var(--blue),#2A5A8C);border-radius:var(--radius);padding:16px 20px;margin-bottom:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
-        <div style="font-size:32px">📋</div>
+      <!-- 頂部說明橫幅 -->
+      <div style="background:linear-gradient(135deg,#1A3A5C,#2A5A8C);border-radius:var(--radius);padding:18px 22px;margin-bottom:20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;box-shadow:0 4px 16px rgba(26,58,92,0.25);">
+        <div style="font-size:36px">📋</div>
         <div style="flex:1">
-          <div style="color:white;font-size:17px;font-weight:700;font-family:var(--serif);margin-bottom:3px">委員（體制會員）入會申請表</div>
-          <div style="color:rgba(255,255,255,0.8);font-size:14px">社團法人台灣三聖道教信仰協會｜依人民團體法辦理，申請資料受個資法保護</div>
+          <div style="color:white;font-size:19px;font-weight:700;font-family:var(--serif);margin-bottom:4px">委員（體制會員）入會申請</div>
+          <div style="color:rgba(255,255,255,0.85);font-size:15px">社團法人台灣三聖道教信仰協會｜依人民團體法辦理，個資受個資法保護</div>
         </div>
-        <div style="background:rgba(255,255,255,0.15);border-radius:8px;padding:8px 14px;color:white;font-size:13px;text-align:center">
-          <div style="font-size:11px;opacity:0.8">初期名額</div>
-          <div style="font-size:20px;font-weight:700">30 名</div>
-        </div>
-      </div>
-
-      <div id="apply-form-wrap">
-        <!-- 基本資料 -->
-        <div class="apply-section">
-          <div class="apply-section-header"><span style="font-size:20px">👤</span><h3>一、申請人基本資料</h3></div>
-          <div class="apply-body">
-            <div class="form-row">
-              <div class="form-group">
-                <label>姓名<span class="req">＊</span></label>
-                <input type="text" id="f-name" placeholder="請填寫真實姓名">
-                <div class="error-msg" id="e-name">請填寫姓名</div>
-              </div>
-              <div class="form-group">
-                <label>出生年月日<span class="req">＊</span></label>
-                <input type="date" id="f-birth">
-                <div class="error-msg" id="e-birth">請填寫出生年月日</div>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>身分證字號<span class="req">＊</span></label>
-                <input type="text" id="f-idno" placeholder="A123456789" maxlength="10">
-                <div class="hint">用於建立會員資料，受個人資料保護法保護</div>
-                <div class="error-msg" id="e-idno">請填寫身分證字號</div>
-              </div>
-              <div class="form-group">
-                <label>性別</label>
-                <select id="f-gender">
-                  <option value="">請選擇</option>
-                  <option value="男">男</option>
-                  <option value="女">女</option>
-                  <option value="其他">其他</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>聯絡電話<span class="req">＊</span></label>
-                <input type="tel" id="f-phone" placeholder="0912-345-678">
-                <div class="error-msg" id="e-phone">請填寫聯絡電話</div>
-              </div>
-              <div class="form-group">
-                <label>電子信箱</label>
-                <input type="email" id="f-email" placeholder="example@email.com">
-              </div>
-            </div>
-            <div class="form-row full">
-              <div class="form-group">
-                <label>戶籍地址<span class="req">＊</span></label>
-                <input type="text" id="f-addr" placeholder="縣市 區鄉鎮 路街 號">
-                <div class="error-msg" id="e-addr">請填寫戶籍地址</div>
-              </div>
-            </div>
-            <div class="form-row full">
-              <div class="form-group">
-                <label>通訊地址（如與戶籍相同請填「同上」）</label>
-                <input type="text" id="f-mailaddr" placeholder="同上 / 或填寫實際通訊地址">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>職業</label>
-                <input type="text" id="f-job" placeholder="例：商業、教育、家管…">
-              </div>
-              <div class="form-group">
-                <label>緊急聯絡人姓名／電話</label>
-                <input type="text" id="f-emergency" placeholder="姓名 ／ 電話">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 家庭代表制說明 -->
-        <div class="apply-section">
-          <div class="apply-section-header" style="background:linear-gradient(135deg,#5C4000,#8B6410)"><span style="font-size:20px">🏠</span><h3>二、家庭戶代表登記</h3></div>
-          <div class="apply-body">
-            <div style="background:var(--gold-pale);border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:14px;color:var(--ink3);line-height:1.8;">
-              📌 依本會委員制度，以<strong>家庭戶數為單位</strong>，每戶登記一人為原則。本申請人即作為該戶與本會之代表聯繫人。
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>家庭戶籍地址（戶）</label>
-                <input type="text" id="f-household" placeholder="如與戶籍地址相同請填「同上」">
-              </div>
-              <div class="form-group">
-                <label>家庭成員人數（含本人）</label>
-                <select id="f-household-size">
-                  <option value="">請選擇</option>
-                  <option>1人</option><option>2人</option><option>3人</option>
-                  <option>4人</option><option>5人</option><option>6人以上</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 證件上傳 -->
-        <div class="apply-section">
-          <div class="apply-section-header" style="background:linear-gradient(135deg,#1A4A2A,#2D6A4F)"><span style="font-size:20px">📄</span><h3>三、身分證件上傳</h3></div>
-          <div class="apply-body">
-            <div style="background:var(--jade-pale);border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:14px;color:var(--jade);">
-              ⚠️ 依人民團體法申請登記需要附身分證明文件。請上傳<strong>身分證正面</strong>及<strong>反面</strong>照片，影像需清晰可讀。個資僅用於本會登記用途。
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>身分證<strong>正面</strong><span class="req">＊</span></label>
-                <div class="upload-box" id="box-front" onclick="document.getElementById('f-id-front').click()">
-                  <input type="file" id="f-id-front" accept="image/*" style="display:none" onchange="previewImg(this,'prev-front','box-front')">
-                  <div class="up-icon">🪪</div>
-                  <div class="up-text">點擊上傳或拍照</div>
-                  <div class="up-sub">JPG / PNG，10MB 以內</div>
-                </div>
-                <div class="img-preview" id="prev-front">
-                  <img id="prev-front-img" src="" alt="身分證正面">
-                  <div class="remove-btn" onclick="removeImg('f-id-front','prev-front','box-front')">✕ 重新上傳</div>
-                </div>
-                <div class="error-msg" id="e-id-front">請上傳身分證正面</div>
-              </div>
-              <div class="form-group">
-                <label>身分證<strong>反面</strong><span class="req">＊</span></label>
-                <div class="upload-box" id="box-back" onclick="document.getElementById('f-id-back').click()">
-                  <input type="file" id="f-id-back" accept="image/*" style="display:none" onchange="previewImg(this,'prev-back','box-back')">
-                  <div class="up-icon">🪪</div>
-                  <div class="up-text">點擊上傳或拍照</div>
-                  <div class="up-sub">JPG / PNG，10MB 以內</div>
-                </div>
-                <div class="img-preview" id="prev-back">
-                  <img id="prev-back-img" src="" alt="身分證反面">
-                  <div class="remove-btn" onclick="removeImg('f-id-back','prev-back','box-back')">✕ 重新上傳</div>
-                </div>
-                <div class="error-msg" id="e-id-back">請上傳身分證反面</div>
-              </div>
-            </div>
-            <div class="form-row full" style="margin-top:0">
-              <div class="form-group">
-                <label>其他補充文件（選填）</label>
-                <div class="upload-box" onclick="document.getElementById('f-extra').click()" style="border-style:dashed">
-                  <input type="file" id="f-extra" accept="image/*,.pdf" style="display:none" onchange="previewExtra(this)">
-                  <div class="up-icon">📎</div>
-                  <div class="up-text">上傳其他文件（選填）</div>
-                  <div class="up-sub">如戶口名簿、居留證等 ／ JPG、PNG、PDF</div>
-                </div>
-                <div id="extra-name" style="font-size:13px;color:var(--jade);margin-top:6px;display:none"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 信仰聲明 -->
-        <div class="apply-section">
-          <div class="apply-section-header" style="background:linear-gradient(135deg,#5A0000,#8B1A12)"><span style="font-size:20px">⛩️</span><h3>四、信仰認同聲明</h3></div>
-          <div class="apply-body">
-            <div class="pledge-box">
-              <h4>本申請人聲明認同以下事項：</h4>
-              <ul>
-                <li>認同鐘府三聖之信仰宗旨與本會章程</li>
-                <li>願遵守靈寶天尊十戒與開臺聖王五常信條（仁、義、禮、智、信）</li>
-                <li>願實際參與道場基本參拜、神尊誕辰活動與本會會務</li>
-                <li>認同本會非私有化、制度化與永續傳承之理念</li>
-                <li>每月至少前往鐘府三聖道場參拜一次，並參與年度禮拜或會員大會</li>
-                <li>不得以本會名義從事有損信仰、名譽與公信之行為</li>
-              </ul>
-              <label class="pledge-check">
-                <input type="checkbox" id="f-pledge" onchange="checkPledge()">
-                <span>本人已閱讀並完全認同以上聲明事項，同意申請加入社團法人台灣三聖道教信仰協會委員（體制會員）。本人提供之個人資料僅供本會登記用途，同意依個資法規範使用。</span>
-              </label>
-            </div>
-            <div class="form-row full" style="margin-top:16px">
-              <div class="form-group">
-                <label>申請動機或自我介紹（選填）</label>
-                <textarea id="f-motivation" placeholder="請簡述您加入本會的動機，或對本會的了解與期望…"></textarea>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 送出 -->
-        <div style="margin-bottom:24px">
-          <button class="submit-btn" id="apply-submit-btn" onclick="submitApply()" disabled>
-            請先勾選同意聲明事項
-          </button>
-          <div style="text-align:center;font-size:13px;color:var(--grey);margin-top:10px">
-            ※ 送出後請等候本會審核，通過後將以電話或電子信箱通知
-          </div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 18px;color:white;text-align:center;border:1px solid rgba(255,255,255,0.25)">
+          <div style="font-size:12px;opacity:0.8;margin-bottom:2px">初期委員名額</div>
+          <div style="font-size:26px;font-weight:700;font-family:var(--serif)">30 名</div>
         </div>
       </div>
 
-      <!-- 送出成功畫面 -->
-      <div class="apply-success" id="apply-success">
-        <div class="s-icon">✅</div>
-        <h3>申請資料已送出</h3>
-        <p>感謝您申請加入社團法人台灣三聖道教信仰協會。<br>本會將於審核後以電話或電子信箱與您聯繫。<br><br>
-        <strong>申請人：</strong><span id="success-name"></span><br>
-        <strong>送出時間：</strong><span id="success-time"></span></p>
-        <button onclick="resetApply()" style="margin-top:16px;padding:10px 24px;background:var(--jade);color:white;border:none;border-radius:8px;font-size:15px;cursor:pointer;font-family:var(--sans)">填寫新的申請</button>
+      <!-- 三欄說明卡 -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;">
+        <div style="background:white;border-radius:10px;padding:16px;box-shadow:var(--shadow);border-top:3px solid var(--vermillion);text-align:center">
+          <div style="font-size:28px;margin-bottom:8px">📝</div>
+          <div style="font-weight:700;font-size:15px;color:var(--vermillion);margin-bottom:5px">線上填寫</div>
+          <div style="font-size:13px;color:var(--ink3);line-height:1.7">點擊下方按鈕，於 Google 表單填寫基本資料與信仰聲明</div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:16px;box-shadow:var(--shadow);border-top:3px solid var(--jade);text-align:center">
+          <div style="font-size:28px;margin-bottom:8px">🪪</div>
+          <div style="font-weight:700;font-size:15px;color:var(--jade);margin-bottom:5px">上傳證件</div>
+          <div style="font-size:13px;color:var(--ink3);line-height:1.7">表單內上傳身分證正反面照片，檔案自動存入本會 Google Drive</div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:16px;box-shadow:var(--shadow);border-top:3px solid var(--gold-deep);text-align:center">
+          <div style="font-size:28px;margin-bottom:8px">✅</div>
+          <div style="font-weight:700;font-size:15px;color:var(--gold-deep);margin-bottom:5px">等候審核</div>
+          <div style="font-size:13px;color:var(--ink3);line-height:1.7">送出後由理事會審核，通過後以電話或電子信箱通知</div>
+        </div>
       </div>
 
-      <script>
-      function previewImg(input, previewId, boxId) {
-        const file = input.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = e => {
-          document.getElementById(previewId + '-img').src = e.target.result;
-          document.getElementById(previewId).style.display = 'block';
-          document.getElementById(boxId).style.display = 'none';
-        };
-        reader.readAsDataURL(file);
-      }
-      function removeImg(inputId, previewId, boxId) {
-        document.getElementById(inputId).value = '';
-        document.getElementById(previewId).style.display = 'none';
-        document.getElementById(boxId).style.display = 'block';
-      }
-      function previewExtra(input) {
-        const file = input.files[0];
-        if (!file) return;
-        const el = document.getElementById('extra-name');
-        el.textContent = '📎 已選擇：' + file.name;
-        el.style.display = 'block';
-      }
-      function checkPledge() {
-        const btn = document.getElementById('apply-submit-btn');
-        const checked = document.getElementById('f-pledge').checked;
-        btn.disabled = !checked;
-        btn.textContent = checked ? '送出申請 →' : '請先勾選同意聲明事項';
-      }
-      function validateField(id, errId, check) {
-        const el = document.getElementById(id);
-        const errEl = document.getElementById(errId);
-        if (!check(el)) {
-          el.classList.add('field-error');
-          errEl.style.display = 'block';
-          return false;
-        }
-        el.classList.remove('field-error');
-        errEl.style.display = 'none';
-        return true;
-      }
-      function submitApply() {
-        // Validate required fields
-        let valid = true;
-        valid &= validateField('f-name','e-name', el=>el.value.trim().length>0);
-        valid &= validateField('f-birth','e-birth', el=>el.value.length>0);
-        valid &= validateField('f-idno','e-idno', el=>el.value.trim().length>=10);
-        valid &= validateField('f-phone','e-phone', el=>el.value.trim().length>0);
-        valid &= validateField('f-addr','e-addr', el=>el.value.trim().length>0);
-        // Check ID photos
-        const frontFile = document.getElementById('f-id-front').files[0];
-        const backFile = document.getElementById('f-id-back').files[0];
-        const frontErr = document.getElementById('e-id-front');
-        const backErr = document.getElementById('e-id-back');
-        if (!frontFile) { frontErr.style.display='block'; valid=false; } else frontErr.style.display='none';
-        if (!backFile) { backErr.style.display='block'; valid=false; } else backErr.style.display='none';
-        if (!valid) {
-          showToast('⚠️ 請確認必填欄位已填寫完整');
-          document.querySelector('.field-error')?.scrollIntoView({behavior:'smooth',block:'center'});
-          return;
-        }
-        // Save record locally
-        const record = {
-          name: document.getElementById('f-name').value,
-          birth: document.getElementById('f-birth').value,
-          idno: document.getElementById('f-idno').value,
-          gender: document.getElementById('f-gender').value,
-          phone: document.getElementById('f-phone').value,
-          email: document.getElementById('f-email').value,
-          addr: document.getElementById('f-addr').value,
-          time: new Date().toLocaleString('zh-TW')
-        };
-        let records = JSON.parse(localStorage.getItem('sansheng_apply')||'[]');
-        records.push(record);
-        localStorage.setItem('sansheng_apply', JSON.stringify(records));
-        // Show success
-        document.getElementById('success-name').textContent = record.name;
-        document.getElementById('success-time').textContent = record.time;
-        document.getElementById('apply-form-wrap').style.display='none';
-        document.getElementById('apply-success').style.display='block';
-        showToast('✅ 申請資料已送出！');
-      }
-      function resetApply() {
-        document.getElementById('apply-form-wrap').style.display='block';
-        document.getElementById('apply-success').style.display='none';
-        document.getElementById('apply-form-wrap').querySelectorAll('input,select,textarea').forEach(el=>{
-          if(el.type==='checkbox') el.checked=false;
-          else el.value='';
-        });
-        ['prev-front','prev-back'].forEach(id=>{document.getElementById(id).style.display='none';});
-        ['box-front','box-back'].forEach(id=>{document.getElementById(id).style.display='block';});
-        document.getElementById('extra-name').style.display='none';
-        checkPledge();
-      }
-      </script>
+      <!-- 主要申請按鈕 -->
+      <div style="background:white;border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:20px;">
+        <div style="background:linear-gradient(135deg,#7A5C00,#DAA520);padding:20px 24px;text-align:center">
+          <div style="font-family:var(--serif);font-size:22px;font-weight:700;color:white;margin-bottom:6px;letter-spacing:1px">⛩️ 鐘府三聖 ⛩️</div>
+          <div style="color:rgba(255,255,255,0.9);font-size:15px">委員（體制會員）入會申請表單</div>
+        </div>
+        <div style="padding:28px 24px;text-align:center">
+          <p style="font-size:16px;color:var(--ink3);line-height:1.8;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto;">
+            請點擊下方按鈕開啟申請表單。表單由 Google 表單提供，填寫完成並送出後，資料將自動儲存至本會管理系統，上傳的證件照片將直接存入本會 Google Drive 指定資料夾。
+          </p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdj_qFP1hSjoFFtiD8QsWUw004YkYxRIdx0Bkohl6645fpRXg/viewform?usp=header"
+             target="_blank"
+             style="display:inline-flex;align-items:center;gap:12px;
+                    background:var(--blue);color:white;
+                    padding:16px 40px;border-radius:50px;
+                    font-size:18px;font-weight:700;font-family:var(--serif);
+                    text-decoration:none;letter-spacing:1px;
+                    box-shadow:0 6px 20px rgba(26,58,92,0.35);
+                    transition:all 0.2s;"
+             onmouseover="this.style.background='#2A5A8C';this.style.transform='translateY(-3px)'"
+             onmouseout="this.style.background='var(--blue)';this.style.transform='translateY(0)'">
+            <span style="font-size:22px">📋</span>
+            開啟委員入會申請表單
+            <span style="font-size:16px;opacity:0.8">→</span>
+          </a>
+          <div style="margin-top:14px;font-size:13px;color:var(--grey)">點擊後將在新視窗開啟 Google 表單</div>
+        </div>
+      </div>
+
+      <!-- 嵌入式表單（可直接在頁面填寫） -->
+      <div style="background:white;border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:20px;">
+        <div style="padding:14px 20px;border-bottom:1px solid var(--cream3);display:flex;align-items:center;gap:10px;">
+          <span style="font-size:18px">🖥️</span>
+          <span style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--ink2)">或直接在此填寫（內嵌版本）</span>
+        </div>
+        <div style="padding:4px">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSdj_qFP1hSjoFFtiD8QsWUw004YkYxRIdx0Bkohl6645fpRXg/viewform?embedded=true"
+            width="100%"
+            height="900"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            style="border-radius:10px;display:block;">
+            載入中…
+          </iframe>
+        </div>
+      </div>
+
+      <!-- 資料存放說明 -->
+      <div style="background:linear-gradient(135deg,#1565C0,#1976D2);border-radius:12px;padding:16px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;box-shadow:0 4px 16px rgba(21,101,192,0.25);margin-bottom:20px;">
+        <div style="font-size:28px">📁</div>
+        <div style="flex:1;">
+          <div style="color:white;font-size:16px;font-weight:700;margin-bottom:3px">申請資料存放位置</div>
+          <div style="color:rgba(255,255,255,0.85);font-size:14px;line-height:1.6">
+            填表人上傳的證件照片自動存入本會 Google Drive 指定資料夾。<br>
+            所有申請記錄同步存入 Google 試算表，管理員可隨時查閱審核。
+          </div>
+        </div>
+        <a href="https://drive.google.com/drive/folders/1_QIYPsuSSeTLqABOzRA33u_n4U2HvZ7F?usp=drive_link"
+           target="_blank"
+           style="background:white;color:#1565C0;padding:10px 20px;border-radius:20px;
+                  font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap;
+                  box-shadow:0 2px 8px rgba(0,0,0,0.15);flex-shrink:0;">
+          📂 查看資料夾
+        </a>
+      </div>
+
+      <!-- 委員制度提醒 -->
+      <div style="background:var(--gold-pale);border:1.5px solid var(--gold);border-radius:12px;padding:18px 20px;">
+        <div style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--gold-deep);margin-bottom:12px;">📌 申請前請確認</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="background:white;border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink3);line-height:1.7;border-left:3px solid var(--vermillion)">
+            ✅ 認同鐘府三聖信仰宗旨與本會章程
+          </div>
+          <div style="background:white;border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink3);line-height:1.7;border-left:3px solid var(--gold-deep)">
+            ✅ 願遵守靈寶天尊十戒與五常信條
+          </div>
+          <div style="background:white;border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink3);line-height:1.7;border-left:3px solid var(--jade)">
+            ✅ 每月至少前往道場參拜一次
+          </div>
+          <div style="background:white;border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink3);line-height:1.7;border-left:3px solid var(--blue)">
+            ✅ 認同非私有化、制度化與永續傳承理念
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:13px;color:var(--grey);text-align:center;">
+          現階段委員登記、參拜慶典、年運卦與宮服，<strong>不收取任何費用</strong>
+        </div>
+      </div>
+
     </div>
 
   </div>
