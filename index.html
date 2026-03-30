@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社團法人台灣三聖道教信仰協會｜鐘府三聖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════════════════════ */
+:root {
+  --vermillion:#C0392B; --vermillion-d:#8B1A12; --vermillion-l:#E85D4A;
+  --gold:#C9941A; --gold-l:#E8B84B; --gold-pale:#FDF4DC; --gold-deep:#8B6410;
+  --ink:#1A0A00; --ink2:#2C1810; --ink3:#4A3020;
+  --cream:#FBF5E6; --cream2:#F5EDD8; --cream3:#EDE0C4;
+  --jade:#2D6A4F; --jade-l:#3D8B6A; --jade-pale:#E8F5EE;
+  --blue:#1A3A5C; --blue-l:#2A5A8C; --blue-pale:#EAF0F8;
+  --grey:#8A7A6A; --grey-l:#B5A898; --grey-pale:#F0EAE0;
+  --shadow: 0 4px 24px rgba(26,10,0,0.12);
+  --shadow-lg: 0 12px 48px rgba(26,10,0,0.18);
+  --radius:12px; --radius-lg:20px;
+  --serif:'Noto Serif TC',serif; --sans:'Noto Sans TC',sans-serif;
+  --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);overflow-x:hidden;font-size:16px;}
+p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p,
+.festival-desc, .result-story p, .jiaobei-notice div {
+  text-wrap:balance;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MAIN NAV
+═══════════════════════════════════════════════════════════ */
+.site-nav{
+  background:linear-gradient(135deg,var(--ink) 0%,var(--ink2) 60%,var(--vermillion-d) 100%);
+  position:sticky;top:0;z-index:1000;
+  border-bottom:2px solid var(--gold);
+  box-shadow:0 2px 20px rgba(0,0,0,0.4);
+}
+.nav-inner{
+  max-width:1280px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;flex-wrap:wrap;gap:0;
+}
+.nav-brand{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 0;text-decoration:none;
+}
+.nav-logo-seal{
+  width:44px;height:44px;
+  background:var(--vermillion);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:white;font-family:var(--serif);font-weight:900;
+  border:2px solid var(--gold);flex-shrink:0;
+  box-shadow:0 2px 8px rgba(192,57,43,0.4);
+}
+.nav-title{color:white;}
+.nav-title h1{font-family:var(--serif);font-size:17px;font-weight:700;line-height:1.2;}
+.nav-title span{font-size:13px;color:var(--gold-l);display:block;}
+.nav-modes{display:flex;gap:0;}
+.mode-btn{
+  padding:12px 16px;color:rgba(255,255,255,0.65);
+  border:none;background:none;cursor:pointer;
+  font-size:14px;font-family:var(--sans);font-weight:500;
+  border-bottom:3px solid transparent;transition:var(--transition);
+  white-space:nowrap;
+}
+.mode-btn:hover{color:white;background:rgba(255,255,255,0.06);}
+.mode-btn.active{color:var(--gold-l);border-bottom-color:var(--gold-l);background:rgba(201,148,26,0.12);}
+.mode-separator{color:rgba(255,255,255,0.2);padding:12px 4px;font-size:13px;align-self:center;}
+.nav-right{display:flex;align-items:center;gap:8px;padding:8px 0;}
+.quick-drive{
+  background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);
+  color:rgba(255,255,255,0.8);padding:6px 14px;border-radius:20px;
+  font-size:13px;text-decoration:none;transition:var(--transition);white-space:nowrap;
+}
+.quick-drive:hover{background:rgba(255,255,255,0.2);color:white;}
+
+/* ═══════════════════════════════════════════════════════════
+   MODE PANELS
+═══════════════════════════════════════════════════════════ */
+.mode-panel{display:none;}
+.mode-panel.active{display:block;}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* ═══════════════════════════════════════════════════════════
+   TEMPLE HERO
+═══════════════════════════════════════════════════════════ */
+.temple-hero{
+  background:linear-gradient(160deg,#7A5C00 0%,#B8860B 35%,#DAA520 65%,#C8941A 100%);
+  position:relative;overflow:hidden;padding:70px 20px 80px;text-align:center;
+}
+.temple-hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9941A' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.temple-hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:100px;
+  background:linear-gradient(to bottom,transparent,var(--cream));
+  pointer-events:none;
+}
+.hero-seal{
+  width:80px;height:80px;background:var(--vermillion);border-radius:10px;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:24px;color:white;font-weight:900;
+  border:3px solid var(--gold);box-shadow:0 4px 24px rgba(192,57,43,0.5);
+  margin-bottom:24px;position:relative;z-index:1;
+}
+.hero-main-title{
+  font-family:var(--serif);font-size:clamp(32px,5vw,52px);
+  color:white;font-weight:900;margin-bottom:8px;position:relative;z-index:1;
+  text-shadow:0 2px 16px rgba(80,40,0,0.4);letter-spacing:4px;
+}
+.hero-sub-title{
+  font-family:var(--serif);font-size:clamp(16px,2.2vw,22px);
+  color:rgba(255,255,255,0.95);margin-bottom:22px;position:relative;z-index:1;
+  letter-spacing:4px;text-shadow:0 1px 8px rgba(80,40,0,0.25);
+}
+.hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.hero-tag{
+  background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.55);
+  color:white;padding:5px 18px;border-radius:20px;font-size:15px;font-weight:500;
+  text-shadow:0 1px 4px rgba(80,40,0,0.25);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SUB TABS (temple)
+═══════════════════════════════════════════════════════════ */
+.sub-tabs{
+  background:var(--cream2);border-bottom:2px solid var(--cream3);
+  position:sticky;top:64px;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.sub-tabs-inner{
+  max-width:1280px;margin:0 auto;
+  display:flex;overflow-x:auto;padding:0 16px;gap:0;
+}
+.sub-tab{
+  padding:12px 20px;font-size:15px;font-weight:500;color:var(--grey);
+  border:none;background:none;cursor:pointer;font-family:var(--sans);
+  border-bottom:3px solid transparent;white-space:nowrap;transition:var(--transition);
+}
+.sub-tab:hover{color:var(--ink2);background:rgba(0,0,0,0.03);}
+.sub-tab.active{color:var(--vermillion);border-bottom-color:var(--vermillion);}
+
+/* ═══════════════════════════════════════════════════════════
+   CONTENT LAYOUT
+═══════════════════════════════════════════════════════════ */
+.content-wrap{max-width:1280px;margin:0 auto;padding:24px 20px;}
+.section-heading{
+  font-family:var(--serif);font-size:24px;font-weight:700;
+  color:var(--ink2);margin-bottom:6px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-heading::before{
+  content:'';width:4px;height:26px;background:var(--vermillion);
+  border-radius:2px;display:inline-block;flex-shrink:0;
+}
+.section-desc{font-size:15px;color:var(--grey);margin-bottom:20px;padding-left:14px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr;}.grid-4{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+
+/* ═══════════════════════════════════════════════════════════
+   CARDS
+═══════════════════════════════════════════════════════════ */
+.card{background:white;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+.card-header{padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--cream3);}
+.card-header h3{font-family:var(--serif);font-size:17px;font-weight:700;flex:1;}
+.card-body{padding:14px 16px;}
+.badge{background:var(--gold-pale);color:var(--gold-deep);border-radius:12px;padding:3px 12px;font-size:13px;font-weight:600;}
+.badge-red{background:#FDECEA;color:var(--vermillion-d);}
+.badge-jade{background:var(--jade-pale);color:var(--jade);}
+.badge-blue{background:var(--blue-pale);color:var(--blue);}
+
+/* ═══════════════════════════════════════════════════════════
+   DEITY CARDS
+═══════════════════════════════════════════════════════════ */
+.deity-card{
+  background:white;border-radius:var(--radius-lg);box-shadow:var(--shadow);
+  overflow:hidden;transition:var(--transition);cursor:pointer;
+  border:2px solid transparent;
+}
+.deity-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--gold);}
+.deity-card.main{border-top:4px solid var(--vermillion);}
+.deity-card.side{border-top:4px solid var(--gold);}
+.deity-card.guide{border-top:4px solid var(--jade);}
+.deity-header{padding:16px 16px 10px;text-align:center;}
+.deity-icon{font-size:38px;margin-bottom:6px;}
+.deity-rank{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.deity-name{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--ink2);}
+.deity-spirit{font-size:14px;color:var(--grey);margin-top:4px;}
+.deity-body{padding:10px 16px 16px;border-top:1px solid var(--cream3);}
+.deity-tag{display:inline-block;background:var(--cream2);color:var(--ink3);
+  padding:3px 10px;border-radius:12px;font-size:13px;margin:2px;}
+.deity-meaning{font-size:14px;color:var(--ink3);line-height:1.7;margin-top:8px;}
+
+/* ═══════════════════════════════════════════════════════════
+   PRECEPTS (十戒 & 五常)
+═══════════════════════════════════════════════════════════ */
+.precept-tabs{display:flex;gap:8px;margin-bottom:20px;}
+.precept-tab-btn{
+  padding:9px 22px;border-radius:20px;border:1.5px solid;
+  font-size:15px;font-weight:600;cursor:pointer;font-family:var(--sans);
+  transition:var(--transition);
+}
+.precept-item{
+  display:flex;gap:16px;padding:14px;border-radius:10px;
+  margin-bottom:10px;transition:var(--transition);
+  background:white;border-left:4px solid;box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+.precept-item:hover{transform:translateX(4px);}
+.precept-num{
+  width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:700;font-size:16px;
+  flex-shrink:0;color:white;
+}
+.precept-text h4{font-size:16px;font-weight:700;margin-bottom:4px;}
+.precept-text .original{font-size:14px;color:var(--grey);font-family:var(--serif);margin-bottom:4px;}
+.precept-text .explain{font-size:14px;color:var(--ink3);line-height:1.7;}
+.precept-text .practice{
+  font-size:13px;color:var(--jade);font-weight:600;
+  margin-top:6px;padding:5px 12px;background:var(--jade-pale);border-radius:8px;
+  display:inline-block;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CALENDAR
+═══════════════════════════════════════════════════════════ */
+.cal-controls{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+.cal-month-select{
+  padding:8px 14px;border-radius:8px;border:1.5px solid var(--cream3);
+  font-family:var(--sans);font-size:15px;background:white;color:var(--ink);
+}
+.cal-btn{
+  padding:8px 18px;border-radius:8px;border:1.5px solid var(--cream3);
+  background:white;cursor:pointer;font-family:var(--sans);font-size:15px;
+  transition:var(--transition);
+}
+.cal-btn:hover{background:var(--vermillion);color:white;border-color:var(--vermillion);}
+.festival-list{display:flex;flex-direction:column;gap:8px;}
+.festival-item{
+  display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+  background:white;border-radius:10px;border-left:4px solid;
+  box-shadow:0 1px 4px rgba(0,0,0,0.06);
+}
+.festival-date{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--grey);min-width:100px;}
+.festival-name{font-weight:600;font-size:15px;color:var(--ink2);}
+.festival-desc{font-size:13px;color:var(--grey);margin-top:2px;}
+.festival-badge{font-size:12px;font-weight:700;padding:2px 10px;border-radius:10px;margin-left:6px;}
+
+/* ═══════════════════════════════════════════════════════════
+   DIVINATION / 求籤
+═══════════════════════════════════════════════════════════ */
+.div-layout{display:grid;grid-template-columns:1fr 280px;gap:20px;}
+@media(max-width:900px){.div-layout{grid-template-columns:1fr;}}
+.div-main{background:white;border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;}
+.div-header{
+  background:linear-gradient(135deg,var(--ink2),var(--vermillion-d));
+  padding:24px;text-align:center;
+}
+.div-header h2{font-family:var(--serif);color:white;font-size:22px;margin-bottom:4px;}
+.div-header p{color:rgba(255,255,255,0.7);font-size:15px;}
+.div-controls{padding:16px;}
+.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+.cat-btn{
+  padding:10px 8px;border-radius:10px;border:1.5px solid var(--cream3);
+  background:white;cursor:pointer;text-align:center;transition:var(--transition);
+  font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink3);
+}
+.cat-btn:hover,.cat-btn.active{background:var(--vermillion);color:white;border-color:var(--vermillion);}
+.cat-btn .cat-icon{font-size:22px;display:block;margin-bottom:3px;}
+.shake-area{
+  text-align:center;padding:20px;background:linear-gradient(135deg,var(--gold-pale),var(--cream2));
+  border-radius:12px;margin-bottom:14px;cursor:pointer;
+  border:2px dashed var(--gold);transition:var(--transition);
+}
+.shake-area:hover{background:var(--gold-pale);transform:scale(1.01);}
+.shake-container{width:100px;height:140px;position:relative;margin:0 auto 12px;}
+.qian-cup{
+  width:80px;height:110px;margin:0 auto;
+  background:linear-gradient(160deg,#8B4513,#5D2E0C);
+  border-radius:0 0 40px 40px/0 0 30px 30px;
+  position:relative;box-shadow:4px 8px 20px rgba(0,0,0,0.3);
+  overflow:hidden;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;
+}
+.qian-cup::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:20px;
+  background:linear-gradient(to bottom,rgba(255,255,255,0.15),transparent);
+}
+.qian-stick{
+  width:4px;height:70px;border-radius:2px;
+  background:linear-gradient(to bottom,#DAA520,#B8860B);
+  transform-origin:bottom center;
+  position:absolute;bottom:15px;
+  box-shadow:1px 1px 3px rgba(0,0,0,0.3);
+}
+.shake-hint{font-size:15px;color:var(--ink3);font-weight:500;}
+.shake-sub{font-size:13px;color:var(--grey);margin-top:4px;}
+.shake-btn{
+  padding:13px 36px;background:var(--vermillion);color:white;
+  border:none;border-radius:24px;font-size:16px;font-weight:700;
+  font-family:var(--sans);cursor:pointer;box-shadow:0 4px 16px rgba(192,57,43,0.4);
+  transition:var(--transition);
+}
+.shake-btn:hover{background:var(--vermillion-d);transform:translateY(-2px);}
+.shake-btn:active{transform:scale(0.96);}
+
+/* Result panel */
+.div-result{display:none;padding:20px;border-top:1px solid var(--cream3);}
+.div-result.show{display:block;}
+.result-header{
+  text-align:center;padding:20px;
+  background:linear-gradient(135deg,var(--cream),var(--gold-pale));
+  border-radius:12px;margin-bottom:16px;border:2px solid var(--gold);
+}
+.result-num{font-family:var(--serif);font-size:52px;font-weight:900;color:var(--vermillion);line-height:1;}
+.result-gua{font-family:var(--serif);font-size:20px;color:var(--gold-deep);margin-top:4px;}
+.result-level{display:inline-block;padding:4px 16px;border-radius:12px;font-size:14px;font-weight:700;margin-top:8px;}
+.result-story{background:var(--cream2);border-radius:10px;padding:12px;margin-bottom:10px;}
+.result-story h4{font-family:var(--serif);font-size:15px;color:var(--gold-deep);margin-bottom:6px;}
+.result-story p{font-size:14px;color:var(--ink3);line-height:1.8;}
+.result-poem{
+  border:1px solid var(--cream3);border-radius:10px;padding:14px;
+  text-align:center;margin-bottom:10px;
+}
+.result-poem p{
+  font-family:var(--serif);font-size:16px;line-height:2.4;color:var(--ink2);
+  letter-spacing:1px;
+}
+.result-items{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px;}
+.result-item{
+  padding:8px 10px;background:var(--cream2);border-radius:8px;
+  font-size:13px;color:var(--ink3);
+}
+.result-item strong{color:var(--vermillion);font-size:12px;display:block;margin-bottom:2px;}
+.jiaobei-notice{
+  background:#FFF3CD;border:1px solid #F0C040;border-radius:8px;
+  padding:12px 14px;font-size:14px;color:var(--ink3);
+  display:flex;align-items:flex-start;gap:8px;
+}
+.jiaobei-notice .icon{font-size:22px;flex-shrink:0;}
+.new-qian-btn{
+  width:100%;padding:13px;border:2px solid var(--vermillion);
+  background:white;color:var(--vermillion);border-radius:10px;
+  font-family:var(--sans);font-size:15px;font-weight:700;cursor:pointer;
+  margin-top:12px;transition:var(--transition);
+}
+.new-qian-btn:hover{background:var(--vermillion);color:white;}
+
+/* Qian index */
+.div-index{background:white;border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;}
+.div-index-header{
+  background:linear-gradient(135deg,var(--gold-deep),var(--gold));
+  padding:14px;text-align:center;
+}
+.div-index-header h3{font-family:var(--serif);color:white;font-size:16px;}
+.qian-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:10px;}
+.qian-num{
+  padding:7px 2px;text-align:center;border-radius:6px;cursor:pointer;
+  font-size:13px;font-weight:600;transition:var(--transition);
+  border:1px solid transparent;
+}
+.qian-num:hover{transform:scale(1.1);box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+.qian-num.ji{background:#FFF3E0;color:#E65100;border-color:#FFB74D;}
+.qian-num.ping{background:#E3F2FD;color:#1565C0;border-color:#90CAF9;}
+.qian-num.shen{background:#E8F5E9;color:#2E7D32;border-color:#A5D6A7;}
+
+/* History */
+.div-history{padding:10px;border-top:1px solid var(--cream3);}
+.div-history h4{font-size:14px;font-weight:700;color:var(--grey);margin-bottom:8px;padding:0 4px;}
+.history-item{
+  padding:9px 12px;border-radius:8px;background:var(--cream2);
+  margin-bottom:4px;cursor:pointer;transition:var(--transition);
+}
+.history-item:hover{background:var(--gold-pale);}
+.history-item .h-num{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--vermillion);}
+.history-item .h-cat{font-size:12px;color:var(--grey);}
+.history-item .h-time{font-size:12px;color:var(--grey-l);float:right;}
+
+/* ═══════════════════════════════════════════════════════════
+   ADMIN MODE — GANTT
+═══════════════════════════════════════════════════════════ */
+.admin-hero{
+  background:linear-gradient(135deg,var(--blue) 0%,var(--blue-l) 60%,#1A5040 100%);
+  padding:40px 20px;text-align:center;
+}
+.admin-hero h2{font-family:var(--serif);color:white;font-size:26px;margin-bottom:6px;}
+.admin-hero p{color:rgba(255,255,255,0.75);font-size:15px;}
+.admin-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px;}
+.admin-tag{background:rgba(255,255,255,0.15);color:white;border-radius:16px;padding:5px 16px;font-size:13px;}
+
+.admin-tabs{background:var(--blue);border-bottom:2px solid rgba(255,255,255,0.15);
+  position:sticky;top:64px;z-index:100;}
+.admin-tabs-inner{max-width:1280px;margin:0 auto;display:flex;overflow-x:auto;padding:0 16px;}
+.admin-tab{
+  padding:12px 18px;color:rgba(255,255,255,0.6);border:none;background:none;
+  cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:500;
+  white-space:nowrap;border-bottom:3px solid transparent;transition:var(--transition);
+}
+.admin-tab:hover{color:white;}.admin-tab.active{color:var(--gold-l);border-bottom-color:var(--gold-l);}
+
+/* progress summary */
+.progress-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+@media(max-width:700px){.progress-summary{grid-template-columns:repeat(2,1fr);}}
+.p-card{background:white;border-radius:var(--radius);padding:14px;text-align:center;box-shadow:var(--shadow);border-top:3px solid;}
+.p-card .p-num{font-family:var(--serif);font-size:32px;font-weight:700;}
+.p-card .p-lbl{font-size:14px;color:var(--grey);margin-top:3px;}
+.big-progress{background:white;border-radius:var(--radius);padding:16px 20px;margin-bottom:24px;box-shadow:var(--shadow);}
+.big-progress-bar{height:14px;background:var(--cream3);border-radius:7px;overflow:hidden;margin-top:8px;}
+.big-progress-fill{height:100%;border-radius:7px;background:linear-gradient(to right,var(--jade),var(--gold));transition:width 0.8s ease;}
+
+/* Gantt */
+.gantt-wrap{background:white;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:24px;}
+.gantt-header{background:var(--blue);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
+.gantt-header h3{font-family:var(--serif);color:white;font-size:17px;}
+.gantt-table{overflow-x:auto;}
+.gantt-inner{min-width:900px;padding:16px;}
+.gantt-months{display:flex;gap:0;margin-bottom:6px;padding-left:220px;}
+.gantt-month{flex:1;text-align:center;font-size:13px;font-weight:700;color:var(--blue);padding:4px;
+  background:var(--blue-pale);border-radius:4px;margin:1px;}
+.gantt-row{display:flex;align-items:center;gap:0;margin-bottom:8px;}
+.gantt-label{
+  width:220px;min-width:220px;padding-right:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.gantt-label-check{width:20px;height:20px;border-radius:4px;border:1.5px solid;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:11px;font-weight:700;transition:var(--transition);}
+.gantt-label-text{font-size:14px;color:var(--ink3);font-weight:500;line-height:1.3;}
+.gantt-timeline{flex:1;position:relative;height:28px;}
+.gantt-bar{
+  position:absolute;height:22px;border-radius:6px;top:3px;
+  display:flex;align-items:center;padding:0 8px;
+  font-size:10px;font-weight:600;color:white;white-space:nowrap;overflow:hidden;
+}
+.milestone-row{margin-bottom:6px;}
+.milestone-icon{font-size:14px;margin-right:4px;}
+.milestone-diamond{
+  width:16px;height:16px;position:absolute;
+  border-radius:2px;transform:rotate(45deg);top:6px;cursor:pointer;
+}
+.milestone-label{position:absolute;top:24px;font-size:9px;white-space:nowrap;color:var(--grey);transform:translateX(-50%);}
+
+/* Doc manager */
+.doc-category{margin-bottom:20px;}
+
+.doc-cat-header{
+  background:var(--blue);color:white;padding:10px 16px;border-radius:8px 8px 0 0;
+  font-family:var(--serif);font-size:16px;font-weight:700;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.doc-table{width:100%;border-collapse:collapse;background:white;border-radius:0 0 8px 8px;overflow:hidden;}
+.doc-table th{background:var(--blue-pale);padding:9px 12px;text-align:left;font-size:13px;font-weight:700;color:var(--blue);}
+.doc-table td{padding:10px 12px;font-size:14px;border-bottom:1px solid var(--cream3);vertical-align:middle;}
+.doc-table tr:last-child td{border-bottom:none;}
+.doc-table tr:hover td{background:var(--cream);}
+.doc-status{padding:3px 12px;border-radius:10px;font-size:13px;font-weight:700;}
+.ds-done{background:#E8F5E9;color:#2E7D32;}
+.ds-pending{background:#FFF8E1;color:#F57F17;}
+.ds-missing{background:#FFEBEE;color:#C62828;}
+.doc-drive-link{
+  display:inline-flex;align-items:center;gap:4px;
+  background:var(--blue-pale);color:var(--blue);
+  padding:4px 12px;border-radius:12px;font-size:13px;font-weight:600;
+  text-decoration:none;transition:var(--transition);border:none;cursor:pointer;
+}
+.doc-drive-link:hover{background:var(--blue);color:white;}
+.doc-note-input{
+  width:100%;border:none;background:transparent;
+  font-size:11px;color:var(--grey);font-family:var(--sans);
+  outline:none;border-bottom:1px dashed transparent;
+  transition:var(--transition);cursor:text;
+}
+.doc-note-input:hover,.doc-note-input:focus{border-bottom-color:var(--gold);}
+
+/* Drive banner */
+.drive-banner{
+  background:linear-gradient(135deg,#1565C0,#1976D2,#0D47A1);
+  border-radius:var(--radius);padding:16px 20px;margin-bottom:20px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  box-shadow:0 4px 16px rgba(21,101,192,0.3);
+}
+.drive-banner .d-text{flex:1;}
+.drive-banner h3{color:white;font-size:16px;font-weight:700;margin-bottom:3px;}
+.drive-banner p{color:rgba(255,255,255,0.8);font-size:14px;}
+.drive-link-btn{
+  background:white;color:#1565C0;padding:8px 20px;border-radius:20px;
+  font-weight:700;font-size:15px;text-decoration:none;white-space:nowrap;
+  transition:var(--transition);box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+.drive-link-btn:hover{background:#E3F2FD;transform:translateY(-1px);}
+
+/* Assoc intro */
+.intro-tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap;}
+.intro-tab{
+  padding:8px 18px;border-radius:20px;border:1.5px solid var(--cream3);
+  background:white;cursor:pointer;font-size:14px;font-weight:600;
+  font-family:var(--sans);color:var(--grey);transition:var(--transition);
+}
+.intro-tab.active{background:var(--blue);color:white;border-color:var(--blue);}
+.rule-item{
+  background:white;border-radius:10px;padding:14px 16px;margin-bottom:10px;
+  border-left:4px solid var(--blue);box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+.rule-item h4{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:4px;}
+.rule-item p{font-size:14px;color:var(--ink3);line-height:1.7;}
+
+/* Toast */
+.toast{
+  position:fixed;bottom:24px;right:24px;
+  background:var(--ink);color:white;
+  padding:12px 18px;border-radius:10px;font-size:13px;
+  box-shadow:var(--shadow-lg);z-index:9999;
+  transform:translateY(100px);opacity:0;transition:all 0.3s;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* Shake animation */
+@keyframes shakeAnim{
+  0%,100%{transform:rotate(0deg);}
+  10%{transform:rotate(-15deg);}
+  20%{transform:rotate(15deg);}
+  30%{transform:rotate(-12deg);}
+  40%{transform:rotate(12deg);}
+  50%{transform:rotate(-8deg);}
+  60%{transform:rotate(8deg);}
+  70%{transform:rotate(-4deg);}
+  80%{transform:rotate(4deg);}
+  90%{transform:rotate(-2deg);}
+}
+@keyframes fallOut{
+  0%{transform:translateY(0) rotate(0);opacity:1;}
+  100%{transform:translateY(-60px) rotate(var(--r,15deg));opacity:0;}
+}
+.shaking .shake-container{animation:shakeAnim 0.8s ease-in-out;}
+.falling-stick{animation:fallOut 0.6s ease forwards;}
+
+/* Responsive nav */
+@media(max-width:768px){
+  .nav-inner{flex-direction:column;align-items:flex-start;padding:8px 12px;}
+  .nav-modes{flex-wrap:wrap;gap:0;width:100%;}
+  .nav-right{width:100%;padding:4px 0;}
+  .sub-tabs{top:110px;}
+  .admin-tabs{top:110px;}
+  .div-layout{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ SITE NAV ══════════════ -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">
+      <div class="nav-title">
+        <h1>社團法人台灣三聖道教信仰協會</h1>
+        <span>鐘府三聖道場｜樹林山佳</span>
+      </div>
+    </a>
+    <div class="nav-modes">
+      <span class="mode-separator">⛩</span>
+      <button class="mode-btn active" onclick="switchMode('temple',this)">道場官方</button>
+      <button class="mode-btn" onclick="switchMode('temple','tab-about')">道場介紹</button>
+      <button class="mode-btn" onclick="switchMode('temple','tab-precepts')">戒行準則</button>
+      <button class="mode-btn" onclick="switchMode('temple','tab-calendar')">節慶月曆</button>
+      <button class="mode-btn" onclick="switchMode('temple','tab-divination')">求籤問事</button>
+      <span class="mode-separator">｜</span>
+      <button class="mode-btn" onclick="switchMode('admin',this)">⚙ 籌備管理</button>
+    </div>
+    <div class="nav-right">
+      <a class="quick-drive" href="https://drive.google.com/drive/folders/1F0OOP5vM4Vt4-7bpbbBkizuDPykscgYS?usp=sharing" target="_blank">📂 雲端資料夾</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════ TEMPLE MODE ══════════════ -->
+<div id="mode-temple" class="mode-panel active">
+  <!-- Hero -->
+  <div class="temple-hero">
+    <div class="hero-main-title">鐘府三聖</div>
+    <div class="hero-sub-title">社團法人台灣三聖道教信仰協會</div>
+    <div class="hero-tags">
+      <span class="hero-tag">開臺聖王</span>
+      <span class="hero-tag">關聖帝君</span>
+      <span class="hero-tag">天上聖母</span>
+      <span class="hero-tag">五常信條</span>
+    </div>
+  </div>
+
+  <!-- Sub Tabs -->
+  <div class="sub-tabs">
+    <div class="sub-tabs-inner">
+      <button class="sub-tab active" onclick="switchSubTab('tab-about',this)">① 道場介紹</button>
+      <button class="sub-tab" onclick="switchSubTab('tab-deities',this)">② 神明資料</button>
+      <button class="sub-tab" onclick="switchSubTab('tab-precepts',this)">③ 戒行準則</button>
+      <button class="sub-tab" onclick="switchSubTab('tab-calendar',this)">④ 節慶月曆</button>
+      <button class="sub-tab" onclick="switchSubTab('tab-divination',this)">⑤ 求籤問事</button>
+    </div>
+  </div>
+
+  <!-- ① 道場介紹 -->
+  <div id="tab-about" class="tab-content active">
+    <div class="content-wrap">
+      <div class="section-heading">道場核心宗旨</div>
+      <p class="section-desc">以道教正信為根本，在現代社會協助信眾安定身心、明辨方向</p>
+      <div class="grid-2" style="margin-bottom:28px">
+        <div class="card">
+          <div class="card-header" style="background:linear-gradient(135deg,#7A5C00,#B8860B)">
+            <h3 style="color:white;font-family:var(--serif);font-size:19px">四大根本綱領</h3>
+          </div>
+          <div class="card-body" style="padding:16px">
+            <div style="display:flex;flex-direction:column;gap:0">
+              <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid #E8D8A0;margin-bottom:10px">
+                <div style="background:var(--vermillion);color:white;width:52px;min-width:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 0">
+                  <span style="font-family:var(--serif);font-size:22px;font-weight:900;line-height:1">根</span>
+                  <span style="font-size:10px;margin-top:4px;opacity:0.85">本</span>
+                </div>
+                <div style="padding:12px 16px;background:#FFF9F0;flex:1">
+                  <div style="font-weight:700;font-size:18px;color:var(--vermillion);margin-bottom:5px">以道教正信為根本</div>
+                  <div style="font-size:15px;color:var(--ink3);line-height:1.7;text-wrap:balance">「信仰是提醒，不是迷信」，引導人向善、向正、向光明，使信仰回歸安定人心的真正力量。</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid #E8D8A0;margin-bottom:10px">
+                <div style="background:var(--gold-deep);color:white;width:52px;min-width:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 0">
+                  <span style="font-family:var(--serif);font-size:22px;font-weight:900;line-height:1">歸</span>
+                  <span style="font-size:10px;margin-top:4px;opacity:0.85">依</span>
+                </div>
+                <div style="padding:12px 16px;background:#FFF9F0;flex:1">
+                  <div style="font-weight:700;font-size:18px;color:var(--gold-deep);margin-bottom:5px">以經典智慧為依歸</div>
+                  <div style="font-size:15px;color:var(--ink3);line-height:1.7">以道教經典、易經智慧為信仰依據，使信仰有根有據，不流於空言與迷信。</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid #E8D8A0;margin-bottom:10px">
+                <div style="background:var(--jade);color:white;width:52px;min-width:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 0">
+                  <span style="font-family:var(--serif);font-size:22px;font-weight:900;line-height:1">引</span>
+                  <span style="font-size:10px;margin-top:4px;opacity:0.85">導</span>
+                </div>
+                <div style="padding:12px 16px;background:#F0F8F4;flex:1">
+                  <div style="font-weight:700;font-size:18px;color:var(--jade);margin-bottom:5px">以易經卜筮為指引</div>
+                  <div style="font-size:15px;color:var(--ink3);line-height:1.7;text-wrap:balance">透過卜卦求籤，協助信眾在人生的岔路口，明辨方向、看清局勢，知所取捨進退。</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid #E8D8A0">
+                <div style="background:var(--blue);color:white;width:52px;min-width:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 0">
+                  <span style="font-family:var(--serif);font-size:22px;font-weight:900;line-height:1">行</span>
+                  <span style="font-size:10px;margin-top:4px;opacity:0.85">修</span>
+                </div>
+                <div style="padding:12px 16px;background:#F0F4F8;flex:1">
+                  <div style="font-weight:700;font-size:18px;color:var(--blue);margin-bottom:5px">以修心修德為修行</div>
+                  <div style="font-size:15px;color:var(--ink3);line-height:1.7;text-wrap:balance">修行不在遠離塵世，而在日常生活中修心積德，於家庭、工作與社會之中持續累積福報。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" style="background:linear-gradient(135deg,#7A5C00,#DAA520)">
+            <h3 style="color:white;font-family:var(--serif);font-size:19px">開臺聖王五常信條</h3>
+          </div>
+          <div class="card-body" style="padding:16px">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid var(--gold-pale)">
+                <div style="background:linear-gradient(135deg,var(--vermillion),#E85D4A);color:white;width:62px;min-width:62px;display:flex;align-items:center;justify-content:center">
+                  <span style="font-family:var(--serif);font-size:34px;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,0.25)">仁</span>
+                </div>
+                <div style="padding:11px 14px;background:var(--gold-pale);flex:1">
+                  <div style="font-weight:700;font-size:16px;color:var(--ink2);margin-bottom:4px">心存仁慈，待人以善</div>
+                  <div style="font-size:14px;color:var(--ink3);line-height:1.7;text-wrap:balance">修仁不只是對人好，而是使內心不刻薄、不殘忍、不冷漠，在日常生活中養其心、正其性、利物濟人。</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid var(--gold-pale)">
+                <div style="background:linear-gradient(135deg,#8B6410,var(--gold));color:white;width:62px;min-width:62px;display:flex;align-items:center;justify-content:center">
+                  <span style="font-family:var(--serif);font-size:34px;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,0.25)">義</span>
+                </div>
+                <div style="padding:11px 14px;background:var(--gold-pale);flex:1">
+                  <div style="font-weight:700;font-size:16px;color:var(--ink2);margin-bottom:4px">行事有義，守正不偏</div>
+                  <div style="font-size:14px;color:var(--ink3);line-height:1.7;text-wrap:balance">修義是在利害、進退、是非、取捨之間，仍能守住該守之理，見利思義，不偏、不私、不亂。</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid var(--gold-pale)">
+                <div style="background:linear-gradient(135deg,var(--jade),#3D8B6A);color:white;width:62px;min-width:62px;display:flex;align-items:center;justify-content:center">
+                  <span style="font-family:var(--serif);font-size:34px;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,0.25)">禮</span>
+                </div>
+                <div style="padding:11px 14px;background:var(--jade-pale);flex:1">
+                  <div style="font-weight:700;font-size:16px;color:var(--ink2);margin-bottom:4px">尊重天地，敬神敬人</div>
+                  <div style="font-size:14px;color:var(--ink3);line-height:1.7;text-wrap:balance">修禮是知道如何敬天地、敬神明、敬父母、敬他人，以禮自持，不驕矜、不失序、不放肆。</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid var(--gold-pale)">
+                <div style="background:linear-gradient(135deg,var(--blue),#2A5A8C);color:white;width:62px;min-width:62px;display:flex;align-items:center;justify-content:center">
+                  <span style="font-family:var(--serif);font-size:34px;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,0.25)">智</span>
+                </div>
+                <div style="padding:11px 14px;background:var(--blue-pale);flex:1">
+                  <div style="font-weight:700;font-size:16px;color:var(--ink2);margin-bottom:4px">明辨是非，知所進退</div>
+                  <div style="font-size:14px;color:var(--ink3);line-height:1.7;text-wrap:balance">修智讓人心清、眼明、判斷正，不為欲望所蔽，不以小聰明壞大方向，在混亂中仍能守清楚。</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid var(--gold-pale)">
+                <div style="background:linear-gradient(135deg,#2C1810,#4A3020);color:white;width:62px;min-width:62px;display:flex;align-items:center;justify-content:center">
+                  <span style="font-family:var(--serif);font-size:34px;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,0.25)">信</span>
+                </div>
+                <div style="padding:11px 14px;background:var(--cream2);flex:1">
+                  <div style="font-weight:700;font-size:16px;color:var(--ink2);margin-bottom:4px">言而有信，立身之本</div>
+                  <div style="font-size:14px;color:var(--ink3);line-height:1.7;text-wrap:balance">修信是言行一致、內外相符、前後不反覆，使人可託付、可依靠，以信作為道場治理與共事的根本。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-heading">道場精神與修行定位</div>
+      <p class="section-desc">信仰不是遠離人世，而是在日常生活中修心修德</p>
+      <div class="grid-3" style="margin-bottom:24px">
+        <div class="card" style="border-top:4px solid var(--vermillion)">
+          <div class="card-body" style="text-align:center;padding:20px 16px">
+            <div style="font-size:38px;margin-bottom:10px">🔴</div>
+            <div style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--vermillion);margin-bottom:10px">正信</div>
+            <div style="font-size:16px;color:var(--ink3);line-height:1.8">信仰並非迷信，而是引導人向善、向正、向光明的人生道路</div>
+          </div>
+        </div>
+        <div class="card" style="border-top:4px solid var(--gold)">
+          <div class="card-body" style="text-align:center;padding:20px 16px">
+            <div style="font-size:38px;margin-bottom:10px">✨</div>
+            <div style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--gold-deep);margin-bottom:10px">正念</div>
+            <div style="font-size:16px;color:var(--ink3);line-height:1.8">神明不是控制人命運，而是守護、教化、提醒，學習神明所代表的精神</div>
+          </div>
+        </div>
+        <div class="card" style="border-top:4px solid var(--jade)">
+          <div class="card-body" style="text-align:center;padding:20px 16px">
+            <div style="font-size:38px;margin-bottom:10px">🌿</div>
+            <div style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--jade);margin-bottom:10px">正行</div>
+            <div style="font-size:16px;color:var(--ink3);line-height:1.8">修德、行善，以信仰作為人生方向，以修德作為修行的根本</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-heading">協會簡介</div>
+      <p class="section-desc">社團法人台灣三聖道教信仰協會</p>
+      <div class="card" style="margin-bottom:24px">
+        <div class="card-body" style="padding:20px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+            <div>
+              <div style="font-size:14px;color:var(--grey);font-weight:700;margin-bottom:12px;letter-spacing:1px">基本資料</div>
+              <table style="width:100%;border-collapse:collapse;font-size:16px">
+                <tr><td style="padding:9px 0;color:var(--grey);width:110px;border-bottom:1px solid var(--cream3)">道場名稱</td><td style="font-weight:600;border-bottom:1px solid var(--cream3)">鐘府三聖</td></tr>
+                <tr><td style="padding:9px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">法人名稱</td><td style="font-weight:600;border-bottom:1px solid var(--cream3)">社團法人台灣三聖道教信仰協會</td></tr>
+                <tr><td style="padding:9px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">道場地址</td><td style="font-weight:600;border-bottom:1px solid var(--cream3)">新北市樹林區山佳</td></tr>
+                <tr><td style="padding:9px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">主神信仰</td><td style="font-weight:600;border-bottom:1px solid var(--cream3)">開臺聖王・關聖帝君・天上聖母</td></tr>
+                <tr><td style="padding:9px 0;color:var(--grey)">籌備現況</td><td><span style="background:#FFF8E1;color:#F57F17;padding:3px 12px;border-radius:10px;font-size:14px;font-weight:700">籌備中 2026</span></td></tr>
+              </table>
+            </div>
+            <div>
+              <div style="font-size:14px;color:var(--grey);font-weight:700;margin-bottom:12px;letter-spacing:1px">發展藍圖</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="background:var(--jade-pale);border-radius:8px;padding:12px 14px;border-left:3px solid var(--jade)">
+                  <div style="font-size:13px;font-weight:700;color:var(--jade)">短期目標 ▶ 進行中</div>
+                  <div style="font-size:16px;color:var(--ink3);margin-top:4px;font-weight:500">成立社團法人</div>
+                </div>
+                <div style="background:var(--cream2);border-radius:8px;padding:12px 14px;border-left:3px solid var(--gold)">
+                  <div style="font-size:13px;font-weight:700;color:var(--gold-deep)">中期目標</div>
+                  <div style="font-size:16px;color:var(--ink3);margin-top:4px;font-weight:500">轉型宗教財團法人</div>
+                </div>
+                <div style="background:var(--cream2);border-radius:8px;padding:12px 14px;border-left:3px solid var(--blue)">
+                  <div style="font-size:13px;font-weight:700;color:var(--blue)">長期目標</div>
+                  <div style="font-size:16px;color:var(--ink3);margin-top:4px;font-weight:500">申請寺廟登記，建立固定道場</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 神明介紹 -->
+  <div id="tab-deities" class="tab-content">
+    <div class="content-wrap">
+      <div class="section-heading">三聖主神</div>
+      <p class="section-desc">開臺聖王・關聖帝君・天上聖母</p>
+      <div class="grid-3" style="margin-bottom:28px" id="main-deities"></div>
+
+      <div class="section-heading">配祀神</div>
+      <p class="section-desc">玄壇真君・中壇元帥・福德正神・金虎將軍</p>
+      <div class="grid-4" style="margin-bottom:28px" id="side-deities"></div>
+
+      <div class="section-heading">指導神</div>
+      <p class="section-desc">太乙救苦天尊・東嶽仁聖大帝</p>
+      <div class="grid-2" style="margin-bottom:28px" id="guide-deities"></div>
+    </div>
+  </div>
+
+  <!-- ③ 戒行準則 -->
+  <div id="tab-precepts" class="tab-content">
+    <div class="content-wrap">
+      <div class="precept-tabs">
+        <button class="precept-tab-btn active" onclick="switchPrecept('tencmd',this)"
+          style="background:var(--vermillion);color:white;border-color:var(--vermillion)">靈寶天尊十戒</button>
+        <button class="precept-tab-btn" onclick="switchPrecept('wuchang',this)"
+          style="color:var(--gold-deep);border-color:var(--gold)">開臺聖王五常信條</button>
+      </div>
+      <div id="prec-tencmd" class="prec-panel" id="prec-tencmd"></div>
+      <div id="prec-wuchang" class="prec-panel" style="display:none" id="prec-wuchang"></div>
+    </div>
+  </div>
+
+  <!-- ④ 節慶月曆 -->
+  <div id="tab-calendar" class="tab-content">
+    <div class="content-wrap">
+      <div class="cal-controls">
+        <div class="section-heading" style="margin-bottom:0">道教節慶月曆</div>
+        <select class="cal-month-select" id="cal-month-select" onchange="renderCalendar()">
+          <option value="0">全年</option>
+          <option value="1">正月</option><option value="2">二月</option>
+          <option value="3">三月</option><option value="4">四月</option>
+          <option value="5">五月</option><option value="6">六月</option>
+          <option value="7">七月</option><option value="8">八月</option>
+          <option value="9">九月</option><option value="10">十月</option>
+          <option value="11">十一月</option><option value="12">十二月</option>
+        </select>
+        <button class="cal-btn" onclick="document.getElementById('cal-month-select').value=0;renderCalendar()">全年</button>
+      </div>
+      <div class="festival-list" id="festival-list"></div>
+    </div>
+  </div>
+
+  <!-- ⑤ 求籤 -->
+  <div id="tab-divination" class="tab-content">
+    <div class="content-wrap">
+      <div class="div-layout">
+        <!-- Main -->
+        <div>
+          <div class="div-main">
+            <div class="div-header">
+              <h2>🔮 鐘府三聖 求籤問事</h2>
+              <p>誠心求籤，籤詩是神明的提醒，而非命運的決定</p>
+            </div>
+            <div class="div-controls">
+              <div style="font-size:12px;font-weight:700;color:var(--grey);margin-bottom:10px">請選擇問事類別</div>
+              <div class="category-grid" id="cat-grid"></div>
+              <div class="shake-area" id="shake-area" onclick="doShake()">
+                <div class="shake-container" id="shake-container">
+                  <div class="qian-cup" id="qian-cup">
+                    <div class="qian-stick" style="left:20px;--r:-20deg;transform:rotate(-20deg)"></div>
+                    <div class="qian-stick" style="left:30px;--r:5deg;transform:rotate(5deg)"></div>
+                    <div class="qian-stick" style="left:40px;--r:15deg;transform:rotate(15deg)"></div>
+                    <div class="qian-stick" style="left:50px;--r:-8deg;transform:rotate(-8deg)"></div>
+                  </div>
+                </div>
+                <div class="shake-hint">🙏 點此誠心搖籤</div>
+                <div class="shake-sub">靜心默念所求之事，然後點擊搖籤</div>
+              </div>
+              <button class="shake-btn" id="main-shake-btn" onclick="doShake()">誠心搖籤</button>
+            </div>
+            <div class="div-result" id="div-result"></div>
+          </div>
+        </div>
+        <!-- Index -->
+        <div>
+          <div class="div-index" style="margin-bottom:14px">
+            <div class="div-index-header">
+              <h3>直接查閱籤號 (1-64首)</h3>
+              <div style="display:flex;gap:8px;justify-content:center;margin-top:6px;font-size:9px">
+                <span style="background:#FFF3E0;color:#E65100;padding:2px 8px;border-radius:8px">吉</span>
+                <span style="background:#E3F2FD;color:#1565C0;padding:2px 8px;border-radius:8px">平</span>
+                <span style="background:#E8F5E9;color:#2E7D32;padding:2px 8px;border-radius:8px">宜謹慎</span>
+              </div>
+            </div>
+            <div class="qian-grid" id="qian-grid"></div>
+          </div>
+          <div class="div-index">
+            <div class="div-index-header" style="background:linear-gradient(135deg,var(--ink2),var(--ink3))">
+              <h3>最近求籤紀錄</h3>
+            </div>
+            <div class="div-history" id="div-history"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /temple mode -->
+
+<!-- ══════════════ ADMIN MODE ══════════════ -->
+<div id="mode-admin" class="mode-panel">
+  <div class="admin-hero">
+    <h2>社團法人台灣三聖道教信仰協會｜籌備管理系統</h2>
+    <p>協會運作制度說明・籌備甘特圖・文件管理・Google Drive 整合</p>
+    <div class="admin-tags">
+      <span class="admin-tag">籌備期間：2026年4月—9月</span>
+      <span class="admin-tag">主管機關：新北市政府社會局</span>
+      <span class="admin-tag">法規依據：人民團體法</span>
+    </div>
+  </div>
+
+  <div class="admin-tabs">
+    <div class="admin-tabs-inner">
+      <button class="admin-tab active" onclick="switchAdminTab('a-intro',this)">① 協會介紹與制度</button>
+      <button class="admin-tab" onclick="switchAdminTab('a-gantt',this)">② 籌備甘特圖</button>
+      <button class="admin-tab" onclick="switchAdminTab('a-docs',this)">③ 文件管理</button>
+      <button class="admin-tab" onclick="switchAdminTab('a-finance',this)">④ 財務合規</button>
+    </div>
+  </div>
+
+  <div style="max-width:1280px;margin:0 auto;padding:24px 20px">
+
+    <!-- ① 協會介紹 -->
+    <div id="a-intro" class="tab-content active">
+      <div class="intro-tabs" id="intro-tabs">
+        <button class="intro-tab active" onclick="switchIntroTab('i-basic',this)">基本資料</button>
+        <button class="intro-tab" onclick="switchIntroTab('i-org',this)">組織架構</button>
+        <button class="intro-tab" onclick="switchIntroTab('i-member',this)">委員制度</button>
+        <button class="intro-tab" onclick="switchIntroTab('i-finance-rule',this)">財務治理</button>
+        <button class="intro-tab" onclick="switchIntroTab('i-ethic',this)">信仰準則</button>
+      </div>
+      <div id="i-basic" class="tab-content active" style="padding:0">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header"><h3 style="font-family:var(--serif)">協會基本資訊</h3></div>
+            <div class="card-body">
+              <table style="width:100%;font-size:13px;border-collapse:collapse">
+                <tr><td style="padding:8px 0;color:var(--grey);width:110px;border-bottom:1px solid var(--cream3)">法人名稱</td><td style="padding:8px 0;font-weight:700;border-bottom:1px solid var(--cream3)">社團法人台灣三聖道教信仰協會</td></tr>
+                <tr><td style="padding:8px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">道場名稱</td><td style="padding:8px 0;border-bottom:1px solid var(--cream3)">鐘府三聖</td></tr>
+                <tr><td style="padding:8px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">主管機關</td><td style="padding:8px 0;border-bottom:1px solid var(--cream3)">新北市政府社會局（人民團體法）</td></tr>
+                <tr><td style="padding:8px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">會址</td><td style="padding:8px 0;border-bottom:1px solid var(--cream3)">新北市樹林區山佳（鐘府三聖道場所在地）</td></tr>
+                <tr><td style="padding:8px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">初期會員</td><td style="padding:8px 0;border-bottom:1px solid var(--cream3)">體制委員30名（家庭戶代表制）</td></tr>
+                <tr><td style="padding:8px 0;color:var(--grey)">會計年度</td><td style="padding:8px 0">每年1月1日至12月31日</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3 style="font-family:var(--serif)">協會宗旨（章程第三條）</h3></div>
+            <div class="card-body">
+              <div style="font-size:13px;color:var(--ink3);line-height:2;background:var(--cream2);border-radius:8px;padding:14px;font-family:var(--serif);border-left:4px solid var(--vermillion)">
+                本會以弘揚道教正信文化、三聖精神信仰、修心修身修行，信仰教化、文化傳承、公益服務與道場制度化治理為宗旨，並以建立可長久傳承、非私有化、合法合理且有合規管理制度之道場為核心方向。
+              </div>
+              <div style="margin-top:14px;font-size:12px;color:var(--grey);font-weight:700;margin-bottom:8px">核心精神</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <span style="background:var(--vermillion);color:white;padding:4px 12px;border-radius:12px;font-size:11px;font-weight:600">正信</span>
+                <span style="background:var(--gold-deep);color:white;padding:4px 12px;border-radius:12px;font-size:11px;font-weight:600">非私有化</span>
+                <span style="background:var(--jade);color:white;padding:4px 12px;border-radius:12px;font-size:11px;font-weight:600">制度化</span>
+                <span style="background:var(--blue);color:white;padding:4px 12px;border-radius:12px;font-size:11px;font-weight:600">透明治理</span>
+                <span style="background:var(--ink3);color:white;padding:4px 12px;border-radius:12px;font-size:11px;font-weight:600">永續傳承</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="i-org" class="tab-content" style="padding:0;display:none">
+        <div class="card">
+          <div class="card-header"><h3 style="font-family:var(--serif)">組織架構（章程第十五—二十條）</h3></div>
+          <div class="card-body">
+            <div class="rule-item" style="border-color:var(--vermillion)">
+              <h4 style="color:var(--vermillion)">執事長（精神指導）</h4>
+              <p>道場信仰精神、修持方向與章程宗旨之指導職，統攝道場精神傳承與重大方針建議。原則上不作為對外法定代表人。</p>
+            </div>
+            <div class="rule-item" style="border-color:var(--gold-deep)">
+              <h4 style="color:var(--gold-deep)">副執事長・主委（共同代表）</h4>
+              <p>由理事互選之，對外共同代表本會，綜理會務，並執行會員大會與理事會決議。</p>
+            </div>
+            <div class="rule-item" style="border-color:var(--jade)">
+              <h4 style="color:var(--jade)">理事（三名）</h4>
+              <p>協助推動會務、活動、制度、課程、文宣、文化保存與對外協作。首屆三十名會員時以三名為原則。任期三年，連選得連任。</p>
+            </div>
+            <div class="rule-item" style="border-color:var(--blue)">
+              <h4 style="color:var(--blue)">監事（四名）</h4>
+              <p>分為財務監事二名（預決算、收支、帳務監督）與事務監事二名（會務程序、制度執行監督）。首屆四名，採單數配置。</p>
+            </div>
+            <div class="rule-item" style="border-color:var(--grey)">
+              <h4 style="color:var(--grey)">任務編組</h4>
+              <p>得視實際需要設秘書、總務、文書、課程、祭典、志工、文史、資訊等任務編組或委員會，其設置辦法由理事會另定之。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="i-member" class="tab-content" style="padding:0;display:none">
+        <div class="card">
+          <div class="card-header"><h3 style="font-family:var(--serif)">委員（體制會員）制度說明</h3><span class="badge">章程第九—十四條</span></div>
+          <div class="card-body">
+            <div class="grid-2">
+              <div>
+                <div style="font-weight:700;font-size:13px;color:var(--blue);margin-bottom:10px">委員基本資格</div>
+                <div class="rule-item" style="border-color:var(--blue);margin-bottom:8px">
+                  <p>✅ 認同鐘府三聖之信仰宗旨與章程</p>
+                </div>
+                <div class="rule-item" style="border-color:var(--blue);margin-bottom:8px">
+                  <p>✅ 願遵守靈寶天尊十戒與開臺聖王五常信條</p>
+                </div>
+                <div class="rule-item" style="border-color:var(--blue);margin-bottom:8px">
+                  <p>✅ 願實際參與道場參拜、神尊誕辰活動與會務</p>
+                </div>
+                <div class="rule-item" style="border-color:var(--blue);margin-bottom:8px">
+                  <p>✅ 認同非私有化、制度化與永續傳承理念</p>
+                </div>
+                <div class="rule-item" style="border-color:var(--blue)">
+                  <p>✅ 每戶以登記一人為原則（家庭戶代表制）</p>
+                </div>
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:13px;color:var(--jade);margin-bottom:10px">委員義務</div>
+                <div class="rule-item" style="border-color:var(--jade);margin-bottom:8px">
+                  <p>📍 每月至少前往道場參拜一次</p>
+                </div>
+                <div class="rule-item" style="border-color:var(--jade);margin-bottom:8px">
+                  <p>📍 應參與主神重要聖誕之參拜活動</p>
+                </div>
+                <div class="rule-item" style="border-color:var(--jade);margin-bottom:8px">
+                  <p>📍 遵守章程、決議與道場秩序</p>
+                </div>
+                <div class="rule-item" style="border-color:var(--jade);margin-bottom:8px">
+                  <p>📍 不得假借本會名義從事損害信仰行為</p>
+                </div>
+                <div class="rule-item" style="border-color:var(--jade)">
+                  <p>📍 每年參與一次年度禮拜或會員大會</p>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:16px;background:var(--gold-pale);border-radius:10px;padding:14px;border:1px solid var(--gold)">
+              <div style="font-weight:700;font-size:13px;color:var(--gold-deep);margin-bottom:6px">委員年度福利</div>
+              <div style="font-size:13px;color:var(--ink3)">
+                🎯 每年三聖賜與易經占卜年運卦乙次（年度自省與方向提醒）<br>
+                👘 得領取宮服一套<br>
+                📋 <span style="color:var(--jade);font-weight:600">現階段委員登記、基本參拜、慶典活動、年運卦與宮服，不收取任何費用</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="i-finance-rule" class="tab-content" style="padding:0;display:none">
+        <div class="card">
+          <div class="card-header"><h3 style="font-family:var(--serif)">財務透明治理制度（章程第二十九—三十一條）</h3></div>
+          <div class="card-body">
+            <div class="rule-item" style="border-color:var(--jade)">
+              <h4 style="color:var(--jade)">經費來源分類（第二十九條）</h4>
+              <p>一、會員捐助　二、自由樂捐　三、企業捐贊或專案支持　四、其他合法收入<br>所有收入應明確標示性質，不得與私人金流混同。</p>
+            </div>
+            <div class="rule-item" style="border-color:var(--blue)">
+              <h4 style="color:var(--blue)">帳務透明原則（第三十條）</h4>
+              <p>建立帳務、收據、憑證、對帳、預決算與財務揭露制度；收款性質應區分為會務、捐款、活動、代收與其他合法分類，不得與私人金流混同。</p>
+            </div>
+            <div class="rule-item" style="border-color:var(--gold-deep)">
+              <h4 style="color:var(--gold-deep)">年度審議機制（第三十一條）</h4>
+              <p>年度預算、決算及重大收支事項，應提會員大會審議；監事提出財務監督意見，以維持道場與法人之公信力。</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div id="i-ethic" class="tab-content" style="padding:0;display:none">
+        <div class="card">
+          <div class="card-header"><h3 style="font-family:var(--serif)">倫理守則與行為規範</h3></div>
+          <div class="card-body">
+            <div class="grid-2">
+              <div>
+                <div class="rule-item" style="border-color:var(--jade)"><h4 style="color:var(--jade)">禁止事項</h4>
+                  <p>• 強迫募款、恐嚇式勸捐<br>• 假借神明名義欺瞞信眾<br>• 以「迷信」或「恐嚇」的語氣解籤<br>• 宣稱醫療療效<br>• 從事政黨活動</p>
+                </div>
+              </div>
+              <div>
+                <div class="rule-item" style="border-color:var(--blue)"><h4 style="color:var(--blue)">爭議處理機制</h4>
+                  <p>① 調解小組優先調解<br>② 倫理委員會審議<br>③ 必要時外部第三方（律師/調解委員會）</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /a-intro -->
+
+    <!-- ② 甘特圖 -->
+    <div id="a-gantt" class="tab-content" style="display:none">
+      <div class="progress-summary" id="progress-summary"></div>
+      <div class="big-progress">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:700;font-size:14px;color:var(--blue)">📊 整體籌備進度</div>
+          <div id="big-pct" style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--jade)">0%</div>
+        </div>
+        <div class="big-progress-bar"><div class="big-progress-fill" id="big-fill" style="width:0%"></div></div>
+      </div>
+      <div class="gantt-wrap">
+        <div class="gantt-header">
+          <h3>📅 社團法人籌備甘特圖｜2026年4月—9月</h3>
+          <div style="display:flex;gap:8px">
+            <button onclick="checkAllMilestones()" style="padding:5px 14px;background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:12px;cursor:pointer;font-size:11px">全部勾選</button>
+            <button onclick="clearAllMilestones()" style="padding:5px 14px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2);border-radius:12px;cursor:pointer;font-size:11px">全部清除</button>
+          </div>
+        </div>
+        <div class="gantt-table"><div class="gantt-inner" id="gantt-inner"></div></div>
+      </div>
+    </div>
+
+    <!-- ③ 文件管理 -->
+    <div id="a-docs" class="tab-content" style="display:none">
+      <div class="drive-banner">
+        <div style="font-size:32px">📁</div>
+        <div class="d-text">
+          <h3>Google Drive 雲端資料夾｜社團法人台灣三聖道教信仰協會</h3>
+          <p>所有籌備文件、章程草案、登記文件請統一上傳至此雲端資料夾管理</p>
+        </div>
+        <a class="drive-link-btn" href="https://drive.google.com/drive/folders/1F0OOP5vM4Vt4-7bpbbBkizuDPykscgYS?usp=sharing" target="_blank">📂 開啟資料夾</a>
+      </div>
+      <div id="doc-manager"></div>
+    </div>
+
+    <!-- ④ 財務合規 -->
+    <div id="a-finance" class="tab-content" style="display:none">
+      <div class="card" style="margin-bottom:18px">
+        <div class="card-header" style="background:linear-gradient(135deg,var(--blue),var(--blue-l))">
+          <h3 style="color:white;font-family:var(--serif)">收入類型與稅務處理對照表</h3>
+        </div>
+        <div class="card-body" style="padding:0;overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:12px">
+            <thead><tr style="background:var(--blue-pale)">
+              <th style="padding:10px 12px;text-align:left;color:var(--blue);font-weight:700">收入類型</th>
+              <th style="padding:10px 12px;text-align:left;color:var(--blue);font-weight:700">法律依據</th>
+              <th style="padding:10px 12px;text-align:left;color:var(--blue);font-weight:700">稅務處理</th>
+              <th style="padding:10px 12px;text-align:left;color:var(--blue);font-weight:700">注意事項</th>
+              <th style="padding:10px 12px;text-align:left;color:var(--blue);font-weight:700">風險</th>
+            </tr></thead>
+            <tbody id="fin-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card"><div class="card-header"><h3 style="font-family:var(--serif)">核銷帳冊管理要點</h3></div><div class="card-body" id="fin-rules"></div></div>
+        <div class="card"><div class="card-header"><h3 style="font-family:var(--serif)">常見問題解答</h3></div><div class="card-body" id="fin-qa"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /admin mode -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════════════════
+const DEITIES_MAIN = [
+  {name:'開臺聖王',icon:'⚔️',rank:'三聖主神',spirit:'守護・開創・地方信仰',
+   tags:['守護','開創','地方信仰'],
+   meaning:'提醒世人在人生道路上建立根基、守護家園，並以正氣面對困難。遇事先求立局、立制、立信；以公義與能力服務社群。',
+   color:'var(--vermillion)'},
+  {name:'關聖帝君',icon:'🗡️',rank:'三聖主神',spirit:'忠義・正氣・守信',
+   tags:['忠義','正氣','守信'],
+   meaning:'提醒世人做人處世須守信重義，以正直之心行於世間。言行一致、守約重諾；遇利害不欺、不貪、不苟。',
+   color:'var(--vermillion)'},
+  {name:'天上聖母',icon:'🌊',rank:'三聖主神',spirit:'慈悲・護生・庇佑',
+   tags:['慈悲','護生','庇佑'],
+   meaning:'象徵母性般的慈悲與守護，引導信眾以善念待人、以德行立身。先安人心、護弱扶困；以同理、耐心與行動行善。',
+   color:'var(--vermillion)'},
+];
+const DEITIES_SIDE = [
+  {name:'玄壇真君',icon:'💰',rank:'配祀神',spirit:'正財・誠信・商道',tags:['正財','誠信'],meaning:'提醒世人財富須來自正道，誠信經營、勤奮努力方能長久。',color:'var(--gold-deep)'},
+  {name:'中壇元帥',icon:'🔥',rank:'配祀神',spirit:'勇氣・守護',tags:['勇氣','守護'],meaning:'提醒世人以正氣與勇氣面對人生考驗，守護正道。',color:'var(--gold-deep)'},
+  {name:'福德正神',icon:'🌱',rank:'配祀神',spirit:'土地守護・福報',tags:['土地守護','福報'],meaning:'提醒世人珍惜土地、勤勞行善，福德自然積累。',color:'var(--gold-deep)'},
+  {name:'金虎將軍',icon:'🐯',rank:'配祀神',spirit:'守護・鎮煞',tags:['守護','鎮煞'],meaning:'象徵護衛正氣、驅邪鎮煞，守護道場與信眾平安。',color:'var(--gold-deep)'},
+];
+const DEITIES_GUIDE = [
+  {name:'太乙救苦天尊',icon:'☁️',rank:'指導神',spirit:'救苦・慈悲',tags:['救苦','慈悲'],meaning:'提醒世人以慈悲心待人，並幫助眾生離苦得安。',color:'var(--jade)'},
+  {name:'東嶽仁聖大帝',icon:'⚖️',rank:'指導神',spirit:'生死秩序・因果',tags:['生死秩序','因果'],meaning:'提醒世人行善積德、敬畏因果，人生自有其秩序與法則。',color:'var(--jade)'},
+];
+
+const TEN_PRECEPTS = [
+  {n:1,title:'不殺，常念眾生',original:'一者不殺，當念眾生',explain:'不殺，不只是不要傷害生命，更是提醒自己常懷慈悲，不以殘忍、暴戾之心對待人與眾生。',practice:'本會信眾當常念眾生，養成慈悲護生、安人利物之心。',color:'var(--vermillion)'},
+  {n:2,title:'不妄作邪念',original:'二者不得妄作邪念',explain:'不可任由自己起偏邪、貪淫、害人、妄想的念頭。邪念一起，人就容易為自己找理由，最後把錯當成對。',practice:'本會信眾當端正心念，不妄起偏邪、害人之思，使修行先從心正開始。',color:'var(--gold-deep)'},
+  {n:3,title:'不取非義財',original:'三者不得取非義財',explain:'不可拿不該拿的錢，不可用不正當的方式取得利益。財不是不能有，但不能取不當之財、欺心之財。',practice:'本會信眾當守正取財，不取非義之利；本會亦以公開、正當方式處理財務。',color:'var(--jade)'},
+  {n:4,title:'不欺，善惡反論',original:'四者不欺，善惡反論',explain:'不可欺人、不可欺心、不可顛倒是非。欺，不只是騙人，也包括明知不對還硬要講成對。',practice:'本會信眾當誠實不欺，不顛倒善惡，不假借神明名義行欺瞞之事。',color:'var(--blue)'},
+  {n:5,title:'不醉，常思淨行',original:'五者不醉，常思淨行',explain:'不可使自己沉迷昏亂，失去清醒。醉，廣義來說，就是被情緒、欲望、享樂、執念拖走，失去分寸。',practice:'本會信眾當節制身心，不放逸、不昏亂，常守清明、自持與淨行。',color:'var(--vermillion)'},
+  {n:6,title:'宗親和睦，無有非親',original:'六者宗親和睦，無有非親',explain:'要使宗親家庭和睦，不輕易對立。一個人若在道場很虔誠，回家卻對至親刻薄，那修行就還沒真正落地。',practice:'本會信眾當以和親、敬親、安家為基本修持，使信仰先落實於家庭和睦之中。',color:'var(--gold-deep)'},
+  {n:7,title:'見人善事，心助歡喜',original:'七者見人善事，心助歡喜',explain:'看見別人做善事，不嫉妒、不譏諷，反而真心隨喜、歡喜成全。能夠隨喜他人的善，代表內心已較少嫉妒。',practice:'本會信眾當見善隨喜，樂於成全他人善行，不以嫉妒、譏諷破壞善念。',color:'var(--jade)'},
+  {n:8,title:'見人有憂，助為作福',original:'八者見人有憂，助為作福',explain:'看見別人有苦、有難，不冷眼旁觀，而要盡己所能幫助對方。信仰不是只求自己平安，而是看見別人的難處時，願意伸手。',practice:'本會信眾當於人有憂苦時，盡己所能給予扶助、安慰與實際支持。',color:'var(--blue)'},
+  {n:9,title:'彼來加我，志在不報',original:'九者彼來加我，志在不報',explain:'當別人加害於我，不要一心只想報復。這一戒修的是解怨心。不是叫人軟弱，而是提醒人不要讓自己的心被報復心拖走。',practice:'本會信眾當節制怨恨與報復之心，於受傷受辱之時，仍守分寸、守德性。',color:'var(--vermillion)'},
+  {n:10,title:'一切未得，我不有望',original:'十者一切未得，我不有望',explain:'對於一切尚未得到的東西，不妄生過度執著與非分妄求。很多人心不安，不是因為真的缺少，而是「一直想要更多」。',practice:'本會信眾當知正知足，不妄求非分之得，不以貪念亂心，不以執求失德。',color:'var(--gold-deep)'},
+];
+
+const WUCHANG = [
+  {char:'仁',color:'var(--vermillion)',meaning:'心存仁慈，待人以善',detail:'仁者，慈心也，愛人也，護生也，安人也。修仁，不只是對人好，而是使一個人內心不刻薄、不殘忍、不冷漠，能在日常之中養其心、正其性、利物濟人。',practice:'以仁修心，以仁待人，以仁立家，以仁行事，不以自私損人，不以冷漠傷人。'},
+  {char:'義',color:'var(--gold-deep)',meaning:'行事有義，守正不偏',detail:'義者，正道也，宜也，當為則為，不當為則止。修義，是一個人於利害、進退、是非、取捨之中，仍能守住該守之理，不偏、不私、不亂。',practice:'見利思義，不因私利失其原則，不因情勢失其正道，不因一時得失違背應守之分際。'},
+  {char:'禮',color:'var(--jade)',meaning:'尊重天地，敬神敬人',detail:'禮者，敬也，節也，序也。修禮，不只是會行禮儀，而是使人知道如何敬天地、敬神明、敬父母、敬他人，也知道如何節其身、正其行、守其分。',practice:'以禮自持，不驕矜、不失序、不放肆，使信仰落實為有分寸、有規矩、有尊重之行。'},
+  {char:'智',color:'var(--blue)',meaning:'明辨是非，知所進退',detail:'智者，明辨也，知正也，知進退也，知善惡也。修智，是讓人心清、眼明、判斷正，不為欲望所蔽，不為表象所惑，不以小聰明壞大方向。',practice:'以智照事，以智觀局，以智自守，不以機巧害人，不以算計敗德，不以聰明反失正道。'},
+  {char:'信',color:'var(--ink2)',meaning:'言而有信，立身之本',detail:'信者，誠也，守也，立也。修信，是一個人言而有據、行而有守、內外一致、前後不反覆，使人可託付、可依靠、可長久共事。',practice:'言行一致，不欺、不詐、不反覆，不假借信仰之名行不實之事；對家庭、道場、眾人，皆當以信立身。'},
+];
+
+const FESTIVALS = [
+  {m:1,name:'天官大帝聖誕',lunar:'正月十五（上元節）',color:'var(--vermillion)',type:'重要',desc:'上元賜福，祈求天官賜福，為一年之始重要節慶'},
+  {m:1,name:'開臺聖王誕',lunar:'正月十六',color:'var(--vermillion)',type:'主神',desc:'鐘府三聖主神聖誕，本道場最重要節慶之一'},
+  {m:2,name:'土地公聖誕（頭牙）',lunar:'二月初二',color:'var(--gold-deep)',type:'節慶',desc:'福德正神聖誕，商家祭拜祈求年度財運'},
+  {m:3,name:'天上聖母聖誕',lunar:'三月二十三',color:'var(--vermillion)',type:'主神',desc:'鐘府三聖主神聖誕，媽祖誕辰，為台灣最盛大宗教節慶之一'},
+  {m:4,name:'開臺聖王紀念日',lunar:'四月下旬',color:'var(--vermillion)',type:'主神',desc:'參照延平郡王祠中樞祭典，本會固定年度治理論壇日'},
+  {m:5,name:'城隍爺聖誕',lunar:'五月十一',color:'var(--jade)',type:'節慶',desc:'城隍爺主掌陰間司法，是民間重要信仰節慶'},
+  {m:5,name:'中壇元帥聖誕（哪吒）',lunar:'五月初八',color:'var(--gold-deep)',type:'配祀',desc:'鐘府三聖配祀神中壇元帥聖誕'},
+  {m:6,name:'關聖帝君聖誕',lunar:'六月二十四',color:'var(--vermillion)',type:'主神',desc:'鐘府三聖主神聖誕，忠義月，辦理守信宣誓與公益透明發布'},
+  {m:6,name:'玄壇真君聖誕（趙公明）',lunar:'六月初六',color:'var(--gold-deep)',type:'配祀',desc:'鐘府三聖配祀財神聖誕，祈求正財正業'},
+  {m:7,name:'中元節',lunar:'七月十五',color:'var(--ink3)',type:'重要',desc:'中元普渡，超度祖先與無主孤魂，為重要道教節慶'},
+  {m:7,name:'太乙救苦天尊聖誕',lunar:'七月初七',color:'var(--jade)',type:'指導',desc:'鐘府三聖指導神聖誕，象徵救苦救難與慈悲度化'},
+  {m:8,name:'東嶽仁聖大帝聖誕',lunar:'八月初三',color:'var(--jade)',type:'指導',desc:'鐘府三聖指導神聖誕，提醒世人敬畏因果'},
+  {m:8,name:'土地公聖誕（尾牙前）',lunar:'八月十五',color:'var(--gold-deep)',type:'節慶',desc:'中秋福德正神聖誕，感恩豐收'},
+  {m:9,name:'重陽節',lunar:'九月初九',color:'var(--jade)',type:'節慶',desc:'敬老尊親重要節慶，道場辦理關懷長者活動'},
+  {m:10,name:'水官大帝聖誕（下元節）',lunar:'十月十五',color:'var(--blue)',type:'重要',desc:'水官赦罪，道教三元節之末，消災解厄'},
+  {m:11,name:'太歲星君聖誕',lunar:'十一月初一',color:'var(--jade)',type:'節慶',desc:'太歲值年，安太歲祈求平安'},
+  {m:12,name:'送神日',lunar:'十二月二十四',color:'var(--gold-deep)',type:'重要',desc:'恭送諸神歸天述職，年終重要儀式'},
+  {m:12,name:'除夕・迎神',lunar:'十二月三十',color:'var(--vermillion)',type:'重要',desc:'迎接諸神歸位，守歲除舊布新'},
+];
+
+// ═══ 64首籤詩 (complete data) ═══
+const QIAN_DATA = [
+  {n:1,gua:'乾為天',story:'亁為天',level:'平',poem:'青萍久蘊洛城隈，削惡鋤奸待主來，太息昇平無事日，漢中烹狗又沉埋',
+   items:{疾病:'嚴重求平安',求財:'欲速不達',婚姻:'先開後合',功名:'受人制肘',耕作:'應時獲利',家運:'耗財未通'}},
+  {n:2,gua:'坤為地',story:'晉文公歸國',level:'平',poem:'君臣避亂出他鄉，棄國先知不久長，風虎雲龍能際會，匡扶社稷振剛常',
+   items:{功名:'緩緩得意',求財:'日見小利',婚姻:'和合大吉',家運:'日漸進步'}},
+  {n:3,gua:'水雷屯',story:'包拯審郭槐',level:'宜謹慎',poem:'真假原來不可欺，暗中作惡鬼神知，高懸寶鏡明如水，總有昭彰報應時',
+   items:{疾病:'貴人東來',求財:'漸時不利',婚姻:'多口難成',官司:'至終勝訴',家運:'十分歷險'}},
+  {n:4,gua:'山水蒙',story:'慈雲太子走國',level:'平',poem:'千里關山歷遠遊，前途黯淡不堪憂，戶內用心再作福，人生富貴幾時修',
+   items:{求財:'淡中至盛',婚姻:'不得順事',功名:'前途失望',家運:'株守好'}},
+  {n:5,gua:'水天需',story:'劉文良別妻',level:'吉',poem:'精誠致戒禮梵宮，爐火煙篆入眼中，心正無邪能改變，災如雲雨散天空',
+   items:{六甲:'先男後女吉',求財:'貴人扶助',家運:'逢兇化吉',婚姻:'雅人撮合'}},
+  {n:6,gua:'山水訟',story:'狄青取旗',level:'平',poem:'萬里征途不畏難，一心盡命見忠肝，平生未作皺眉事，災厄重重得自安',
+   items:{求財:'能得大利',婚姻:'成則反復',家運:'日漸興隆',官事:'萬弩穿心'}},
+  {n:7,gua:'地水師',story:'孫臏學藝',level:'平',poem:'棄卻邪心正道開，詎知災盡禍重來，堅如碣石勤磨琢，何患奸徒撥死灰',
+   items:{求財:'淡卻安然',婚姻:'速成無礙',家運:'逢丑轉好',官事:'急切和平'}},
+  {n:8,gua:'水地比',story:'王司徒計獻連環',level:'宜謹慎',poem:'百事徒勞費苦心，忠臣計就暗沉吟，如今社稷能存漢，史上留名最好音',
+   items:{求財:'得而又再失',婚姻:'絕難成就',家運:'如扁舟行浪',官事:'說和更妙'}},
+  {n:9,gua:'風天小畜',story:'石平貴探寒窯',level:'吉',poem:'落拓征塵萬里遙，英雄得志駕金軺，當年乞食今榮顯，蘇魏如何把恨消',
+   items:{家運:'日漸昌盛',婚姻:'一觸即成',求財:'莫厭微小',功名:'且勿妄想'}},
+  {n:10,gua:'天澤履',story:'雲長古城會',level:'平',poem:'戰下邳一敗走東西，心急如煎聽曉雞，出自桃園成手足，千辛萬苦總難稽',
+   items:{求財:'先失後聚',家運:'行剋漸耐',婚姻:'言多難成',功名:'有人扶助'}},
+  {n:11,gua:'地天泰',story:'藺相如題橋',level:'吉',poem:'孤寂西來繞道行，運乖未遇槐平生，文人載筆安天下，立志勤勞一旦成',
+   items:{求財:'東得西失',婚姻:'有人苟合',功名:'運尚未通',家運:'初期不吉'}},
+  {n:12,gua:'天地否',story:'劉邦斬蛇',level:'平',poem:'光芒三尺手中揮，天不留秦未可違，一劃鴻溝空擊玦，項王敗績楚無歸',
+   items:{求財:'淡淡過日',婚姻:'多言失效',家運:'劫過平安',商情:'日漸冷淡'}},
+  {n:13,gua:'天火同人',story:'薛仁貴投軍',level:'吉',poem:'武藝高強運未通，奚須角力為英雄，龍門一現身如虎，號令千軍拜下風',
+   items:{家運:'漸漸好轉',婚姻:'能結合',功名:'有人幫助',求財:'得之不多'}},
+  {n:14,gua:'火天大有',story:'狄仁傑中興唐室',level:'吉',poem:'秉性堅剛不徇私，存心自有鬼神知，看他群醜消聲日，緩靖塵氛壯國基',
+   items:{求財:'無多叶吉',婚姻:'酉日成好',家運:'漸轉好',功名:'阻撓不成'}},
+  {n:15,gua:'地山謙',story:'劉智遠顧瓜園',level:'吉',poem:'一心彈指想功名，獨嘆時乖愧此生，德建聲揚身手健，恢恢天眼照分明',
+   items:{功名:'須早用人',婚姻:'介紹能成',家運:'轉變稍好',疾病:'漸時停藥'}},
+  {n:16,gua:'雷地豫',story:'達摩一葦渡江',level:'平',poem:'神通法力渡汪洋，隻履優遊到四方，變化無窮憑絕技，萬人如海一身藏',
+   items:{官事:'切忌妄談',家運:'險已漸過',婚姻:'必有阻礙',求財:'被人破壞'}},
+  {n:17,gua:'澤雷隨',story:'袁天罡長安賣卦',level:'宜謹慎',poem:'天時人事己先知，真假休瞞屈指奇，莫把虛情空玩弄，殺身罪孽總難移',
+   items:{婚姻:'有剋不吉',求財:'過月有利',官事:'先勝後敗',耕作:'必得豐收'}},
+  {n:18,gua:'山風蠱',story:'駱宏勳返揚州',level:'平',poem:'千里星馳暗自傷，吞聲拭淚慰慈娘，冤沉苦海甘柔忍，友道宜然樂趣長',
+   items:{求財:'遠方不利',家運:'日來漸好',官事:'決定拖尾',婚姻:'三推後成'}},
+  {n:19,gua:'地澤臨',story:'呂布轅門射戟',level:'平',poem:'鷸蚌相持壓迫中，誰知失箸論英雄，祇憑一矢危能解，雲起潛龍上碧空',
+   items:{家運:'卯月過好',婚姻:'傍人阻撓',疾病:'東來貴人',官事:'有人解和'}},
+  {n:20,gua:'風地觀',story:'塞翁失馬',level:'吉',poem:'得莫欣欣失莫悲，古今人事似花枝，池邊楊柳籬中菊，春色秋香各有時',
+   items:{求財:'淡淡有成',家運:'逢兇化吉',婚姻:'先收後卻',官事:'早晚能決'}},
+  {n:21,gua:'火雷噬嗑',story:'陶淵明隱居',level:'吉',poem:'朝衣謝卻一身輕，三徑黃花貴有名，掃葉烹茶貧亦樂，勤栽五柳待春榮',
+   items:{六甲:'生男大貴',家運:'六月逢剋',婚姻:'切莫成交',疾病:'得沾勿藥'}},
+  {n:22,gua:'山火賁',story:'慕容貞下棋',level:'平',poem:'黑夜窺私必有因，豈知人上又賢人，佛前覺路天堂去，何苦痴迷惹殺身',
+   items:{官事:'敗中取勝',婚姻:'萬口贊成',家運:'二月破財',求財:'淡中稍利'}},
+  {n:23,gua:'山地剝',story:'胡奎賣人頭',level:'宜謹慎',poem:'為友罹災計欲行，奚辭囹圄有力兵，捨身不怕因何事，妙藥回春死再生',
+   items:{病得:'貴人好',官事:'半年可結',求財:'月光大好',家運:'丑日過好'}},
+  {n:24,gua:'地雷復',story:'觀音菩薩收大鵬',level:'吉',poem:'婆心救苦下凡塵，業畜偷逃亦夙因，自此收回山上去，萬民同慶太平春',
+   items:{官事:'月中可結',婚姻:'月光得成',求財:'莫思多得',家運:'來年平安'}},
+  {n:25,gua:'天雷無妄',story:'薛禮進弓摩天嶺',level:'平',poem:'高聳雲衢去路難，心機用盡不能安，眼前幸有人相助，終見忠良一寸舟',
+   items:{求財:'有利可獲',婚姻:'欲成而散',官事:'失財被騙',功名:'爭取有效'}},
+  {n:26,gua:'山天大畜',story:'海瑞受封',level:'吉',poem:'忠心耿耿正朝綱，知稷安危念未忘，射影含沙徒了事，鋤奸滅惡振遐方',
+   items:{婚姻:'有人作梗',求財:'未能入手',功名:'不可希望',家宅:'平安勿徙'}},
+  {n:27,gua:'山雷頤',story:'花木蘭代父從軍',level:'吉',poem:'洗卻胭脂率甲兵，征塵萬里壯前程，他時破虜歸來日，載道歡聲出廓迎',
+   items:{家運:'逢劫破財',婚姻:'多言未定',求財:'下半年好',功名:'無不稱心'}},
+  {n:28,gua:'澤風大過',story:'梁夫人擂鼓助戰',level:'吉',poem:'聲響咚咚殺氣生，軍威大震若神兵，祇今敗敵收殘局，百戰功勳一旦成',
+   items:{婚姻:'能成大吉',家運:'過月好',求財:'未日過好',功名:'月中有效'}},
+  {n:29,gua:'坎為水',story:'孔明七擒孟獲',level:'平',poem:'運用心兵當甲兵，武侯妙計勝干城，南蠻化外能咸服，史上千秋尚有名',
+   items:{官事:'花錢了事',功名:'少有希望',婚姻:'結局能成',求財:'運氣未通'}},
+  {n:30,gua:'離為火',story:'南容三復白圭書',level:'平',poem:'寒窗苦讀許多年，磨琢殷勤志益堅，不為功成圖富貴，斯文未喪繼前賢',
+   items:{求財:'莫思多得',家運:'己過平安',商業:'防止奸人',婚姻:'急則不成'}},
+  {n:31,gua:'澤山咸',story:'陳三枚二探聚寶樓',level:'平',poem:'甘冒險做前驅，勘察奸人事有無，從此金階陳十罪，肅清朝政奠宏模',
+   items:{求財:'淡淡過日',婚姻:'可定勿疑',官事:'急和解',家屋:'安居無事'}},
+  {n:32,gua:'雷風恒',story:'蘇護進妲己',level:'平',poem:'冀州一路暗傷心，驛館蕭條月色沉，滿腹愁思懷往事，肝腸寸斷捨千金',
+   items:{求財:'先榮後淡',家運:'過年大吉',婚姻:'多口不成',家屋:'住居平安'}},
+  {n:33,gua:'天山遯',story:'鮑自安打擂台',level:'平',poem:'一髮千鈞各逞奇，挫傷誰信出單枝，人間到處休誇口，成敗由來只自知',
+   items:{家運:'破財已過',婚姻:'且勿過急',耕作:'高莖不利',求財:'少則自安'}},
+  {n:34,gua:'雷天大壯',story:'唐太宗地府應訊',level:'宜謹慎',poem:'幽冥阻隔路迢迢，咫尺迷濛萬里遙，莫道陰司無報應，眚神記案未曾銷',
+   items:{婚姻:'欲成而改',官事:'破財拖尾',耕作:'秋收大利',家運:'如前無礙'}},
+  {n:35,gua:'火地晉',story:'勾踐復國',level:'吉',poem:'十年生聚訓中心，抖擻精神待好音，雪恥圖強甘忍辱，長存青史作良箴',
+   items:{婚姻:'出口就成',官事:'早晚可解',家運:'過月即吉',求財:'現在無多'}},
+  {n:36,gua:'地火明夷',story:'申公豹因禁東海',level:'宜謹慎',poem:'豪雄應世識天時，逆命為何不自知，痛恨當年空努力，祇今反悔已來遲',
+   items:{求財:'春中大利',婚姻:'和合能成',家運:'秋後漸好',出外:'謀生不利'}},
+  {n:37,gua:'風火家人',story:'吳得龍姊弟救父',level:'吉',poem:'仙傳妙法出天真，破敵衝鋒歷劫塵，幸喜班師呈捷報，一家團聚又相親',
+   items:{六甲:'先男貴子',婚姻:'口舌甚多',生理:'一本萬利',家運:'冬天不利'}},
+  {n:38,gua:'火澤睽',story:'姜子牙火燒琵琶',level:'平',poem:'口中三昧放毫光，烈焰騰騰照碧蒼，天數難移堪釣渭，興周八百有姬昌',
+   items:{婚姻:'丑日成功',求財:'得而又失',生理:'春來漸好',家運:'漸漸叶吉'}},
+  {n:39,gua:'水山蹇',story:'白珍娘借水淹金山',level:'宜謹慎',poem:'鬥法須知正勝邪，逆天遭譴事堪嗟，雷封塔下開金鎖，已作神仙不做蛇',
+   items:{婚姻:'早定不吉',求財:'淡淡過日',家運:'丑日過好',耕作:'逢春有利'}},
+  {n:40,gua:'雷水解',story:'范蠡遊五湖',level:'平',poem:'朝衣卸卻覺身輕，莫是當年浪得名，豈謂功成歸故里，飄飄一舸漸銷聲',
+   items:{求財:'莫想多得',生理:'照前有利',家運:'辰日過好',婚姻:'勿急有成'}},
+  {n:41,gua:'山澤損',story:'楊文廣破飛鵝山',level:'平',poem:'心機用盡費心神，廿萬軍兵歷苦辛，他日妖氛皆掃靜，凱歌旋奏太平春',
+   items:{家運:'春來大吉',婚姻:'多言不成',失物:'月光可尋',求財:'遠方不吉'}},
+  {n:42,gua:'風雷益',story:'濮天鵰揚州賣棒',level:'吉',poem:'一路逍遙意氣融，豈知敵手出強中，平生莫作虧心事，自有能人解折衷',
+   items:{六甲:'生男要喜',耕作:'秋來大稔',生理:'先淡後盛',家運:'春來大吉'}},
+  {n:43,gua:'澤天夬',story:'雷勝遠絕招未逞',level:'平',poem:'千鈞一髮事猖狂，剋敵奚知別有方，冤可解除休再結，逆來順受莫爭強',
+   items:{求財:'近則不吉',婚姻:'事多難成',家運:'秋來順事',耕作:'照常平淡'}},
+  {n:44,gua:'天風姤',story:'秦檜假金牌',level:'宜謹慎',poem:'碔砆混玉亂朝綱，絮果蘭因說異常，此日忠臣遭劫厄，人間千古尚流芳',
+   items:{求財:'戌日過好',婚姻:'戀愛失和',家運:'來年大吉',出外:'無利可獲'}},
+  {n:45,gua:'澤地萃',story:'唐明皇遊月宮',level:'吉',poem:'寶殿初開桂影青，玲瓏樓閣照分明，佳人妙典鳴環珮，艷福如仙壯此行',
+   items:{求財:'較前有利',婚姻:'求之不得',家運:'秋過大吉',出外:'事有利無'}},
+  {n:46,gua:'地風升',story:'黃飛虎反出五關',level:'吉',poem:'逆命心憂累世忠，那知無道竟梟雄，鯉魚脫卻金鈎去，一躍龍門轉瞬中',
+   items:{六甲:'先女大吉',耕種:'秋來有利',求財:'二月過好',家運:'八月劫過'}},
+  {n:47,gua:'澤水困',story:'桓魋存心殺仲尼',level:'宜謹慎',poem:'斯文過宋厄當頭，司馬奚須抱杞憂，道德為懷天有眼，好將教澤播千秋',
+   items:{求財:'少卻能安',婚姻:'屢求不合',家運:'遇平大吉',出外:'三月過大吉'}},
+  {n:48,gua:'水風井',story:'狄梁公望白雲思親',level:'平',poem:'秋風落葉想依依，遠離鄉關一布衣，往事莫提思故里，何時寸草報春暉',
+   items:{求財:'二月過好',婚姻:'早定早好',家運:'六月過好',生理:'下半年好'}},
+  {n:49,gua:'澤火革',story:'周元表充軍遇救',level:'吉',poem:'窮途慘淡命安排，豈料官場禍竟栽，守法待時天有眼，吉星拱照貴人來',
+   items:{婚姻:'早定破財',生理:'逢春大吉',家運:'秋來漸好',耕作:'早季有利'}},
+  {n:50,gua:'火風鼎',story:'陳靜姑臨水平妖',level:'吉',poem:'南昌瑞靄出佳人，法力神通自有真，不許邪魔長作孽，揚枝水灑靖囂塵',
+   items:{求財:'微利可獲',失物:'月中可得',家運:'過月大吉',婚姻:'有人阻礙'}},
+  {n:51,gua:'震為雷',story:'馮驩焚券',level:'平',poem:'生平抱負食無魚，自恨窮途志未舒，遠慮將來先著手，孟嘗待客不如初',
+   items:{求財:'先少後多',六甲:'先女後男',婚姻:'成最好',家運:'秋來不吉'}},
+  {n:52,gua:'艮為山',story:'秦始皇造築長城',level:'宜謹慎',poem:'防胡枉費用心機，擾動民生困苦時，天道不容人慾望，江山無恙國垂危',
+   items:{求財:'秋來不吉',婚姻:'年月犯沖',家運:'破財過劫',出外:'遠方不利'}},
+  {n:53,gua:'風山漸',story:'伍子胥過昭關',level:'平',poem:'一夜傷心添白髮，廿年含恨誤紅顏，忠貞義氣山河壯，留得英名在世間',
+   items:{求財:'淡淡無多',婚姻:'早成犯沖',家運:'東安西危',出外:'有利難蓄'}},
+  {n:54,gua:'雷澤歸妹',story:'屯土山約三事',level:'平',poem:'萬馬千軍捲地來，重圍獨力戰難開，勢窮心願降炎漢，史上名揚霹靂雷',
+   items:{求財:'秋來大好',婚姻:'多人阻礙',家運:'日來漸好',生理:'丑日過好'}},
+  {n:55,gua:'雷火豐',story:'楊戩大破五雷陣',level:'吉',poem:'灌口揮戈入陣圖，除邪焉得惜微軀，八門衝破隆隆靜，不被妖魔紫奪朱',
+   items:{六甲:'先女大吉',失物:'卯日過得',求財:'上半年好',官事:'和解有利'}},
+  {n:56,gua:'火山旅',story:'安祿山潛入深宮',level:'宜謹慎',poem:'移花接木膽包天，作事橫心竟顯然，善惡到頭終有報，眚神巡視本無偏',
+   items:{失物:'尋亦無益',病有:'家神指點',求財:'勿往遠方',家運:'破財過厄'}},
+  {n:57,gua:'巽為風',story:'褒姒一笑千金',level:'平',poem:'色迷酒醉不知天，火放煙墩劫眼前，自古昏庸難做主，周幽到此已殘年',
+   items:{求財:'少無災',生理:'盈利多',婚姻:'成就好',出外:'不可遠行'}},
+  {n:58,gua:'兌為澤',story:'正德嫖白牡丹',level:'宜謹慎',poem:'天香國色本傾城，人事多磨未可爭，富貴原來成泡影，粗衣淡食過平生',
+   items:{求財:'莫想多得',家運:'秋來漸好',訟事:'年中不結',出外:'南方不吉'}},
+  {n:59,gua:'風水渙',story:'郭臣埋兒盡孝',level:'吉',poem:'夫妻純孝意懸懸，積德能容感動天，幸有黃金存吉地，一家從此樂團員',
+   items:{求財:'卯月多',納畜:'春來好',家運:'丑日過好',耕作:'什穀多收'}},
+  {n:60,gua:'水澤節',story:'聶政刺韓隗',level:'平',poem:'為民除害肯犧牲，萬世功勳一旦成，倘有英雄甘死節，永無奸宦害人生',
+   items:{家運:'漸好',求財:'來日冷淡',婚姻:'有犯沖',官司:'和解好'}},
+  {n:61,gua:'風澤中孚',story:'李彪奪官渡口',level:'平',poem:'橫行隱殺機，腹中八月有男兒，天分善惡無差錯，恩賜回陽自此時',
+   items:{六甲:'先男順行',婚姻:'多口難成',官事:'破財拖尾',家運:'三月好'}},
+  {n:62,gua:'雷山小過',story:'范仲淹計取蕭鐵頭',level:'宜謹慎',poem:'惟今成敗一封信，牙爪雖張竟自除，剋日奸王無漑網，萬民同樂慶安居',
+   items:{求財:'秋來不多',家運:'年中破財',訟事:'月中有變',婚姻:'被人制肘'}},
+  {n:63,gua:'水火既濟',story:'趙匡胤酒醉殺鄭恩',level:'平',poem:'心神恍惚失功臣，事後三思淚濕巾，不得分羹空逐鹿，披星戴月有何人',
+   items:{六甲:'先男順行',耕作:'秋至有收',家運:'日來漸好',求財:'丑日過有'}},
+  {n:64,gua:'水火未濟',story:'曹孟德潼關遇馬超',level:'平',poem:'奸雄勢敗走潼關，萬里追蹤愧往還，禍福無門天數定，耐辛耐苦濟時艱',
+   items:{婚姻:'可以定好',耕作:'秋收大稔',家運:'秋過好',求財:'丑日過好'}},
+];
+
+const CAT_ITEMS = [
+  {id:'fortune',label:'整體運勢',icon:'🌟'},
+  {id:'career',label:'事業工作',icon:'💼'},
+  {id:'wealth',label:'財運求財',icon:'💰'},
+  {id:'love',label:'感情婚姻',icon:'💑'},
+  {id:'family',label:'家運家庭',icon:'🏡'},
+  {id:'health',label:'健康平安',icon:'🌿'},
+];
+
+const GANTT_TASKS = [
+  {phase:'定義與文件',color:'#7B1FA2',tasks:[
+    {label:'信仰定義定稿',start:0,len:3,id:'t1'},
+    {label:'章程草案送件版',start:0,len:4,id:'t2'},
+    {label:'倫理守則訂定',start:1,len:3,id:'t3'},
+    {label:'教案與分級制度初稿',start:2,len:4,id:'t4'},
+  ]},
+  {phase:'法規與治理',color:'#1565C0',tasks:[
+    {label:'籌備會成立',start:1,len:2,id:'t5'},
+    {label:'理監事候選培力',start:1,len:4,id:'t6'},
+    {label:'登記文件整理',start:2,len:3,id:'t7'},
+    {label:'會址與印信規劃',start:3,len:2,id:'t8'},
+    {label:'向主管機關送件',start:3,len:1,id:'t9'},
+  ]},
+  {phase:'人員招募',color:'#2E7D32',tasks:[
+    {label:'委員（體制會員）招募',start:1,len:5,id:'t10'},
+    {label:'入門班試辦第一期',start:2,len:3,id:'t11'},
+    {label:'志工服務上線',start:3,len:6,id:'t12'},
+  ]},
+  {phase:'公開活動',color:'#E65100',tasks:[
+    {label:'三聖共修月例會（連4次）',start:3,len:5,id:'t13'},
+    {label:'年度主題公開論壇',start:5,len:1,id:'t14'},
+    {label:'成果財務公開大會',start:5,len:1,id:'t15'},
+  ]},
+  {phase:'里程碑',color:'#C62828',milestones:[
+    {label:'章程草案完成',pos:0.6,id:'m1'},
+    {label:'送件申請',pos:2.1,id:'m2'},
+    {label:'主管機關審查',pos:3.5,id:'m3'},
+    {label:'成立大會',pos:4.5,id:'m4'},
+    {label:'法人登記',pos:5.5,id:'m5'},
+  ]},
+];
+
+const DOCS_DATA = [
+  {cat:'A類｜申請核准類（送件必備）',color:'#C62828',items:[
+    {id:'A01',name:'社團法人設立申請書',copies:'1正2副',status:'pending',note:''},
+    {id:'A02',name:'籌備會議紀錄',copies:'2份',status:'pending',note:''},
+    {id:'A03',name:'章程草案（台灣三聖道教信仰協會版）',copies:'3份',status:'done',note:'v1草案已完成'},
+    {id:'A04',name:'發起人名冊（30人以上）',copies:'2份',status:'missing',note:''},
+    {id:'A05',name:'發起人身分證影本',copies:'各1份',status:'missing',note:''},
+    {id:'A06',name:'理事長暨理監事當選名冊',copies:'2份',status:'missing',note:'選任後填寫'},
+    {id:'A07',name:'理監事就職同意書',copies:'各1份',status:'missing',note:''},
+    {id:'A08',name:'社團設立計畫書',copies:'2份',status:'pending',note:''},
+    {id:'A09',name:'財務計畫書（第一年）',copies:'2份',status:'pending',note:''},
+    {id:'A10',name:'辦公處所使用同意書',copies:'1份',status:'pending',note:''},
+    {id:'A11',name:'辦公處所所有權狀或租約',copies:'影本1份',status:'pending',note:''},
+  ]},
+  {cat:'B類｜章程與組織制度',color:'#1565C0',items:[
+    {id:'B01',name:'社團法人章程（正式定稿）',copies:'正本3份',status:'done',note:'v1草案待修訂送件版'},
+    {id:'B02',name:'理事會組織規程',copies:'2份',status:'pending',note:''},
+    {id:'B03',name:'監事會組織規程',copies:'2份',status:'pending',note:''},
+    {id:'B04',name:'會員大會規程',copies:'2份',status:'pending',note:''},
+    {id:'B05',name:'財務管理辦法',copies:'2份',status:'done',note:'已製作範本'},
+    {id:'B06',name:'倫理守則與行為規範',copies:'2份',status:'pending',note:''},
+    {id:'B07',name:'委員遴選辦法',copies:'1份',status:'pending',note:''},
+  ]},
+  {cat:'C類｜稅務財務合規',color:'#2E7D32',items:[
+    {id:'C01',name:'稅籍登記申請書',copies:'1份',status:'missing',note:'取得統一編號後辦理'},
+    {id:'C02',name:'銀行帳戶開設申請',copies:'1份',status:'missing',note:''},
+    {id:'C03',name:'捐款收據範本',copies:'定稿1份',status:'done',note:'已製作範本'},
+    {id:'C04',name:'服務費用收據範本',copies:'定稿1份',status:'pending',note:''},
+    {id:'C05',name:'免稅申請書（宗教團體）',copies:'1份',status:'missing',note:''},
+  ]},
+  {cat:'D類｜會員管理',color:'#6A1B9A',items:[
+    {id:'D01',name:'入會申請書',copies:'定稿1份',status:'done',note:'已製作範本'},
+    {id:'D02',name:'委員遴選登記表',copies:'定稿1份',status:'pending',note:''},
+    {id:'D03',name:'會員名冊（登記格式）',copies:'1份',status:'pending',note:''},
+    {id:'D04',name:'會費繳納通知單',copies:'模板1份',status:'pending',note:''},
+  ]},
+];
+
+const FINANCE_DATA = [
+  {type:'常年會費',law:'人民團體法',tax:'免徵營業稅',note:'需開立收據，列入年度財務報告',risk:'低',rc:'#E8F5E9',tc:'#2E7D32'},
+  {type:'捐款收入',law:'所得稅法第17條',tax:'捐款人可列舉扣除（有限額）',note:'需開立合格收據，統一編號必備',risk:'低',rc:'#E8F5E9',tc:'#2E7D32'},
+  {type:'易經諮詢服務費',law:'宗教服務慣例',tax:'宗教服務費，建議申請免稅',note:'服務名稱應在章程中明訂，所有收費均須開立收據入帳',risk:'中',rc:'#FFF8E1',tc:'#F57F17'},
+  {type:'法會香油錢',law:'宗教慣例',tax:'宗教奉獻，免稅',note:'需入帳，不可私下收取不入帳',risk:'低',rc:'#E8F5E9',tc:'#2E7D32'},
+  {type:'政府補助款',law:'文化/宗教補助辦法',tax:'免稅，依計畫核銷',note:'需保留核銷憑證5年以上',risk:'低',rc:'#E8F5E9',tc:'#2E7D32'},
+  {type:'出版品販售',law:'營業稅法',tax:'可能需課5%營業稅',note:'建議諮詢會計師確認是否達課稅標準',risk:'中',rc:'#FFF8E1',tc:'#F57F17'},
+];
+
+// ═══════════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════════
+let milestones = JSON.parse(localStorage.getItem('sansheng_milestones') || '{}');
+let tasks_done = JSON.parse(localStorage.getItem('sansheng_tasks') || '{}');
+let doc_notes = JSON.parse(localStorage.getItem('sansheng_notes') || '{}');
+let doc_status = JSON.parse(localStorage.getItem('sansheng_docst') || '{}');
+let qian_history = JSON.parse(localStorage.getItem('sansheng_qhist') || '[]');
+let selected_cat = 'fortune';
+let current_qian = null;
+
+function saveState() {
+  localStorage.setItem('sansheng_milestones', JSON.stringify(milestones));
+  localStorage.setItem('sansheng_tasks', JSON.stringify(tasks_done));
+  localStorage.setItem('sansheng_notes', JSON.stringify(doc_notes));
+  localStorage.setItem('sansheng_docst', JSON.stringify(doc_status));
+  localStorage.setItem('sansheng_qhist', JSON.stringify(qian_history));
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// NAV
+// ═══════════════════════════════════════════════════════════════════
+function switchMode(mode, tabOrBtn) {
+  document.querySelectorAll('.mode-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('mode-'+mode).classList.add('active');
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+  if (typeof tabOrBtn === 'string' && tabOrBtn.startsWith('tab-')) {
+    switchSubTab(tabOrBtn, null);
+  } else if (tabOrBtn && tabOrBtn.classList) {
+    tabOrBtn.classList.add('active');
+  }
+  if (mode === 'admin') renderAdmin();
+}
+function switchSubTab(id, btn) {
+  document.querySelectorAll('#mode-temple .tab-content').forEach(t=>t.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+  document.querySelectorAll('.sub-tab').forEach(b=>b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  else {
+    const idx = ['tab-about','tab-deities','tab-precepts','tab-calendar','tab-divination'].indexOf(id);
+    const btns = document.querySelectorAll('.sub-tab');
+    if (idx>=0 && btns[idx]) btns[idx].classList.add('active');
+  }
+  if (id==='tab-deities') renderDeities();
+  if (id==='tab-precepts') renderPrecepts();
+  if (id==='tab-calendar') renderCalendar();
+  if (id==='tab-divination') renderDivination();
+}
+function switchAdminTab(id, btn) {
+  document.querySelectorAll('#mode-admin .tab-content').forEach(t=>{t.style.display='none';});
+  document.getElementById(id).style.display='block';
+  document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if (id==='a-gantt') renderGantt();
+  if (id==='a-docs') renderDocManager();
+  if (id==='a-finance') renderFinance();
+}
+function switchIntroTab(id, btn) {
+  document.querySelectorAll('#a-intro .tab-content').forEach(t=>{t.style.display='none';});
+  document.getElementById(id).style.display='block';
+  document.querySelectorAll('.intro-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function switchPrecept(id, btn) {
+  document.querySelectorAll('.prec-panel').forEach(p=>p.style.display='none');
+  document.getElementById('prec-'+id).style.display='block';
+  document.querySelectorAll('.precept-tab-btn').forEach(b=>{
+    b.style.background='white';b.style.color=b.textContent.includes('十戒')?'var(--vermillion)':'var(--gold-deep)';
+  });
+  btn.style.background=id==='tencmd'?'var(--vermillion)':'var(--gold-deep)';
+  btn.style.color='white';
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DEITIES
+// ═══════════════════════════════════════════════════════════════════
+function deityCard(d, cls) {
+  return `<div class="deity-card ${cls}" onclick="showToast('${d.name}：${d.spirit}')">
+    <div class="deity-header">
+      <div class="deity-icon">${d.icon}</div>
+      <div class="deity-rank" style="color:${d.color}">${d.rank}</div>
+      <div class="deity-name">${d.name}</div>
+      <div class="deity-spirit">${d.spirit}</div>
+    </div>
+    <div class="deity-body">
+      <div>${d.tags.map(t=>`<span class="deity-tag">${t}</span>`).join('')}</div>
+      <div class="deity-meaning">${d.meaning}</div>
+    </div>
+  </div>`;
+}
+function renderDeities() {
+  document.getElementById('main-deities').innerHTML = DEITIES_MAIN.map(d=>deityCard(d,'main')).join('');
+  document.getElementById('side-deities').innerHTML = DEITIES_SIDE.map(d=>deityCard(d,'side')).join('');
+  document.getElementById('guide-deities').innerHTML = DEITIES_GUIDE.map(d=>deityCard(d,'guide')).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PRECEPTS
+// ═══════════════════════════════════════════════════════════════════
+function renderPrecepts() {
+  document.getElementById('prec-tencmd').innerHTML = TEN_PRECEPTS.map(p=>`
+    <div class="precept-item" style="border-left-color:${p.color}">
+      <div class="precept-num" style="background:${p.color}">${p.n}</div>
+      <div class="precept-text">
+        <h4>${p.title}</h4>
+        <div class="original">原文：${p.original}</div>
+        <div class="explain">${p.explain}</div>
+        <span class="practice">制度化表述：${p.practice}</span>
+      </div>
+    </div>`).join('');
+  document.getElementById('prec-wuchang').innerHTML = WUCHANG.map(w=>`
+    <div class="precept-item" style="border-left-color:${w.color}">
+      <div class="precept-num" style="background:${w.color};font-size:22px">${w.char}</div>
+      <div class="precept-text">
+        <h4>${w.meaning}</h4>
+        <div class="explain">${w.detail}</div>
+        <span class="practice" style="background:var(--gold-pale);color:var(--gold-deep)">修行實踐：${w.practice}</span>
+      </div>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CALENDAR
+// ═══════════════════════════════════════════════════════════════════
+function renderCalendar() {
+  const m = parseInt(document.getElementById('cal-month-select').value);
+  const list = m===0 ? FESTIVALS : FESTIVALS.filter(f=>f.m===m);
+  const typeEmoji = {'重要':'🔔','主神':'⛩️','配祀':'🙏','指導':'☁️','節慶':'🎋'};
+  if (!list.length) {
+    document.getElementById('festival-list').innerHTML='<div style="color:var(--grey);text-align:center;padding:30px">本月無節慶活動</div>';
+    return;
+  }
+  // Grid card layout
+  document.getElementById('festival-list').innerHTML = `
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
+      ${list.map(f=>`
+        <div style="background:white;border-radius:10px;border-left:4px solid ${f.color};
+          box-shadow:0 2px 8px rgba(0,0,0,0.06);padding:14px 16px;display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <span style="font-family:var(--serif);font-size:16px;font-weight:700;color:${f.color}">
+              ${typeEmoji[f.type]||'•'} ${f.name}
+            </span>
+            <span style="background:${f.color}18;color:${f.color};padding:2px 10px;border-radius:10px;
+              font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0">${f.type}</span>
+          </div>
+          <div style="font-family:var(--serif);font-size:15px;font-weight:600;color:var(--grey)">
+            農曆 ${f.lunar}
+          </div>
+          <div style="font-size:14px;color:var(--ink3);line-height:1.6">${f.desc}</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DIVINATION
+// ═══════════════════════════════════════════════════════════════════
+function renderDivination() {
+  // categories
+  document.getElementById('cat-grid').innerHTML = CAT_ITEMS.map(c=>`
+    <div class="cat-btn ${c.id===selected_cat?'active':''}" onclick="selectCat('${c.id}',this)">
+      <span class="cat-icon">${c.icon}</span>${c.label}
+    </div>`).join('');
+  // qian grid
+  const levelClass = {吉:'ji',平:'ping',宜謹慎:'shen'};
+  document.getElementById('qian-grid').innerHTML = QIAN_DATA.map(q=>`
+    <div class="qian-num ${levelClass[q.level]||'ping'}" onclick="showQian(${q.n})" title="${q.n}. ${q.gua}">${q.n}</div>`).join('');
+  // history
+  renderHistory();
+}
+function selectCat(id, btn) {
+  selected_cat = id;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function doShake() {
+  const area = document.getElementById('shake-area');
+  area.classList.add('shaking');
+  document.getElementById('main-shake-btn').disabled = true;
+  setTimeout(()=>{
+    area.classList.remove('shaking');
+    document.getElementById('main-shake-btn').disabled = false;
+    const n = Math.floor(Math.random()*64)+1;
+    showQian(n, true);
+  }, 900);
+}
+function showQian(n, fromShake=false) {
+  const q = QIAN_DATA.find(x=>x.n===n);
+  if(!q) return;
+  current_qian = q;
+  const cat = CAT_ITEMS.find(c=>c.id===selected_cat);
+  const levelStyle = {吉:'background:#FFF3E0;color:#E65100',平:'background:#E3F2FD;color:#1565C0',宜謹慎:'background:#E8F5E9;color:#2E7D32'};
+  const levelBg = {吉:'#E65100',平:'#1565C0',宜謹慎:'#2E7D32'}[q.level]||'#888';
+  const poemLines = q.poem.split('，').filter(Boolean);
+  // Build items columns for 解曰 (matching original format: vertical text in columns)
+  const itemEntries = Object.entries(q.items);
+  const itemCols = itemEntries.map(([k,v])=>`
+    <div style="display:flex;flex-direction:column;align-items:center;min-width:48px;padding:0 6px;border-right:1px solid rgba(30,80,30,0.15);">
+      ${(k+v).split('').map(ch=>`<span style="font-family:var(--serif);font-size:13px;line-height:1.8;color:#1A3A1A;letter-spacing:0">${ch}</span>`).join('')}
+    </div>`).join('');
+  const resultEl = document.getElementById('div-result');
+  resultEl.innerHTML = `
+    ${fromShake?`<p style="text-align:center;font-size:14px;color:var(--jade);margin:0 0 14px">🙏 ${cat?cat.label:''} — 誠心求得第 ${q.n} 首</p>`:''}
+
+    <!-- ═══ 完整籤詩原式圖卡 ═══ -->
+    <div style="
+      background:white;
+      border:3px solid #2E7D32;border-radius:10px;
+      overflow:hidden;margin-bottom:16px;
+      box-shadow:0 4px 20px rgba(46,125,50,0.15);
+      font-family:var(--serif);
+    ">
+      <!-- 標題列：鐘府三聖 -->
+      <div style="background:white;border-bottom:2px solid #2E7D32;padding:14px 16px;text-align:center">
+        <div style="font-size:26px;font-weight:700;color:#1A3A1A;letter-spacing:6px">鐘　府　三　聖</div>
+      </div>
+
+      <!-- 首號列 -->
+      <div style="background:#F8FFF8;border-bottom:2px solid #2E7D32;padding:10px;text-align:center">
+        <div style="font-size:17px;color:#2E7D32;letter-spacing:4px">第　${String(q.n).padStart(2,'　')}　首</div>
+      </div>
+
+      <!-- 主體：籤詩（縱排）+ 卦名 -->
+      <div style="display:flex;border-bottom:2px solid #2E7D32;min-height:200px">
+        <!-- 籤詩縱排區 -->
+        <div style="flex:1;padding:16px 12px;display:flex;flex-direction:row-reverse;justify-content:center;gap:0;align-items:flex-start">
+          ${poemLines.map((line,li)=>`
+            <div style="display:flex;flex-direction:column;align-items:center;padding:0 8px;">
+              ${line.split('').map(ch=>`<span style="font-size:22px;line-height:1.9;color:#1A3A1A;font-family:var(--serif);font-weight:500">${ch}</span>`).join('')}
+              <span style="font-size:18px;line-height:1.5;color:#1A3A1A">，</span>
+            </div>`).join('')}
+        </div>
+        <!-- 卦名＋典故縱排（右側小格） -->
+        <div style="width:52px;border-left:2px solid #2E7D32;display:flex;flex-direction:column;align-items:center;padding:12px 4px;background:#F0FFF0">
+          ${(q.gua+'、'+q.story).split('').map(ch=>`<span style="font-size:13px;line-height:1.7;color:#2E7D32;writing-mode:initial">${ch}</span>`).join('')}
+        </div>
+      </div>
+
+      <!-- 解曰 標題 -->
+      <div style="background:#F8FFF8;border-bottom:1px solid #2E7D32;padding:8px;text-align:center">
+        <div style="font-size:16px;color:#2E7D32;letter-spacing:6px;font-weight:600">解　曰</div>
+      </div>
+
+      <!-- 解曰各事項（縱排多欄） -->
+      <div style="padding:16px;background:white">
+        <div style="display:flex;flex-direction:row-reverse;justify-content:center;gap:0;flex-wrap:wrap;min-height:120px;">
+          ${itemEntries.map(([k,v])=>`
+            <div style="display:flex;flex-direction:column;align-items:center;padding:4px 10px;border-right:1px solid rgba(46,125,50,0.2);min-width:44px;">
+              ${(k+v).split('').map(ch=>`<span style="font-family:var(--serif);font-size:14px;line-height:1.9;color:#1A3A1A">${ch}</span>`).join('')}
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <!-- 底部：吉凶等級 -->
+      <div style="background:#F8FFF8;border-top:2px solid #2E7D32;padding:10px;text-align:center">
+        <span style="background:${levelBg};color:white;padding:5px 24px;border-radius:20px;font-size:15px;font-weight:700;font-family:var(--serif);letter-spacing:2px">【${q.level}】</span>
+      </div>
+    </div>
+
+    <div class="jiaobei-notice">
+      <div class="icon">⚠️</div>
+      <div style="font-size:14px"><strong>重要提醒：</strong>求得籤詩後，務必持籤條擲筊聖杯確認，得到「聖杯」（一正一反）方為神明確認。籤詩為方向提醒，非命運決定。</div>
+    </div>
+    <button class="new-qian-btn" onclick="resetQian()">🔮 重新求籤</button>`;
+  resultEl.classList.add('show');
+  if (fromShake) {
+    qian_history.unshift({n:q.n,gua:q.gua,cat:selected_cat,time:new Date().toLocaleString('zh-TW',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})});
+    if (qian_history.length>5) qian_history.pop();
+    saveState();
+    renderHistory();
+  }
+  resultEl.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function resetQian() {
+  const r = document.getElementById('div-result');
+  r.classList.remove('show');
+  setTimeout(()=>{r.innerHTML='';},300);
+}
+function renderHistory() {
+  const el = document.getElementById('div-history');
+  if (!qian_history.length) {
+    el.innerHTML='<div style="text-align:center;color:var(--grey-l);font-size:12px;padding:12px">尚無求籤紀錄</div>';return;
+  }
+  el.innerHTML = qian_history.map(h=>`
+    <div class="history-item" onclick="showQian(${h.n})">
+      <span class="h-num">第${h.n}首</span>
+      <span class="h-cat"> ${CAT_ITEMS.find(c=>c.id===h.cat)?.label||''}</span>
+      <span class="h-time">${h.time}</span>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// ADMIN - GANTT
+// ═══════════════════════════════════════════════════════════════════
+function renderAdmin() {
+  renderProgressSummary();
+}
+function getTasksDone() {
+  let total=0,done=0;
+  GANTT_TASKS.forEach(phase=>{
+    if(phase.tasks) phase.tasks.forEach(t=>{total++;if(tasks_done[t.id])done++;});
+    if(phase.milestones) phase.milestones.forEach(m=>{total++;if(milestones[m.id])done++;});
+  });
+  return{total,done,pct:total?Math.round(done/total*100):0};
+}
+function renderProgressSummary() {
+  const {total,done,pct} = getTasksDone();
+  const docsDone = DOCS_DATA.flatMap(c=>c.items).filter(d=>(doc_status[d.id]||d.status)==='done').length;
+  const docsTotal = DOCS_DATA.flatMap(c=>c.items).length;
+  document.getElementById('progress-summary').innerHTML = `
+    <div class="p-card" style="border-color:var(--jade)"><div class="p-num" style="color:var(--jade)">${pct}%</div><div class="p-lbl">📊 整體進度</div></div>
+    <div class="p-card" style="border-color:var(--blue)"><div class="p-num" style="color:var(--blue)">${done}/${total}</div><div class="p-lbl">✅ 任務完成</div></div>
+    <div class="p-card" style="border-color:var(--gold-deep)"><div class="p-num" style="color:var(--gold-deep)">${docsDone}/${docsTotal}</div><div class="p-lbl">📄 文件備齊</div></div>
+    <div class="p-card" style="border-color:var(--vermillion)"><div class="p-num" style="color:var(--vermillion)">${Object.values(milestones).filter(Boolean).length}/5</div><div class="p-lbl">🏁 里程碑</div></div>`;
+  const bigFill = document.getElementById('big-fill');
+  const bigPct = document.getElementById('big-pct');
+  if(bigFill){bigFill.style.width=pct+'%';}
+  if(bigPct){bigPct.textContent=pct+'%';}
+}
+
+function renderGantt() {
+  renderProgressSummary();
+  const MONTHS = ['4月','5月','6月','7月','8月','9月'];
+  let html = `<div class="gantt-months">${MONTHS.map(m=>`<div class="gantt-month">${m}</div>`).join('')}</div>`;
+  GANTT_TASKS.forEach(phase=>{
+    html += `<div style="background:${phase.color}18;border-radius:6px;padding:8px;margin-bottom:8px">
+      <div style="font-size:11px;font-weight:700;color:${phase.color};margin-bottom:6px;padding:0 4px">${phase.phase}</div>`;
+    if (phase.tasks) {
+      phase.tasks.forEach(t=>{
+        const isDone = tasks_done[t.id];
+        const w = (t.len/6)*100;
+        const l = (t.start/6)*100;
+        html += `<div class="gantt-row" style="margin-bottom:6px">
+          <div class="gantt-label">
+            <div class="gantt-label-check" style="border-color:${phase.color};background:${isDone?phase.color:'white'};color:white"
+              onclick="toggleTask('${t.id}','${phase.color}')">${isDone?'✓':''}</div>
+            <div class="gantt-label-text" style="${isDone?'text-decoration:line-through;color:var(--grey)':''}">${t.label}</div>
+          </div>
+          <div class="gantt-timeline">
+            <div class="gantt-bar" style="left:${l}%;width:${w}%;background:${isDone?phase.color+'88':phase.color};opacity:${isDone?0.6:1}">
+              ${t.len>1?t.label:''}
+            </div>
+          </div>
+        </div>`;
+      });
+    }
+    if (phase.milestones) {
+      phase.milestones.forEach(m=>{
+        const isDone = milestones[m.id];
+        const l = (m.pos/6)*100;
+        html += `<div class="gantt-row milestone-row">
+          <div class="gantt-label">
+            <div class="gantt-label-check" style="border-color:${phase.color};background:${isDone?phase.color:'white'};color:white;border-radius:50%"
+              onclick="toggleMilestone('${m.id}')">${isDone?'✓':''}</div>
+            <div class="gantt-label-text" style="color:${isDone?'var(--grey)':phase.color};font-weight:${isDone?400:700}">${m.label}</div>
+          </div>
+          <div class="gantt-timeline">
+            <div class="milestone-diamond" style="left:calc(${l}% - 8px);background:${isDone?phase.color+'88':phase.color}" onclick="toggleMilestone('${m.id}')"></div>
+            <div class="milestone-label" style="left:${l}%;color:${phase.color}">${isDone?'✅':''} ${m.label}</div>
+          </div>
+        </div>`;
+      });
+    }
+    html += '</div>';
+  });
+  document.getElementById('gantt-inner').innerHTML = html;
+}
+function toggleTask(id, color) {
+  tasks_done[id] = !tasks_done[id];
+  saveState();
+  renderGantt();
+  renderProgressSummary();
+  showToast(tasks_done[id]?'✅ 任務已完成':'↩ 已取消完成');
+}
+function toggleMilestone(id) {
+  milestones[id] = !milestones[id];
+  saveState();
+  renderGantt();
+  renderProgressSummary();
+  showToast(milestones[id]?'🏁 里程碑達成！':'↩ 已取消');
+}
+function checkAllMilestones() {
+  GANTT_TASKS.forEach(p=>{
+    if(p.tasks)p.tasks.forEach(t=>{tasks_done[t.id]=true;});
+    if(p.milestones)p.milestones.forEach(m=>{milestones[m.id]=true;});
+  });
+  saveState();renderGantt();renderProgressSummary();showToast('✅ 全部標記完成');
+}
+function clearAllMilestones() {
+  GANTT_TASKS.forEach(p=>{
+    if(p.tasks)p.tasks.forEach(t=>{tasks_done[t.id]=false;});
+    if(p.milestones)p.milestones.forEach(m=>{milestones[m.id]=false;});
+  });
+  saveState();renderGantt();renderProgressSummary();showToast('🔄 全部清除');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DOC MANAGER
+// ═══════════════════════════════════════════════════════════════════
+const DRIVE_URL = 'https://drive.google.com/drive/folders/1F0OOP5vM4Vt4-7bpbbBkizuDPykscgYS?usp=sharing';
+const DRIVE_URLS_BY_CAT = {
+  A: 'https://drive.google.com/drive/folders/1K4opNLKAf16y1QBfay9qFOoEgog0cD4T?usp=sharing',
+  B: 'https://drive.google.com/drive/folders/1Y6YkKPlXQm4LXK1TfNsl8wuCeDmZ3Oio?usp=drive_link',
+  C: 'https://drive.google.com/drive/folders/14SdYSaiDjUO7jJ3crcIkzh6XYO9PegTY?usp=drive_link',
+  D: 'https://drive.google.com/drive/folders/1cFVxzn6FEo11bwut0Jvd6A6zJcHCBRXt?usp=drive_link',
+};
+function getCatKey(catId) {
+  // catId is like 'A01','B02' — first letter is the category
+  return catId.charAt(0);
+}
+function renderDocManager() {
+  let html = '';
+  DOCS_DATA.forEach(cat=>{
+    const total = cat.items.length;
+    const done = cat.items.filter(d=>(doc_status[d.id]||d.status)==='done').length;
+    // Determine category drive URL from first item id
+    const catKey = cat.items.length ? getCatKey(cat.items[0].id) : '';
+    const catDriveUrl = DRIVE_URLS_BY_CAT[catKey] || DRIVE_URL;
+    html += `<div class="doc-category">
+      <div class="doc-cat-header" style="background:${cat.color}">
+        <span>${cat.cat}</span>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="font-size:13px;opacity:0.85">${done}/${total} 已備齊</span>
+          <a href="${catDriveUrl}" target="_blank"
+             style="background:rgba(255,255,255,0.25);color:white;padding:4px 14px;border-radius:12px;
+                    font-size:13px;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,0.4);
+                    transition:background 0.2s;"
+             onmouseover="this.style.background='rgba(255,255,255,0.4)'"
+             onmouseout="this.style.background='rgba(255,255,255,0.25)'">
+            📂 開啟此類資料夾
+          </a>
+        </div>
+      </div>
+      <table class="doc-table">
+        <thead><tr><th>編號</th><th>文件名稱</th><th>份數</th><th>狀態</th><th>備註</th><th>雲端</th></tr></thead>
+        <tbody>${cat.items.map(d=>{
+          const st = doc_status[d.id] || d.status;
+          const noteVal = doc_notes[d.id] || d.note || '';
+          return `<tr>
+            <td style="font-weight:700;color:${cat.color}">${d.id}</td>
+            <td>${d.name}</td>
+            <td>${d.copies}</td>
+            <td>
+              <select style="border:1px solid var(--cream3);border-radius:6px;padding:4px 8px;font-size:13px;font-family:var(--sans);"
+                onchange="changeDocStatus('${d.id}',this.value)">
+                <option value="done" ${st==='done'?'selected':''}>✅ 已備齊</option>
+                <option value="pending" ${st==='pending'?'selected':''}>⏳ 進行中</option>
+                <option value="missing" ${st==='missing'?'selected':''}>❌ 未備齊</option>
+              </select>
+            </td>
+            <td><input class="doc-note-input" value="${noteVal}" placeholder="點此加入備註..." onblur="saveNote('${d.id}',this.value)"></td>
+            <td><a class="doc-drive-link" href="${catDriveUrl}" target="_blank">📂 上傳</a></td>
+          </tr>`;
+        }).join('')}</tbody>
+      </table>
+    </div>`;
+  });
+  document.getElementById('doc-manager').innerHTML = html;
+}
+function changeDocStatus(id, val) {
+  doc_status[id] = val;
+  saveState();
+  renderProgressSummary();
+  showToast('狀態已更新');
+}
+function saveNote(id, val) {
+  doc_notes[id] = val;
+  saveState();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// FINANCE
+// ═══════════════════════════════════════════════════════════════════
+function renderFinance() {
+  document.getElementById('fin-table-body').innerHTML = FINANCE_DATA.map(f=>`
+    <tr>
+      <td style="font-weight:600">${f.type}</td>
+      <td>${f.law}</td>
+      <td>${f.tax}</td>
+      <td style="font-size:11px">${f.note}</td>
+      <td><span style="background:${f.rc};color:${f.tc};padding:2px 10px;border-radius:10px;font-size:11px;font-weight:700">${f.risk}</span></td>
+    </tr>`).join('');
+  document.getElementById('fin-rules').innerHTML = [
+    '所有收入、支出均需有原始憑證（收據、發票、合約）',
+    '帳冊至少保存10年（宗教團體建議永久保存）',
+    '每季召開財務會議，理監事共同審核收支',
+    '年度財務報告需送會員大會審核通過',
+    '捐款帳戶與日常帳戶建議分開管理',
+    '超過20萬元之單筆支出，需雙簽核（理事長＋財務長）',
+    '建議每年委託會計師辦理財務簽證',
+  ].map((r,i)=>`<div style="display:flex;gap:8px;margin-bottom:9px;font-size:12px">
+    <span style="color:var(--blue);font-weight:700;flex-shrink:0">${i+1}.</span><span>${r}</span></div>`).join('');
+  document.getElementById('fin-qa').innerHTML = [
+    ['問事服務收費是否合法？','宗教服務費用屬宗教活動範疇，所有收費應在章程中明訂服務項目，開立收據後統一入帳。建議諮詢熟悉宗教團體稅務的會計師確認適用稅目。'],
+    ['匯款收入如何處理？','所有匯款需入帳並開立收據。集資超過一定金額需依公益勸募條例申請許可。'],
+    ['需要報稅嗎？','適用所得稅法第4條免稅條款，但有銷售行為可能需申報營業稅，建議諮詢會計師。'],
+    ['理監事可以領薪嗎？','原則為無薪志工，可列支實際費用。聘任專職人員需依勞基法辦理。'],
+  ].map(([q,a])=>`<div style="margin-bottom:12px">
+    <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:4px">Q：${q}</div>
+    <div style="font-size:11px;color:var(--ink3);line-height:1.7;padding-left:8px;border-left:3px solid var(--cream3)">A：${a}</div>
+  </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════════════════════════
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2400);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════════
+function init() {
+  renderCalendar();
+}
+init();
+</script>
+</body>
+</html>
