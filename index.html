@@ -573,8 +573,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
     </a>
     <div class="nav-modes">
       <span class="mode-separator">⛩</span>
-      <button class="mode-btn active" onclick="switchMode('temple',this)">道場官方</button>
-      <button class="mode-btn" onclick="switchMode('temple','tab-about')">道場介紹</button>
+      <button class="mode-btn active" onclick="switchSubTab('tab-about', this)">道場介紹</button>
       <button class="mode-btn" onclick="switchMode('temple','tab-precepts')">戒行準則</button>
       <button class="mode-btn" onclick="switchMode('temple','tab-calendar')">節慶月曆</button>
       <button class="mode-btn" onclick="switchMode('temple','tab-divination')">求籤問事</button>
@@ -784,10 +783,76 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
           </div>
         </div>
       </div>
+
+      <!-- 聯繫本會區塊 -->
+      <div class="section-heading">聯繫本會</div>
+      <p class="section-desc">歡迎透過以下方式與本會聯繫，查詢入會、問事、活動或一般事宜</p>
+      <div style="border-radius:14px;overflow:hidden;box-shadow:var(--shadow-lg);margin-bottom:8px;">
+        <!-- 標題 -->
+        <div style="background:linear-gradient(135deg,var(--ink2),#3A1808);padding:16px 24px;text-align:center;">
+          <div style="font-family:var(--serif);font-size:19px;font-weight:700;color:var(--gold-l);letter-spacing:2px;margin-bottom:3px">⛩️ 鐘府三聖・社團法人台灣三聖道教信仰協會</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.7)">選擇您習慣的方式，我們將盡快回覆</div>
+        </div>
+        <!-- 雙欄 -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;">
+          <!-- LINE -->
+          <a href="https://line.me/R/ti/p/@3saint" target="_blank"
+             style="background:linear-gradient(160deg,#00C300,#009600);
+                    padding:32px 24px;text-align:center;text-decoration:none;
+                    transition:all 0.25s;border-right:2px solid rgba(255,255,255,0.15);"
+             onmouseover="this.style.filter='brightness(1.08)'"
+             onmouseout="this.style.filter=''">
+            <div style="margin-bottom:12px">
+              <svg width="56" height="56" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;filter:drop-shadow(0 3px 8px rgba(0,0,0,0.2))">
+                <rect width="44" height="44" rx="12" fill="rgba(255,255,255,0.2)"/>
+                <path d="M22 8C14.268 8 8 13.477 8 20.182c0 6.005 5.328 11.02 12.528 11.98.488.105 1.152.322 1.32.74.152.38.1.976.048 1.36l-.212 1.28c-.064.38-.296 1.488 1.304.812 1.6-.676 8.628-5.08 11.776-8.7C36.596 25.28 36 22.82 36 20.182 36 13.477 29.732 8 22 8z" fill="white"/>
+                <path d="M18.4 23.2h-3.2a.4.4 0 0 1-.4-.4v-5.6a.4.4 0 0 1 .8 0v5.2h2.8a.4.4 0 0 1 0 .8zm1.6 0a.4.4 0 0 1-.4-.4v-5.6a.4.4 0 0 1 .8 0v5.6a.4.4 0 0 1-.4.4zm5.6 0a.4.4 0 0 1-.32-.16l-3.04-4.12v3.88a.4.4 0 0 1-.8 0v-5.6a.4.4 0 0 1 .72-.24l3.04 4.12v-3.88a.4.4 0 0 1 .8 0v5.6a.4.4 0 0 1-.4.4zm4.4 0h-3.2a.4.4 0 0 1-.4-.4v-5.6a.4.4 0 0 1 .4-.4H30a.4.4 0 0 1 0 .8h-2.8v1.8H30a.4.4 0 0 1 0 .8h-2.8v1.8H30a.4.4 0 0 1 0 .8z" fill="#00C300"/>
+              </svg>
+            </div>
+            <div style="color:white;font-family:var(--serif);font-size:22px;font-weight:700;margin-bottom:6px">LINE 官方帳號</div>
+            <div style="color:rgba(255,255,255,0.85);font-size:15px;line-height:1.7;margin-bottom:18px">
+              入會諮詢・問事預約<br>活動查詢・即時回覆
+            </div>
+            <div style="background:white;color:#009600;display:inline-block;
+                        padding:11px 28px;border-radius:50px;
+                        font-weight:700;font-size:16px;
+                        box-shadow:0 4px 14px rgba(0,0,0,0.2);letter-spacing:0.5px">
+              加入 @3saint
+            </div>
+          </a>
+          <!-- Facebook Messenger -->
+          <a href="https://m.me/61567012961248" target="_blank"
+             style="background:linear-gradient(160deg,#1877F2,#0A5DC2);
+                    padding:32px 24px;text-align:center;text-decoration:none;
+                    transition:all 0.25s;"
+             onmouseover="this.style.filter='brightness(1.08)'"
+             onmouseout="this.style.filter=''">
+            <div style="margin-bottom:12px">
+              <svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;filter:drop-shadow(0 3px 8px rgba(0,0,0,0.2))">
+                <rect width="56" height="56" rx="12" fill="rgba(255,255,255,0.2)"/>
+                <path d="M28 12C19.163 12 12 18.72 12 27c0 4.52 1.989 8.573 5.156 11.387V42l4.844-2.664A17.14 17.14 0 0 0 28 40c8.837 0 16-6.72 16-13s-7.163-15-16-15z" fill="white"/>
+                <path d="M16.5 33.5l5.5-6 3.5 3.5 5-3.5 5.5 6-5.5-3-3.5 3.5-3.5-3.5-7 3z" fill="#1877F2"/>
+              </svg>
+            </div>
+            <div style="color:white;font-family:var(--serif);font-size:22px;font-weight:700;margin-bottom:6px">Facebook Messenger</div>
+            <div style="color:rgba(255,255,255,0.85);font-size:15px;line-height:1.7;margin-bottom:18px">
+              一般詢問・活動資訊<br>捐款查詢・文字訊息
+            </div>
+            <div style="background:white;color:#0A5DC2;display:inline-block;
+                        padding:11px 28px;border-radius:50px;
+                        font-weight:700;font-size:16px;
+                        box-shadow:0 4px 14px rgba(0,0,0,0.2);letter-spacing:0.5px">
+              開啟 Messenger
+            </div>
+          </a>
+        </div>
+        <!-- 底部 -->
+        <div style="background:var(--ink2);padding:11px 24px;text-align:center;font-size:13px;color:rgba(255,255,255,0.55);">
+          服務時間：週一至週五 09:00–17:00　｜　假日訊息將於上班日回覆
+        </div>
+      </div>
     </div>
   </div>
-
-  <!-- ② 神明介紹 -->
   <div id="tab-deities" class="tab-content">
     <div class="content-wrap">
       <div class="section-heading">三聖主神</div>
@@ -1118,27 +1183,159 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 
     <!-- ④ 財務合規 -->
     <div id="a-finance" class="tab-content" style="display:none">
-      <div class="card" style="margin-bottom:18px">
+
+      <!-- 頁面說明橫幅 -->
+      <div style="background:linear-gradient(135deg,var(--blue),#2A5A8C);border-radius:var(--radius);padding:16px 22px;margin-bottom:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+        <div style="font-size:32px">⚖️</div>
+        <div style="flex:1">
+          <div style="color:white;font-size:19px;font-weight:700;font-family:var(--serif);margin-bottom:3px">財務合規與稅務說明</div>
+          <div style="color:rgba(255,255,255,0.85);font-size:15px">社團法人台灣三聖道教信仰協會｜依人民團體法及非營利組織稅務規範辦理</div>
+        </div>
+        <a href="https://m.me/61567012961248" target="_blank"
+           style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 18px;
+                  color:white;text-align:center;border:1.5px solid rgba(255,255,255,0.35);
+                  text-decoration:none;transition:all 0.2s;flex-shrink:0;display:block;"
+           onmouseover="this.style.background='rgba(255,255,255,0.28)';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.background='rgba(255,255,255,0.15)';this.style.transform='translateY(0)'">
+          <div style="font-size:22px;margin-bottom:4px">💬</div>
+          <div style="font-size:11px;opacity:0.85;margin-bottom:2px">如有財務疑問</div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:0.5px">Facebook<br>Messenger 聯繫</div>
+        </a>
+      </div>
+
+      <!-- 收入稅務對照表 -->
+      <div class="card" style="margin-bottom:20px">
         <div class="card-header" style="background:linear-gradient(135deg,var(--blue),var(--blue-l))">
-          <h3 style="color:white;font-family:var(--serif)">收入類型與稅務處理對照表</h3>
+          <h3 style="color:white;font-family:var(--serif);font-size:18px">收入類型與稅務處理對照表</h3>
+          <span style="background:rgba(255,255,255,0.2);color:white;border-radius:10px;padding:3px 12px;font-size:13px">合規參考</span>
         </div>
         <div class="card-body" style="padding:0;overflow-x:auto">
-          <table style="width:100%;border-collapse:collapse;font-size:12px">
+          <table style="width:100%;border-collapse:collapse;font-size:15px">
             <thead><tr style="background:var(--blue-pale)">
-              <th style="padding:10px 12px;text-align:left;color:var(--blue);font-weight:700">收入類型</th>
-              <th style="padding:10px 12px;text-align:left;color:var(--blue);font-weight:700">法律依據</th>
-              <th style="padding:10px 12px;text-align:left;color:var(--blue);font-weight:700">稅務處理</th>
-              <th style="padding:10px 12px;text-align:left;color:var(--blue);font-weight:700">注意事項</th>
-              <th style="padding:10px 12px;text-align:left;color:var(--blue);font-weight:700">風險</th>
+              <th style="padding:13px 16px;text-align:left;color:var(--blue);font-weight:700;font-size:14px">收入類型</th>
+              <th style="padding:13px 16px;text-align:left;color:var(--blue);font-weight:700;font-size:14px">法律依據</th>
+              <th style="padding:13px 16px;text-align:left;color:var(--blue);font-weight:700;font-size:14px">稅務處理</th>
+              <th style="padding:13px 16px;text-align:left;color:var(--blue);font-weight:700;font-size:14px">注意事項</th>
+              <th style="padding:13px 16px;text-align:left;color:var(--blue);font-weight:700;font-size:14px">風險</th>
             </tr></thead>
             <tbody id="fin-table-body"></tbody>
           </table>
         </div>
       </div>
-      <div class="grid-2">
-        <div class="card"><div class="card-header"><h3 style="font-family:var(--serif)">核銷帳冊管理要點</h3></div><div class="card-body" id="fin-rules"></div></div>
-        <div class="card"><div class="card-header"><h3 style="font-family:var(--serif)">常見問題解答</h3></div><div class="card-body" id="fin-qa"></div></div>
+
+      <!-- 核銷 + Q&A -->
+      <div class="grid-2" style="margin-bottom:20px">
+        <div class="card">
+          <div class="card-header"><h3 style="font-family:var(--serif);font-size:17px">📋 核銷帳冊管理要點</h3></div>
+          <div class="card-body" id="fin-rules"></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3 style="font-family:var(--serif);font-size:17px">❓ 常見問題解答</h3></div>
+          <div class="card-body" id="fin-qa"></div>
+        </div>
       </div>
+
+      <!-- ── 聯繫本會互動區塊 ── -->
+      <div style="border-radius:14px;overflow:hidden;margin-bottom:20px;box-shadow:0 6px 24px rgba(0,0,0,0.12);">
+        <!-- 標題列 -->
+        <div style="background:var(--ink2);padding:14px 24px;text-align:center;">
+          <div style="color:var(--gold-l);font-family:var(--serif);font-size:18px;font-weight:700;letter-spacing:1px">💬 聯繫本會</div>
+          <div style="color:rgba(255,255,255,0.7);font-size:14px;margin-top:3px">捐款匯款確認・收據申請・財務查詢，選擇您習慣的方式聯繫</div>
+        </div>
+        <!-- 雙欄按鈕 -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;">
+          <!-- LINE -->
+          <a href="https://line.me/R/ti/p/@3saint" target="_blank"
+             style="background:linear-gradient(135deg,#00C300,#00A000);
+                    padding:28px 24px;text-align:center;text-decoration:none;
+                    transition:all 0.2s;border-right:2px solid rgba(255,255,255,0.2);"
+             onmouseover="this.style.filter='brightness(1.1)';this.style.transform='scale(1.02)'"
+             onmouseout="this.style.filter='';this.style.transform=''">
+            <div style="font-size:44px;margin-bottom:10px">
+              <svg width="52" height="52" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" style="display:inline-block">
+                <rect width="44" height="44" rx="12" fill="white" fill-opacity="0.25"/>
+                <path d="M22 8C14.268 8 8 13.477 8 20.182c0 6.005 5.328 11.02 12.528 11.98.488.105 1.152.322 1.32.74.152.38.1.976.048 1.36l-.212 1.28c-.064.38-.296 1.488 1.304.812 1.6-.676 8.628-5.08 11.776-8.7C36.596 25.28 36 22.82 36 20.182 36 13.477 29.732 8 22 8z" fill="white"/>
+                <path d="M18.4 23.2h-3.2a.4.4 0 0 1-.4-.4v-5.6a.4.4 0 0 1 .8 0v5.2h2.8a.4.4 0 0 1 0 .8zm1.6 0a.4.4 0 0 1-.4-.4v-5.6a.4.4 0 0 1 .8 0v5.6a.4.4 0 0 1-.4.4zm5.6 0a.4.4 0 0 1-.32-.16l-3.04-4.12v3.88a.4.4 0 0 1-.8 0v-5.6a.4.4 0 0 1 .72-.24l3.04 4.12v-3.88a.4.4 0 0 1 .8 0v5.6a.4.4 0 0 1-.4.4zm4.4 0h-3.2a.4.4 0 0 1-.4-.4v-5.6a.4.4 0 0 1 .4-.4H30a.4.4 0 0 1 0 .8h-2.8v1.8H30a.4.4 0 0 1 0 .8h-2.8v1.8H30a.4.4 0 0 1 0 .8z" fill="#00C300"/>
+              </svg>
+            </div>
+            <div style="color:white;font-size:20px;font-weight:700;font-family:var(--serif);margin-bottom:6px">LINE 官方帳號</div>
+            <div style="color:rgba(255,255,255,0.85);font-size:14px;margin-bottom:14px;line-height:1.6">即時通訊，快速回覆<br>捐款確認・收據申請</div>
+            <div style="background:white;color:#00A000;padding:10px 22px;border-radius:50px;
+                        font-weight:700;font-size:15px;display:inline-block;
+                        box-shadow:0 3px 10px rgba(0,0,0,0.2);">
+              加入 LINE @3saint
+            </div>
+          </a>
+          <!-- Facebook Messenger -->
+          <a href="https://m.me/61567012961248" target="_blank"
+             style="background:linear-gradient(135deg,#0084FF,#0064D2);
+                    padding:28px 24px;text-align:center;text-decoration:none;
+                    transition:all 0.2s;"
+             onmouseover="this.style.filter='brightness(1.1)';this.style.transform='scale(1.02)'"
+             onmouseout="this.style.filter='';this.style.transform=''">
+            <div style="font-size:44px;margin-bottom:10px">
+              <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg" style="display:inline-block">
+                <rect width="52" height="52" rx="12" fill="white" fill-opacity="0.25"/>
+                <path d="M26 10C17.163 10 10 16.72 10 25c0 4.52 1.989 8.573 5.156 11.387V40l4.844-2.664A17.14 17.14 0 0 0 26 38c8.837 0 16-6.72 16-15s-7.163-13-16-13z" fill="white"/>
+                <path d="M14.5 29.5l5.5-6 3.5 3.5 5-3.5 5.5 6-5.5-3-3.5 3.5-3.5-3.5-7 3z" fill="#0084FF"/>
+              </svg>
+            </div>
+            <div style="color:white;font-size:20px;font-weight:700;font-family:var(--serif);margin-bottom:6px">Facebook Messenger</div>
+            <div style="color:rgba(255,255,255,0.85);font-size:14px;margin-bottom:14px;line-height:1.6">Facebook 訊息聯繫<br>財務查詢・一般詢問</div>
+            <div style="background:white;color:#0064D2;padding:10px 22px;border-radius:50px;
+                        font-weight:700;font-size:15px;display:inline-block;
+                        box-shadow:0 3px 10px rgba(0,0,0,0.2);">
+              開啟 Messenger 對話
+            </div>
+          </a>
+        </div>
+        <!-- 底部補充說明 -->
+        <div style="background:var(--cream2);padding:12px 24px;text-align:center;font-size:13px;color:var(--grey);">
+          服務時間：週一至週五 09:00–17:00｜假日訊息將於上班日回覆
+        </div>
+      </div>
+
+      <!-- 匯款說明卡 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+        <div style="background:white;border-radius:12px;box-shadow:var(--shadow);padding:20px;border-top:4px solid var(--jade)">
+          <div style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--jade);margin-bottom:12px">🏦 捐款匯款流程</div>
+          <div style="font-size:15px;color:var(--ink3);line-height:2;">
+            <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px">
+              <span style="background:var(--jade);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px">1</span>
+              <span>透過 LINE 聯繫本會，取得指定匯款帳號</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px">
+              <span style="background:var(--jade);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px">2</span>
+              <span>完成匯款後，回傳匯款收據截圖</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px">
+              <span style="background:var(--jade);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px">3</span>
+              <span>本會確認後開立正式捐款收據</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px">
+              <span style="background:var(--jade);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px">4</span>
+              <span>收據可供個人所得稅列舉扣除使用</span>
+            </div>
+          </div>
+        </div>
+        <div style="background:white;border-radius:12px;box-shadow:var(--shadow);padding:20px;border-top:4px solid var(--gold-deep)">
+          <div style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--gold-deep);margin-bottom:12px">📄 收據申請說明</div>
+          <div style="font-size:15px;color:var(--ink3);line-height:1.9;">
+            <div style="background:var(--gold-pale);border-radius:8px;padding:10px 14px;margin-bottom:10px">
+              <div style="font-weight:600;color:var(--gold-deep);margin-bottom:4px">捐款收據（依所得稅法第17條）</div>
+              <div style="font-size:14px">需提供：姓名、身分證字號、捐款金額、捐款日期</div>
+            </div>
+            <div style="background:var(--cream2);border-radius:8px;padding:10px 14px">
+              <div style="font-weight:600;color:var(--ink2);margin-bottom:4px">服務費用收據</div>
+              <div style="font-size:14px">需提供：姓名、服務項目、日期、金額</div>
+            </div>
+            <div style="margin-top:10px;font-size:13px;color:var(--grey)">
+              ※ 所有收據均以本會統一編號開立，請透過 LINE 申請
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- ⑤ 會員申請表單 -->
@@ -2068,14 +2265,17 @@ function saveNote(id, val) {
 // FINANCE
 // ═══════════════════════════════════════════════════════════════════
 function renderFinance() {
-  document.getElementById('fin-table-body').innerHTML = FINANCE_DATA.map(f=>`
-    <tr>
-      <td style="font-weight:600">${f.type}</td>
-      <td>${f.law}</td>
-      <td>${f.tax}</td>
-      <td style="font-size:11px">${f.note}</td>
-      <td><span style="background:${f.rc};color:${f.tc};padding:2px 10px;border-radius:10px;font-size:11px;font-weight:700">${f.risk}</span></td>
+  document.getElementById('fin-table-body').innerHTML = FINANCE_DATA.map((f,i)=>`
+    <tr style="background:${i%2===0?'white':'var(--blue-pale)'}">
+      <td style="padding:14px 16px;font-weight:700;font-size:15px;color:var(--ink2)">${f.type}</td>
+      <td style="padding:14px 16px;font-size:14px;color:var(--ink3)">${f.law}</td>
+      <td style="padding:14px 16px;font-size:14px;color:var(--ink3)">${f.tax}</td>
+      <td style="padding:14px 16px;font-size:14px;color:var(--ink3);line-height:1.6">${f.note}</td>
+      <td style="padding:14px 16px;text-align:center">
+        <span style="background:${f.rc};color:${f.tc};padding:4px 14px;border-radius:12px;font-size:14px;font-weight:700;white-space:nowrap">${f.risk}</span>
+      </td>
     </tr>`).join('');
+
   document.getElementById('fin-rules').innerHTML = [
     '所有收入、支出均需有原始憑證（收據、發票、合約）',
     '帳冊至少保存10年（宗教團體建議永久保存）',
@@ -2084,17 +2284,25 @@ function renderFinance() {
     '捐款帳戶與日常帳戶建議分開管理',
     '超過20萬元之單筆支出，需雙簽核（理事長＋財務長）',
     '建議每年委託會計師辦理財務簽證',
-  ].map((r,i)=>`<div style="display:flex;gap:8px;margin-bottom:9px;font-size:12px">
-    <span style="color:var(--blue);font-weight:700;flex-shrink:0">${i+1}.</span><span>${r}</span></div>`).join('');
+  ].map((r,i)=>`
+    <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:13px">
+      <span style="background:var(--blue);color:white;width:26px;height:26px;border-radius:50%;
+        display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;
+        flex-shrink:0;margin-top:1px">${i+1}</span>
+      <span style="font-size:15px;color:var(--ink3);line-height:1.7">${r}</span>
+    </div>`).join('');
+
   document.getElementById('fin-qa').innerHTML = [
     ['問事服務收費是否合法？','宗教服務費用屬宗教活動範疇，所有收費應在章程中明訂服務項目，開立收據後統一入帳。建議諮詢熟悉宗教團體稅務的會計師確認適用稅目。'],
-    ['匯款收入如何處理？','所有匯款需入帳並開立收據。集資超過一定金額需依公益勸募條例申請許可。'],
+    ['匯款收入如何處理？','所有匯款需入帳並開立收據。集資超過一定金額需依公益勸募條例申請許可。請透過 LINE 官方帳號聯繫本會確認匯款流程。'],
     ['需要報稅嗎？','適用所得稅法第4條免稅條款，但有銷售行為可能需申報營業稅，建議諮詢會計師。'],
     ['理監事可以領薪嗎？','原則為無薪志工，可列支實際費用。聘任專職人員需依勞基法辦理。'],
-  ].map(([q,a])=>`<div style="margin-bottom:12px">
-    <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:4px">Q：${q}</div>
-    <div style="font-size:11px;color:var(--ink3);line-height:1.7;padding-left:8px;border-left:3px solid var(--cream3)">A：${a}</div>
-  </div>`).join('');
+    ['如何申請捐款收據？','請透過 LINE 官方帳號（@3saint）聯繫本會，提供姓名、身分證字號、捐款金額與日期，本會將開立合規收據。'],
+  ].map(([q,a])=>`
+    <div style="margin-bottom:16px;background:var(--cream);border-radius:10px;padding:14px 16px">
+      <div style="font-size:15px;font-weight:700;color:var(--blue);margin-bottom:6px">Q：${q}</div>
+      <div style="font-size:14px;color:var(--ink3);line-height:1.8;padding-left:10px;border-left:3px solid var(--blue)">A：${a}</div>
+    </div>`).join('');
 }
 
 // ═══════════════════════════════════════════════════════════════════
