@@ -278,18 +278,6 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 .deity-photo-container img[alt="天上聖母"]{
   object-position:center 50%; /* 顯示臉部與眼神 */
 }
-.deity-photo-container img[alt="玄壇真君"]{
-  object-position:center 30%; /* 顯示臉部特徵,華麗冠冕 */
-}
-.deity-photo-container img[alt="中壇元帥"]{
-  object-position:center 35%; /* 年輕臉龐,清楚五官 */
-}
-.deity-photo-container img[alt="福德正神"]{
-  object-position:center 40%; /* 慈祥面容,白鬚清楚 */
-}
-.deity-photo-container img[alt="金虎將軍"]{
-  object-position:center 45%; /* 威猛造型,臉部聚焦 */
-}
 .deity-card:hover .deity-photo-container img{
   transform:scale(1.08);
 }
@@ -700,15 +688,15 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
     <!-- 三聖神像展示區 -->
     <div class="hero-deity-showcase">
       <div class="deity-photo-card">
-        <img src="images/天上聖母.jpeg" alt="天上聖母" style="object-position:center 50%;">
+        <img src="天上聖母.jpeg" alt="天上聖母" style="object-position:center 50%;">
         <div class="deity-photo-label"><span>天上聖母</span></div>
       </div>
       <div class="deity-photo-card" style="width:200px;height:260px;">
-        <img src="images/開臺聖王.jpeg" alt="開臺聖王" style="object-position:center 20%;">
+        <img src="開臺聖王.jpeg" alt="開臺聖王" style="object-position:center 20%;">
         <div class="deity-photo-label"><span>開臺聖王</span></div>
       </div>
       <div class="deity-photo-card">
-        <img src="images/關聖帝君2.jpeg" alt="關聖帝君" style="object-position:center 50%;">
+        <img src="關聖帝君2.jpeg" alt="關聖帝君" style="object-position:center 50%;">
         <div class="deity-photo-label"><span>關聖帝君</span></div>
       </div>
     </div>
@@ -2038,15 +2026,11 @@ function switchPrecept(id, btn) {
 // ═══════════════════════════════════════════════════════════════════
 function deityCard(d, cls) {
   const photoMap = {
-    '開臺聖王': 'images/開臺聖王.jpeg',
-    '關聖帝君': 'images/關聖帝君2.jpeg',
-    '天上聖母': 'images/天上聖母.jpeg',
-    '玄壇真君': 'images/玄壇真君.jpeg',
-    '中壇元帥': 'images/中壇元帥.jpeg',
-    '福德正神': 'images/福德正神.jpeg',
-    '金虎將軍': 'images/金虎將軍.jpeg'
+    '開臺聖王': '開臺聖王.jpeg',
+    '關聖帝君': '關聖帝君2.jpeg',
+    '天上聖母': '天上聖母.jpeg'
   };
-  const hasPhoto = photoMap[d.name];
+  const hasPhoto = cls === 'main' && photoMap[d.name];
   
   if (hasPhoto) {
     return `<div class="deity-card ${cls}" onclick="showToast('${d.name}：${d.spirit}')">
