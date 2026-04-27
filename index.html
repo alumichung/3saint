@@ -11,16 +11,30 @@
    ROOT & RESET
 ═══════════════════════════════════════════════════════════ */
 :root {
+  /* 主色系 - 取自神袍金色刺繡 */
   --vermillion:#C0392B; --vermillion-d:#8B1A12; --vermillion-l:#E85D4A;
-  --gold:#C9941A; --gold-l:#E8B84B; --gold-pale:#FDF4DC; --gold-deep:#8B6410;
+  --gold:#D4AF37; --gold-l:#F4D03F; --gold-pale:#FFF8E7; --gold-deep:#9B7B1F;
+  
+  /* 輔助色 - 取自神袍服飾 */
+  --imperial-green:#2E8B57; --jade:#2D6A4F; --jade-l:#3D8B6A; --jade-pale:#E8F5EE;
+  --coral:#FF6B4A; --coral-l:#FF8A6B;
+  
+  /* 基礎色 */
   --ink:#1A0A00; --ink2:#2C1810; --ink3:#4A3020;
   --cream:#FBF5E6; --cream2:#F5EDD8; --cream3:#EDE0C4;
-  --jade:#2D6A4F; --jade-l:#3D8B6A; --jade-pale:#E8F5EE;
   --blue:#1A3A5C; --blue-l:#2A5A8C; --blue-pale:#EAF0F8;
   --grey:#8A7A6A; --grey-l:#B5A898; --grey-pale:#F0EAE0;
+  
+  /* 效果 */
   --shadow: 0 4px 24px rgba(26,10,0,0.12);
   --shadow-lg: 0 12px 48px rgba(26,10,0,0.18);
+  --shadow-gold: 0 4px 24px rgba(212,175,55,0.3);
+  --glow-gold: 0 0 30px rgba(244,208,63,0.4);
+  
+  /* 尺寸 */
   --radius:12px; --radius-lg:20px;
+  
+  /* 字體 */
   --serif:'Noto Serif TC',serif; --sans:'Noto Sans TC',sans-serif;
   --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
 }
@@ -97,29 +111,53 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 ═══════════════════════════════════════════════════════════ */
 .temple-hero{
   background:linear-gradient(160deg,#7A5C00 0%,#B8860B 35%,#DAA520 65%,#C8941A 100%);
-  position:relative;overflow:hidden;padding:70px 20px 80px;text-align:center;
+  position:relative;overflow:hidden;padding:40px 20px 80px;text-align:center;
 }
 .temple-hero::before{
   content:'';position:absolute;inset:0;
-  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9941A' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm30 0c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zM20 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm30 0c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10z' fill='%23C9941A' fill-opacity='0.06'/%3E%3C/svg%3E");
   pointer-events:none;
 }
 .temple-hero::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:100px;
+  content:'';position:absolute;bottom:0;left:0;right:0;height:120px;
   background:linear-gradient(to bottom,transparent,var(--cream));
   pointer-events:none;
 }
-.hero-seal{
-  width:80px;height:80px;background:var(--vermillion);border-radius:10px;
-  display:inline-flex;align-items:center;justify-content:center;
-  font-family:var(--serif);font-size:24px;color:white;font-weight:900;
-  border:3px solid var(--gold);box-shadow:0 4px 24px rgba(192,57,43,0.5);
-  margin-bottom:24px;position:relative;z-index:1;
+.hero-deity-showcase{
+  position:relative;z-index:1;margin-bottom:32px;
+  display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;
+}
+.deity-photo-card{
+  position:relative;width:180px;height:240px;
+  border-radius:16px;overflow:hidden;
+  border:4px solid var(--gold);
+  box-shadow:0 8px 32px rgba(0,0,0,0.3), 0 0 60px rgba(201,148,26,0.4);
+  transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+  background:#1A0A00;
+}
+.deity-photo-card:hover{
+  transform:translateY(-8px) scale(1.05);
+  box-shadow:0 16px 48px rgba(0,0,0,0.4), 0 0 80px rgba(201,148,26,0.6);
+}
+.deity-photo-card img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(1.1) contrast(1.05);
+}
+.deity-photo-label{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top, rgba(26,10,0,0.95), transparent);
+  padding:12px 8px 8px;text-align:center;
+}
+.deity-photo-label span{
+  font-family:var(--serif);font-size:16px;font-weight:900;
+  color:var(--gold-l);letter-spacing:3px;
+  text-shadow:0 2px 8px rgba(0,0,0,0.8);
 }
 .hero-main-title{
   font-family:var(--serif);font-size:clamp(32px,5vw,52px);
   color:white;font-weight:900;margin-bottom:8px;position:relative;z-index:1;
-  text-shadow:0 2px 16px rgba(80,40,0,0.4);letter-spacing:4px;
+  text-shadow:0 2px 16px rgba(80,40,0,0.4), 0 4px 32px rgba(201,148,26,0.3);
+  letter-spacing:8px;
 }
 .hero-sub-title{
   font-family:var(--serif);font-size:clamp(16px,2.2vw,22px);
@@ -131,6 +169,30 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
   background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.55);
   color:white;padding:5px 18px;border-radius:20px;font-size:15px;font-weight:500;
   text-shadow:0 1px 4px rgba(80,40,0,0.25);
+}
+@media(max-width:600px){
+  .deity-photo-card{width:140px;height:200px;}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DECORATIVE ELEMENTS - 傳統裝飾元素
+═══════════════════════════════════════════════════════════ */
+.cloud-divider{
+  width:100%;height:40px;margin:20px 0;
+  background-image:url("data:image/svg+xml,%3Csvg width='100' height='40' viewBox='0 0 100 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25,20 Q30,10 40,15 T50,20 T60,15 Q70,10 75,20' fill='none' stroke='%23D4AF37' stroke-width='2' opacity='0.3'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;background-position:center;
+}
+.lotus-corner{
+  position:absolute;width:60px;height:60px;opacity:0.15;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,10 Q60,30 50,50 Q40,30 50,10 M30,25 Q45,35 50,50 Q45,35 30,25 M70,25 Q55,35 50,50 Q55,35 70,25' fill='%23D4AF37'/%3E%3C/svg%3E");
+  background-size:contain;background-repeat:no-repeat;
+}
+.section-heading-decorated{
+  position:relative;padding-left:20px;
+}
+.section-heading-decorated::before{
+  content:'⚜';position:absolute;left:0;
+  font-size:20px;color:var(--gold);opacity:0.6;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -191,11 +253,44 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
   background:white;border-radius:var(--radius-lg);box-shadow:var(--shadow);
   overflow:hidden;transition:var(--transition);
   border:2px solid transparent;display:flex;flex-direction:column;
+  position:relative;
 }
 .deity-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--gold);}
 .deity-card.main{border-top:4px solid var(--vermillion);}
 .deity-card.side{border-top:4px solid var(--gold);}
 .deity-card.guide{border-top:4px solid var(--jade);}
+.deity-photo-container{
+  width:100%;height:200px;overflow:hidden;position:relative;
+  background:linear-gradient(135deg, #2C1810 0%, #4A3020 100%);
+}
+.deity-photo-container img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(1.05) contrast(1.02);
+  transition:var(--transition);
+}
+/* 針對每位神明的照片角度個別調整 - 聚焦眼神與五官 */
+.deity-photo-container img[alt="開臺聖王"]{
+  object-position:center 20%; /* 顯示臉部與眼神 */
+}
+.deity-photo-container img[alt="關聖帝君"]{
+  object-position:center 50%; /* 與天上聖母臉部對齊,聚焦眼神 */
+}
+.deity-photo-container img[alt="天上聖母"]{
+  object-position:center 50%; /* 顯示臉部與眼神 */
+}
+.deity-card:hover .deity-photo-container img{
+  transform:scale(1.08);
+}
+.deity-photo-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top, rgba(26,10,0,0.9) 0%, transparent 100%);
+  padding:16px 12px 12px;
+}
+.deity-photo-name{
+  font-family:var(--serif);font-size:22px;font-weight:900;
+  color:var(--gold-l);letter-spacing:4px;
+  text-shadow:0 2px 12px rgba(0,0,0,0.8);text-align:center;
+}
 .deity-header{padding:16px 16px 10px;text-align:center;}
 .deity-icon{font-size:38px;margin-bottom:6px;}
 .deity-rank{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
@@ -590,13 +685,28 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 <div id="mode-temple" class="mode-panel active">
   <!-- Hero -->
   <div class="temple-hero">
+    <!-- 三聖神像展示區 -->
+    <div class="hero-deity-showcase">
+      <div class="deity-photo-card">
+        <img src="天上聖母.jpeg" alt="天上聖母" style="object-position:center 50%;">
+        <div class="deity-photo-label"><span>天上聖母</span></div>
+      </div>
+      <div class="deity-photo-card" style="width:200px;height:260px;">
+        <img src="開臺聖王.jpeg" alt="開臺聖王" style="object-position:center 20%;">
+        <div class="deity-photo-label"><span>開臺聖王</span></div>
+      </div>
+      <div class="deity-photo-card">
+        <img src="關聖帝君2.jpeg" alt="關聖帝君" style="object-position:center 50%;">
+        <div class="deity-photo-label"><span>關聖帝君</span></div>
+      </div>
+    </div>
+    
     <div class="hero-main-title">鐘府三聖</div>
     <div class="hero-sub-title">社團法人台灣三聖道教信仰協會</div>
     <div class="hero-tags">
-      <span class="hero-tag">開臺聖王</span>
-      <span class="hero-tag">關聖帝君</span>
-      <span class="hero-tag">天上聖母</span>
-      <span class="hero-tag">五常信條</span>
+      <span class="hero-tag">守護・開創・地方信仰</span>
+      <span class="hero-tag">忠義・正氣・守信</span>
+      <span class="hero-tag">慈悲・護生・庇佑</span>
     </div>
   </div>
 
@@ -1915,6 +2025,32 @@ function switchPrecept(id, btn) {
 // DEITIES
 // ═══════════════════════════════════════════════════════════════════
 function deityCard(d, cls) {
+  const photoMap = {
+    '開臺聖王': '開臺聖王.jpeg',
+    '關聖帝君': '關聖帝君2.jpeg',
+    '天上聖母': '天上聖母.jpeg'
+  };
+  const hasPhoto = cls === 'main' && photoMap[d.name];
+  
+  if (hasPhoto) {
+    return `<div class="deity-card ${cls}" onclick="showToast('${d.name}：${d.spirit}')">
+      <div class="deity-photo-container">
+        <img src="${photoMap[d.name]}" alt="${d.name}">
+        <div class="deity-photo-overlay">
+          <div class="deity-photo-name">${d.name}</div>
+        </div>
+      </div>
+      <div class="deity-body" style="border-top:none;padding-top:16px;">
+        <div style="text-align:center;margin-bottom:8px;">
+          <div class="deity-icon" style="margin-bottom:4px;">${d.icon}</div>
+          <div class="deity-spirit" style="font-size:15px;font-weight:600;color:${d.color}">${d.spirit}</div>
+        </div>
+        <div>${d.tags.map(t=>`<span class="deity-tag">${t}</span>`).join('')}</div>
+        <div class="deity-meaning">${d.meaning}</div>
+      </div>
+    </div>`;
+  }
+  
   return `<div class="deity-card ${cls}" onclick="showToast('${d.name}：${d.spirit}')">
     <div class="deity-header">
       <div class="deity-icon">${d.icon}</div>
