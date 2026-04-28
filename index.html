@@ -681,6 +681,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
     <div class="nav-modes">
       <span class="mode-separator">⛩</span>
       <button class="mode-btn active" onclick="switchSubTab('tab-about', this)">道場介紹</button>
+      <button class="mode-btn" onclick="switchSubTab('tab-scriptures', this)">經典閱讀</button>
       <button class="mode-btn" onclick="switchMode('temple','tab-precepts')">戒行準則</button>
       <button class="mode-btn" onclick="switchMode('temple','tab-calendar')">節慶月曆</button>
       <button class="mode-btn" onclick="switchMode('temple','tab-divination')">求籤問事</button>
@@ -688,7 +689,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
       <button class="mode-btn" onclick="switchMode('admin',this)">⚙ 籌備管理</button>
     </div>
     <div class="nav-right">
-      <a class="quick-drive" href="https://drive.google.com/drive/folders/1F0OOP5vM4Vt4-7bpbbBkizuDPykscgYS?usp=sharing" target="_blank">📂 雲端資料夾</a>
+      <!-- 雲端資料夾已移至籌備管理內 -->
     </div>
   </div>
 </nav>
@@ -1079,6 +1080,166 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
       </div>
     </div>
   </div>
+
+  <!-- ═══════════════ 經典閱讀 ═══════════════ -->
+  <div id="tab-scriptures" class="tab-content" style="display:none">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">📖 經典閱讀</h2>
+        <p class="section-desc">鐘府三聖必讀經典・線上閱覽與下載</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:24px">
+      <!-- 開臺延平郡王五常真經 -->
+      <div class="card">
+        <div class="card-header" style="background:linear-gradient(135deg,var(--vermillion),var(--vermillion-l));color:white">
+          <h3 style="font-family:var(--serif);letter-spacing:2px">⚔️ 開臺延平郡王五常真經</h3>
+        </div>
+        <div class="card-body">
+          <div style="margin-bottom:16px">
+            <div style="font-size:14px;color:var(--ink3);line-height:1.8;margin-bottom:12px">
+              闡述開臺聖王「仁・義・禮・智・信」五常之道,為鐘府三聖主神之核心經典,信眾必讀必習。
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+              <span style="background:var(--cream2);color:var(--vermillion);padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600">主神經典</span>
+              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">五常信條</span>
+              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">必讀經典</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <a href="scriptures/開臺延平郡王五常真經.pdf" target="_blank" 
+               style="flex:1;background:var(--vermillion);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+               onmouseover="this.style.background='var(--vermillion-l)'"
+               onmouseout="this.style.background='var(--vermillion)'">
+              📖 線上閱讀
+            </a>
+            <a href="scriptures/開臺延平郡王五常真經.pdf" download 
+               style="flex:1;background:var(--blue);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+               onmouseover="this.style.background='var(--blue-l)'"
+               onmouseout="this.style.background='var(--blue)'">
+              ⬇️ 下載PDF
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 福德正神真經 -->
+      <div class="card">
+        <div class="card-header" style="background:linear-gradient(135deg,var(--jade),var(--jade-l));color:white">
+          <h3 style="font-family:var(--serif);letter-spacing:2px">🌱 福德正神真經</h3>
+        </div>
+        <div class="card-body">
+          <div style="margin-bottom:16px">
+            <div style="font-size:14px;color:var(--ink3);line-height:1.8;margin-bottom:12px">
+              土地公經典,闡述福德正神慈悲守護、福報修行之道,教導信眾珍惜土地、勤勞行善。
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+              <span style="background:var(--jade-pale);color:var(--jade);padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600">配祀經典</span>
+              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">土地守護</span>
+              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">福報修行</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <a href="scriptures/福德正神真經.pdf" target="_blank" 
+               style="flex:1;background:var(--jade);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+               onmouseover="this.style.background='var(--jade-l)'"
+               onmouseout="this.style.background='var(--jade)'">
+              📖 線上閱讀
+            </a>
+            <a href="scriptures/福德正神真經.pdf" download 
+               style="flex:1;background:var(--blue);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+               onmouseover="this.style.background='var(--blue-l)'"
+               onmouseout="this.style.background='var(--blue)'">
+              ⬇️ 下載PDF
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 太乙救苦護身妙經 -->
+      <div class="card">
+        <div class="card-header" style="background:linear-gradient(135deg,var(--gold),var(--gold-l));color:white">
+          <h3 style="font-family:var(--serif);letter-spacing:2px">🌟 太乙救苦護身妙經</h3>
+        </div>
+        <div class="card-body">
+          <div style="margin-bottom:16px">
+            <div style="font-size:14px;color:var(--ink3);line-height:1.8;margin-bottom:12px">
+              太乙救苦天尊經典,教導化解災厄、護身保命之法,為道教重要護身經典之一。
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+              <span style="background:var(--gold-pale);color:var(--gold-deep);padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600">護身經典</span>
+              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">救苦天尊</span>
+              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">化解災厄</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <a href="scriptures/太乙救苦護身妙經.pdf" target="_blank" 
+               style="flex:1;background:var(--gold);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+               onmouseover="this.style.background='var(--gold-l)'"
+               onmouseout="this.style.background='var(--gold)'">
+              📖 線上閱讀
+            </a>
+            <a href="scriptures/太乙救苦護身妙經.pdf" download 
+               style="flex:1;background:var(--blue);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+               onmouseover="this.style.background='var(--blue-l)'"
+               onmouseout="this.style.background='var(--blue)'">
+              ⬇️ 下載PDF
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 靈寶天尊說十戒經 -->
+      <div class="card">
+        <div class="card-header" style="background:linear-gradient(135deg,var(--blue),var(--blue-l));color:white">
+          <h3 style="font-family:var(--serif);letter-spacing:2px">⚖️ 靈寶天尊說十戒經</h3>
+        </div>
+        <div class="card-body">
+          <div style="margin-bottom:16px">
+            <div style="font-size:14px;color:var(--ink3);line-height:1.8;margin-bottom:12px">
+              靈寶天尊所示十戒,為道教戒律核心經典,信眾必須遵守的十條基本戒律。
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+              <span style="background:var(--blue-pale);color:var(--blue);padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600">戒律經典</span>
+              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">靈寶天尊</span>
+              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">十戒準則</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <a href="scriptures/靈寶天尊說十戒經.pdf" target="_blank" 
+               style="flex:1;background:var(--blue);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+               onmouseover="this.style.background='var(--blue-l)'"
+               onmouseout="this.style.background='var(--blue)'">
+              📖 線上閱讀
+            </a>
+            <a href="scriptures/靈寶天尊說十戒經.pdf" download 
+               style="flex:1;background:var(--grey);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+               onmouseover="this.style.background='var(--grey-l)'"
+               onmouseout="this.style.background='var(--grey)'">
+              ⬇️ 下載PDF
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 閱讀提示 -->
+    <div style="background:var(--cream2);border:2px solid var(--gold);border-radius:12px;padding:20px;margin-top:20px">
+      <div style="display:flex;gap:16px;align-items:start">
+        <div style="font-size:32px">📚</div>
+        <div style="flex:1">
+          <div style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--gold-deep);margin-bottom:10px">經典閱讀建議</div>
+          <ul style="margin:0;padding-left:20px;font-size:14px;color:var(--ink3);line-height:1.9">
+            <li>建議每日誦讀經典,以修心養性、明理悟道</li>
+            <li>初學者可先從《開臺延平郡王五常真經》開始,理解五常之道</li>
+            <li>《靈寶天尊說十戒經》為戒律基礎,信眾應熟讀並遵守</li>
+            <li>經典可下載後列印,方便隨身攜帶誦讀</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div><!-- /temple mode -->
 
 <!-- ══════════════ ADMIN MODE ══════════════ -->
@@ -1100,6 +1261,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
       <button class="admin-tab" onclick="switchAdminTab('a-docs',this)">③ 文件管理</button>
       <button class="admin-tab" onclick="switchAdminTab('a-finance',this)">④ 財務合規</button>
       <button class="admin-tab" onclick="switchAdminTab('a-apply',this)">⑤ 會員申請表單</button>
+      <button class="admin-tab" onclick="switchAdminTab('a-drive',this)">⑥ 雲端資料夾</button>
     </div>
   </div>
 
@@ -1587,6 +1749,112 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 
     </div>
 
+    <!-- ⑥ 雲端資料夾 -->
+    <div id="a-drive" class="tab-content" style="display:none">
+      <div style="background:linear-gradient(135deg,#1565C0,#1976D2);border-radius:var(--radius);padding:20px 24px;margin-bottom:24px;box-shadow:0 4px 20px rgba(21,101,192,0.3)">
+        <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+          <div style="font-size:42px">📂</div>
+          <div style="flex:1">
+            <h3 style="color:white;font-family:var(--serif);font-size:22px;font-weight:700;margin-bottom:6px;letter-spacing:1px">Google Drive 雲端資料夾</h3>
+            <p style="color:rgba(255,255,255,0.9);font-size:15px;margin:0">社團法人台灣三聖道教信仰協會｜所有籌備文件、章程草案、登記文件統一管理</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:24px">
+        <div class="card">
+          <div class="card-header">
+            <h3 style="font-family:var(--serif)">📋 主要資料夾</h3>
+          </div>
+          <div class="card-body">
+            <div style="margin-bottom:20px">
+              <a href="https://drive.google.com/drive/folders/1F0OOP5vM4Vt4-7bpbbBkizuDPykscgYS?usp=sharing" 
+                 target="_blank"
+                 style="display:block;background:linear-gradient(135deg,#1565C0,#1E88E5);color:white;padding:16px 20px;border-radius:10px;text-decoration:none;margin-bottom:12px;transition:var(--transition);box-shadow:0 3px 12px rgba(21,101,192,0.25)"
+                 onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(21,101,192,0.35)'"
+                 onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 3px 12px rgba(21,101,192,0.25)'">
+                <div style="display:flex;align-items:center;gap:12px">
+                  <div style="font-size:28px">📁</div>
+                  <div style="flex:1">
+                    <div style="font-weight:700;font-size:16px;margin-bottom:3px">協會籌備主資料夾</div>
+                    <div style="font-size:13px;opacity:0.9">所有重要文件集中管理</div>
+                  </div>
+                  <div style="font-size:20px;opacity:0.8">→</div>
+                </div>
+              </a>
+              <div style="font-size:13px;color:var(--grey);line-height:1.7;padding:0 4px">
+                包含章程草案、申請文件、財務規劃、組織架構等所有籌備期間的重要文件
+              </div>
+            </div>
+
+            <div>
+              <a href="https://drive.google.com/drive/folders/1_QIYPsuSSeTLqABOzRA33u_n4U2HvZ7F?usp=drive_link" 
+                 target="_blank"
+                 style="display:block;background:linear-gradient(135deg,var(--jade),var(--jade-l));color:white;padding:16px 20px;border-radius:10px;text-decoration:none;transition:var(--transition);box-shadow:0 3px 12px rgba(45,106,79,0.25)"
+                 onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(45,106,79,0.35)'"
+                 onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 3px 12px rgba(45,106,79,0.25)'">
+                <div style="display:flex;align-items:center;gap:12px">
+                  <div style="font-size:28px">🪪</div>
+                  <div style="flex:1">
+                    <div style="font-weight:700;font-size:16px;margin-bottom:3px">會員證件資料夾</div>
+                    <div style="font-size:13px;opacity:0.9">入會申請證件自動上傳處</div>
+                  </div>
+                  <div style="font-size:20px;opacity:0.8">→</div>
+                </div>
+              </a>
+              <div style="font-size:13px;color:var(--grey);line-height:1.7;padding:8px 4px 0 4px">
+                委員申請表單上傳的身分證照片會自動儲存於此資料夾
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 style="font-family:var(--serif)">🔒 資安與權限</h3>
+          </div>
+          <div class="card-body">
+            <div style="background:var(--cream2);border-radius:8px;padding:14px;margin-bottom:14px">
+              <div style="font-weight:700;font-size:14px;color:var(--vermillion);margin-bottom:8px;display:flex;align-items:center;gap:6px">
+                <span>⚠️</span> 重要提醒
+              </div>
+              <ul style="margin:0;padding-left:18px;font-size:13px;color:var(--ink3);line-height:1.8">
+                <li>雲端資料夾內含敏感個資與內部文件</li>
+                <li>僅限理事會成員與授權人員訪問</li>
+                <li>請勿分享資料夾連結給未授權人員</li>
+                <li>下載的文件請妥善保管,勿外洩</li>
+              </ul>
+            </div>
+
+            <div style="background:var(--blue-pale);border-radius:8px;padding:14px;border-left:4px solid var(--blue)">
+              <div style="font-weight:700;font-size:14px;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px">
+                <span>🔐</span> 權限管理
+              </div>
+              <div style="font-size:13px;color:var(--ink3);line-height:1.8">
+                資料夾權限由執事長統一管理。如需訪問權限,請聯繫執事長申請。所有訪問記錄將被 Google Drive 記錄備查。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--gold-pale);border:2px solid var(--gold);border-radius:12px;padding:20px">
+        <div style="display:flex;gap:16px;align-items:start">
+          <div style="font-size:32px">📌</div>
+          <div style="flex:1">
+            <div style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--gold-deep);margin-bottom:10px">資料夾使用規範</div>
+            <ul style="margin:0;padding-left:20px;font-size:14px;color:var(--ink3);line-height:1.9">
+              <li>所有上傳文件請使用清楚的檔名,標註日期與版本號</li>
+              <li>重要文件修改前請先建立備份版本</li>
+              <li>定期清理過期或無效文件,保持資料夾整潔</li>
+              <li>遵守個資法,妥善處理會員個人資料</li>
+              <li>如發現文件遺失或異常,請立即通報執事長</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div><!-- /admin mode -->
 
@@ -1993,13 +2261,19 @@ function pwKeydown(e) {
   if (e.key === 'Escape') closePasswordModal();
 }
 function switchSubTab(id, btn) {
-  document.querySelectorAll('#mode-temple .tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('#mode-temple .tab-content').forEach(t=>{
+    t.classList.remove('active');
+    t.style.display='none';
+  });
   const el = document.getElementById(id);
-  if (el) el.classList.add('active');
+  if (el) {
+    el.classList.add('active');
+    el.style.display='block';
+  }
   document.querySelectorAll('.sub-tab').forEach(b=>b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   else {
-    const idx = ['tab-about','tab-deities','tab-precepts','tab-calendar','tab-divination'].indexOf(id);
+    const idx = ['tab-about','tab-deities','tab-scriptures','tab-precepts','tab-calendar','tab-divination'].indexOf(id);
     const btns = document.querySelectorAll('.sub-tab');
     if (idx>=0 && btns[idx]) btns[idx].classList.add('active');
   }
