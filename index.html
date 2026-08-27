@@ -37,10 +37,62 @@
   /* 字體 */
   --serif:'Noto Serif TC',serif; --sans:'Noto Sans TC',sans-serif;
   --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+
+  /* 研修專區新增色（太上老君說常清靜經卡片用） */
+  --imperial-green-l:#3FA873; --imperial-green-pale:#E6F4EC;
+
+  /* 語意化文字色（供日／夜主題切換用，日間數值＝原本的 ink/grey 色階，完全不變） */
+  --text-strongest: var(--ink);
+  --text-strong: var(--ink2);
+  --text-body: var(--ink3);
+  --text-soft: var(--grey);
+  --text-soft2: var(--grey-l);
+  --surface: #FFFFFF;
+
+  /* 首頁 Banner 漸層色（供夜間主題替換） */
+  --hero-c1:#7A5C00; --hero-c2:#B8860B; --hero-c3:#DAA520; --hero-c4:#C8941A;
 }
+
+/* ══════════════════════════════════════════════════════
+   夜間主題（沉靜水墨海青色系）
+══════════════════════════════════════════════════════════ */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --cream:#14111C; --cream2:#1D1930; --cream3:#2B2542;
+    --grey:#9C93B0; --grey-l:#7D7495;
+    --text-strongest:#F1ECDD; --text-strong:#E3D9C4; --text-body:#C7BEDC;
+    --text-soft:#9C93B0; --text-soft2:#7D7495;
+    --surface:#211C33;
+    --hero-c1:#151233; --hero-c2:#1F1B4A; --hero-c3:#2A2566; --hero-c4:#4A3B7A;
+  }
+}
+:root[data-theme="dark"]{
+  --cream:#14111C; --cream2:#1D1930; --cream3:#2B2542;
+  --grey:#9C93B0; --grey-l:#7D7495;
+  --text-strongest:#F1ECDD; --text-strong:#E3D9C4; --text-body:#C7BEDC;
+  --text-soft:#9C93B0; --text-soft2:#7D7495;
+  --surface:#211C33;
+  --hero-c1:#151233; --hero-c2:#1F1B4A; --hero-c3:#2A2566; --hero-c4:#4A3B7A;
+}
+:root[data-theme="light"]{
+  --cream:#FBF5E6; --cream2:#F5EDD8; --cream3:#EDE0C4;
+  --grey:#8A7A6A; --grey-l:#B5A898;
+  --text-strongest: var(--ink); --text-strong: var(--ink2); --text-body: var(--ink3);
+  --text-soft:#8A7A6A; --text-soft2:#B5A898;
+  --surface:#FFFFFF;
+  --hero-c1:#7A5C00; --hero-c2:#B8860B; --hero-c3:#DAA520; --hero-c4:#C8941A;
+}
+
+.theme-toggle{
+  background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);
+  color:white;width:34px;height:34px;border-radius:50%;cursor:pointer;
+  font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;
+  transition:var(--transition);
+}
+.theme-toggle:hover{background:rgba(255,255,255,0.22);transform:scale(1.06);}
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:var(--sans);background:var(--cream);color:var(--ink);overflow-x:hidden;font-size:16px;}
+body{font-family:var(--sans);background:var(--cream);color:var(--text-strongest);overflow-x:hidden;font-size:16px;}
 p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p,
 .festival-desc, .result-story p, .jiaobei-notice div {
   text-wrap:pretty;
@@ -110,7 +162,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
    TEMPLE HERO
 ═══════════════════════════════════════════════════════════ */
 .temple-hero{
-  background:linear-gradient(160deg,#7A5C00 0%,#B8860B 35%,#DAA520 65%,#C8941A 100%);
+  background:linear-gradient(160deg,var(--hero-c1) 0%,var(--hero-c2) 35%,var(--hero-c3) 65%,var(--hero-c4) 100%);
   position:relative;overflow:hidden;padding:40px 20px 80px;text-align:center;
 }
 .temple-hero::before{
@@ -207,18 +259,18 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
   display:flex;overflow-x:auto;padding:0 16px;gap:0;
 }
 .sub-tab{
-  padding:12px 20px;font-size:15px;font-weight:500;color:var(--grey);
+  padding:12px 20px;font-size:15px;font-weight:500;color:var(--text-soft);
   border:none;background:none;cursor:pointer;font-family:var(--sans);
   border-bottom:3px solid transparent;white-space:nowrap;transition:var(--transition);
 }
-.sub-tab:hover{color:var(--ink2);background:rgba(0,0,0,0.03);}
+.sub-tab:hover{color:var(--text-strong);background:rgba(0,0,0,0.03);}
 .sub-tab.active{color:var(--vermillion);border-bottom-color:var(--vermillion);}
 
 /* 道場介紹群組內頁籤（道場介紹／神明資料／戒行準則） */
 .about-tabs{display:flex;gap:8px;flex-wrap:wrap;}
 .about-tab{
-  padding:9px 22px;font-size:14px;font-weight:600;color:var(--grey);
-  border:2px solid var(--cream3);background:white;border-radius:24px;
+  padding:9px 22px;font-size:14px;font-weight:600;color:var(--text-soft);
+  border:2px solid var(--cream3);background:var(--surface);border-radius:24px;
   cursor:pointer;font-family:var(--sans);transition:var(--transition);
 }
 .about-tab:hover{border-color:var(--vermillion);color:var(--vermillion);}
@@ -233,14 +285,14 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 .content-wrap{max-width:1280px;margin:0 auto;padding:24px 20px;}
 .section-heading{
   font-family:var(--serif);font-size:24px;font-weight:700;
-  color:var(--ink2);margin-bottom:6px;
+  color:var(--text-strong);margin-bottom:6px;
   display:flex;align-items:center;gap:10px;
 }
 .section-heading::before{
   content:'';width:4px;height:26px;background:var(--vermillion);
   border-radius:2px;display:inline-block;flex-shrink:0;
 }
-.section-desc{font-size:15px;color:var(--grey);margin-bottom:20px;padding-left:14px;}
+.section-desc{font-size:15px;color:var(--text-soft);margin-bottom:20px;padding-left:14px;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
@@ -250,7 +302,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 /* ═══════════════════════════════════════════════════════════
    CARDS
 ═══════════════════════════════════════════════════════════ */
-.card{background:white;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+.card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
 .card-header{padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--cream3);}
 .card-header h3{font-family:var(--serif);font-size:17px;font-weight:700;flex:1;}
 .card-body{padding:14px 16px;}
@@ -263,7 +315,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
    DEITY CARDS
 ═══════════════════════════════════════════════════════════ */
 .deity-card{
-  background:white;border-radius:var(--radius-lg);box-shadow:var(--shadow);
+  background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow);
   overflow:hidden;transition:var(--transition);
   border:2px solid transparent;display:flex;flex-direction:column;
   position:relative;
@@ -319,12 +371,12 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 .deity-header{padding:16px 16px 10px;text-align:center;}
 .deity-icon{font-size:38px;margin-bottom:6px;}
 .deity-rank{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
-.deity-name{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--ink2);}
-.deity-spirit{font-size:14px;color:var(--grey);margin-top:4px;}
+.deity-name{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--text-strong);}
+.deity-spirit{font-size:14px;color:var(--text-soft);margin-top:4px;}
 .deity-body{padding:12px 16px 18px;border-top:1px solid var(--cream3);flex:1;}
-.deity-tag{display:inline-block;background:var(--cream2);color:var(--ink3);
+.deity-tag{display:inline-block;background:var(--cream2);color:var(--text-body);
   padding:3px 10px;border-radius:12px;font-size:13px;margin:2px;}
-.deity-meaning{font-size:14px;color:var(--ink3);line-height:1.8;margin-top:10px;
+.deity-meaning{font-size:14px;color:var(--text-body);line-height:1.8;margin-top:10px;
   text-align:justify;text-wrap:pretty;width:100%;}
 
 /* ═══════════════════════════════════════════════════════════
@@ -339,7 +391,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 .precept-item{
   display:flex;gap:16px;padding:14px;border-radius:10px;
   margin-bottom:10px;transition:var(--transition);
-  background:white;border-left:4px solid;box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  background:var(--surface);border-left:4px solid;box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 .precept-item:hover{transform:translateX(4px);}
 .precept-num{
@@ -349,8 +401,8 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
   flex-shrink:0;color:white;
 }
 .precept-text h4{font-size:16px;font-weight:700;margin-bottom:4px;}
-.precept-text .original{font-size:14px;color:var(--grey);font-family:var(--serif);margin-bottom:4px;}
-.precept-text .explain{font-size:14px;color:var(--ink3);line-height:1.7;}
+.precept-text .original{font-size:14px;color:var(--text-soft);font-family:var(--serif);margin-bottom:4px;}
+.precept-text .explain{font-size:14px;color:var(--text-body);line-height:1.7;}
 .precept-text .practice{
   font-size:13px;color:var(--jade);font-weight:600;
   margin-top:6px;padding:5px 12px;background:var(--jade-pale);border-radius:8px;
@@ -363,23 +415,23 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 .cal-controls{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
 .cal-month-select{
   padding:8px 14px;border-radius:8px;border:1.5px solid var(--cream3);
-  font-family:var(--sans);font-size:15px;background:white;color:var(--ink);
+  font-family:var(--sans);font-size:15px;background:var(--surface);color:var(--text-strongest);
 }
 .cal-btn{
   padding:8px 18px;border-radius:8px;border:1.5px solid var(--cream3);
-  background:white;cursor:pointer;font-family:var(--sans);font-size:15px;
+  background:var(--surface);cursor:pointer;font-family:var(--sans);font-size:15px;
   transition:var(--transition);
 }
 .cal-btn:hover{background:var(--vermillion);color:white;border-color:var(--vermillion);}
 .festival-list{display:flex;flex-direction:column;gap:8px;}
 .festival-item{
   display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
-  background:white;border-radius:10px;border-left:4px solid;
+  background:var(--surface);border-radius:10px;border-left:4px solid;
   box-shadow:0 1px 4px rgba(0,0,0,0.06);
 }
-.festival-date{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--grey);min-width:100px;}
-.festival-name{font-weight:600;font-size:15px;color:var(--ink2);}
-.festival-desc{font-size:13px;color:var(--grey);margin-top:2px;}
+.festival-date{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text-soft);min-width:100px;}
+.festival-name{font-weight:600;font-size:15px;color:var(--text-strong);}
+.festival-desc{font-size:13px;color:var(--text-soft);margin-top:2px;}
 .festival-badge{font-size:12px;font-weight:700;padding:2px 10px;border-radius:10px;margin-left:6px;}
 
 /* ═══════════════════════════════════════════════════════════
@@ -387,7 +439,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 ═══════════════════════════════════════════════════════════ */
 .div-layout{display:grid;grid-template-columns:1fr 280px;gap:20px;}
 @media(max-width:900px){.div-layout{grid-template-columns:1fr;}}
-.div-main{background:white;border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;}
+.div-main{background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;}
 .div-header{
   background:linear-gradient(135deg,var(--ink2),var(--vermillion-d));
   padding:24px;text-align:center;
@@ -398,8 +450,8 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 .category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
 .cat-btn{
   padding:10px 8px;border-radius:10px;border:1.5px solid var(--cream3);
-  background:white;cursor:pointer;text-align:center;transition:var(--transition);
-  font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink3);
+  background:var(--surface);cursor:pointer;text-align:center;transition:var(--transition);
+  font-family:var(--sans);font-size:14px;font-weight:600;color:var(--text-body);
 }
 .cat-btn:hover,.cat-btn.active{background:var(--vermillion);color:white;border-color:var(--vermillion);}
 .cat-btn .cat-icon{font-size:22px;display:block;margin-bottom:3px;}
@@ -428,8 +480,8 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
   position:absolute;bottom:15px;
   box-shadow:1px 1px 3px rgba(0,0,0,0.3);
 }
-.shake-hint{font-size:15px;color:var(--ink3);font-weight:500;}
-.shake-sub{font-size:13px;color:var(--grey);margin-top:4px;}
+.shake-hint{font-size:15px;color:var(--text-body);font-weight:500;}
+.shake-sub{font-size:13px;color:var(--text-soft);margin-top:4px;}
 .shake-btn{
   padding:13px 36px;background:var(--vermillion);color:white;
   border:none;border-radius:24px;font-size:16px;font-weight:700;
@@ -452,37 +504,37 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 .result-level{display:inline-block;padding:4px 16px;border-radius:12px;font-size:14px;font-weight:700;margin-top:8px;}
 .result-story{background:var(--cream2);border-radius:10px;padding:12px;margin-bottom:10px;}
 .result-story h4{font-family:var(--serif);font-size:15px;color:var(--gold-deep);margin-bottom:6px;}
-.result-story p{font-size:14px;color:var(--ink3);line-height:1.8;}
+.result-story p{font-size:14px;color:var(--text-body);line-height:1.8;}
 .result-poem{
   border:1px solid var(--cream3);border-radius:10px;padding:14px;
   text-align:center;margin-bottom:10px;
 }
 .result-poem p{
-  font-family:var(--serif);font-size:16px;line-height:2.4;color:var(--ink2);
+  font-family:var(--serif);font-size:16px;line-height:2.4;color:var(--text-strong);
   letter-spacing:1px;
 }
 .result-items{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px;}
 .result-item{
   padding:8px 10px;background:var(--cream2);border-radius:8px;
-  font-size:13px;color:var(--ink3);
+  font-size:13px;color:var(--text-body);
 }
 .result-item strong{color:var(--vermillion);font-size:12px;display:block;margin-bottom:2px;}
 .jiaobei-notice{
   background:#FFF3CD;border:1px solid #F0C040;border-radius:8px;
-  padding:12px 14px;font-size:14px;color:var(--ink3);
+  padding:12px 14px;font-size:14px;color:var(--text-body);
   display:flex;align-items:flex-start;gap:8px;
 }
 .jiaobei-notice .icon{font-size:22px;flex-shrink:0;}
 .new-qian-btn{
   width:100%;padding:13px;border:2px solid var(--vermillion);
-  background:white;color:var(--vermillion);border-radius:10px;
+  background:var(--surface);color:var(--vermillion);border-radius:10px;
   font-family:var(--sans);font-size:15px;font-weight:700;cursor:pointer;
   margin-top:12px;transition:var(--transition);
 }
 .new-qian-btn:hover{background:var(--vermillion);color:white;}
 
 /* Qian index */
-.div-index{background:white;border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;}
+.div-index{background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;}
 .div-index-header{
   background:linear-gradient(135deg,var(--gold-deep),var(--gold));
   padding:14px;text-align:center;
@@ -501,15 +553,15 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 
 /* History */
 .div-history{padding:10px;border-top:1px solid var(--cream3);}
-.div-history h4{font-size:14px;font-weight:700;color:var(--grey);margin-bottom:8px;padding:0 4px;}
+.div-history h4{font-size:14px;font-weight:700;color:var(--text-soft);margin-bottom:8px;padding:0 4px;}
 .history-item{
   padding:9px 12px;border-radius:8px;background:var(--cream2);
   margin-bottom:4px;cursor:pointer;transition:var(--transition);
 }
 .history-item:hover{background:var(--gold-pale);}
 .history-item .h-num{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--vermillion);}
-.history-item .h-cat{font-size:12px;color:var(--grey);}
-.history-item .h-time{font-size:12px;color:var(--grey-l);float:right;}
+.history-item .h-cat{font-size:12px;color:var(--text-soft);}
+.history-item .h-time{font-size:12px;color:var(--text-soft2);float:right;}
 
 /* ═══════════════════════════════════════════════════════════
    ADMIN MODE — GANTT
@@ -536,15 +588,15 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 /* progress summary */
 .progress-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
 @media(max-width:700px){.progress-summary{grid-template-columns:repeat(2,1fr);}}
-.p-card{background:white;border-radius:var(--radius);padding:14px;text-align:center;box-shadow:var(--shadow);border-top:3px solid;}
+.p-card{background:var(--surface);border-radius:var(--radius);padding:14px;text-align:center;box-shadow:var(--shadow);border-top:3px solid;}
 .p-card .p-num{font-family:var(--serif);font-size:32px;font-weight:700;}
-.p-card .p-lbl{font-size:14px;color:var(--grey);margin-top:3px;}
-.big-progress{background:white;border-radius:var(--radius);padding:16px 20px;margin-bottom:24px;box-shadow:var(--shadow);}
+.p-card .p-lbl{font-size:14px;color:var(--text-soft);margin-top:3px;}
+.big-progress{background:var(--surface);border-radius:var(--radius);padding:16px 20px;margin-bottom:24px;box-shadow:var(--shadow);}
 .big-progress-bar{height:14px;background:var(--cream3);border-radius:7px;overflow:hidden;margin-top:8px;}
 .big-progress-fill{height:100%;border-radius:7px;background:linear-gradient(to right,var(--jade),var(--gold));transition:width 0.8s ease;}
 
 /* Gantt */
-.gantt-wrap{background:white;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:24px;}
+.gantt-wrap{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:24px;}
 .gantt-header{background:var(--blue);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
 .gantt-header h3{font-family:var(--serif);color:white;font-size:17px;}
 .gantt-table{overflow-x:auto;}
@@ -560,7 +612,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 .gantt-label-check{width:20px;height:20px;border-radius:4px;border:1.5px solid;
   cursor:pointer;display:flex;align-items:center;justify-content:center;
   flex-shrink:0;font-size:11px;font-weight:700;transition:var(--transition);}
-.gantt-label-text{font-size:14px;color:var(--ink3);font-weight:500;line-height:1.3;}
+.gantt-label-text{font-size:14px;color:var(--text-body);font-weight:500;line-height:1.3;}
 .gantt-timeline{flex:1;position:relative;height:28px;}
 .gantt-bar{
   position:absolute;height:22px;border-radius:6px;top:3px;
@@ -573,7 +625,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
   width:16px;height:16px;position:absolute;
   border-radius:2px;transform:rotate(45deg);top:6px;cursor:pointer;
 }
-.milestone-label{position:absolute;top:24px;font-size:9px;white-space:nowrap;color:var(--grey);transform:translateX(-50%);}
+.milestone-label{position:absolute;top:24px;font-size:9px;white-space:nowrap;color:var(--text-soft);transform:translateX(-50%);}
 
 /* Doc manager */
 .doc-category{margin-bottom:20px;}
@@ -583,7 +635,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
   font-family:var(--serif);font-size:16px;font-weight:700;
   display:flex;align-items:center;justify-content:space-between;
 }
-.doc-table{width:100%;border-collapse:collapse;background:white;border-radius:0 0 8px 8px;overflow:hidden;}
+.doc-table{width:100%;border-collapse:collapse;background:var(--surface);border-radius:0 0 8px 8px;overflow:hidden;}
 .doc-table th{background:var(--blue-pale);padding:9px 12px;text-align:left;font-size:13px;font-weight:700;color:var(--blue);}
 .doc-table td{padding:10px 12px;font-size:14px;border-bottom:1px solid var(--cream3);vertical-align:middle;}
 .doc-table tr:last-child td{border-bottom:none;}
@@ -601,7 +653,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 .doc-drive-link:hover{background:var(--blue);color:white;}
 .doc-note-input{
   width:100%;border:none;background:transparent;
-  font-size:11px;color:var(--grey);font-family:var(--sans);
+  font-size:11px;color:var(--text-soft);font-family:var(--sans);
   outline:none;border-bottom:1px dashed transparent;
   transition:var(--transition);cursor:text;
 }
@@ -618,7 +670,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 .drive-banner h3{color:white;font-size:16px;font-weight:700;margin-bottom:3px;}
 .drive-banner p{color:rgba(255,255,255,0.8);font-size:14px;}
 .drive-link-btn{
-  background:white;color:#1565C0;padding:8px 20px;border-radius:20px;
+  background:var(--surface);color:#1565C0;padding:8px 20px;border-radius:20px;
   font-weight:700;font-size:15px;text-decoration:none;white-space:nowrap;
   transition:var(--transition);box-shadow:0 2px 8px rgba(0,0,0,0.15);
 }
@@ -628,16 +680,16 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 .intro-tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap;}
 .intro-tab{
   padding:8px 18px;border-radius:20px;border:1.5px solid var(--cream3);
-  background:white;cursor:pointer;font-size:14px;font-weight:600;
-  font-family:var(--sans);color:var(--grey);transition:var(--transition);
+  background:var(--surface);cursor:pointer;font-size:14px;font-weight:600;
+  font-family:var(--sans);color:var(--text-soft);transition:var(--transition);
 }
 .intro-tab.active{background:var(--blue);color:white;border-color:var(--blue);}
 .rule-item{
-  background:white;border-radius:10px;padding:14px 16px;margin-bottom:10px;
+  background:var(--surface);border-radius:10px;padding:14px 16px;margin-bottom:10px;
   border-left:4px solid var(--blue);box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 .rule-item h4{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:4px;}
-.rule-item p{font-size:14px;color:var(--ink3);line-height:1.7;}
+.rule-item p{font-size:14px;color:var(--text-body);line-height:1.7;}
 
 /* Toast */
 .toast{
@@ -698,11 +750,12 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
       <button class="mode-btn" data-group="tab-calendar" onclick="switchMode('temple','tab-calendar')">節慶月曆</button>
       <button class="mode-btn" data-group="tab-divination" onclick="switchMode('temple','tab-divination')">求籤問事</button>
       <button class="mode-btn" data-group="tab-apply" onclick="switchMode('temple','tab-apply')">委員申請</button>
+      <button class="mode-btn" data-group="tab-study" onclick="switchMode('temple','tab-study')">研修專區</button>
       <span class="mode-separator">｜</span>
       <button class="mode-btn" onclick="switchMode('admin',this)">⚙ 籌備管理</button>
     </div>
     <div class="nav-right">
-      <!-- 雲端資料夾已移至籌備管理內 -->
+      <button id="theme-toggle-btn" class="theme-toggle" onclick="toggleNightTheme()" title="切換日／夜模式" aria-label="切換日／夜模式">🌙</button>
     </div>
   </div>
 </nav>
@@ -762,7 +815,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
                 </div>
                 <div style="padding:12px 16px;background:#FFF9F0;flex:1">
                   <div style="font-weight:700;font-size:18px;color:var(--vermillion);margin-bottom:5px">以道教正信為根本</div>
-                  <div style="font-size:15px;color:var(--ink3);line-height:1.8;text-align:justify;text-wrap:pretty">「信仰是提醒，不是迷信」，引導人向善、向正、向光明，使信仰回歸安定人心的真正力量。</div>
+                  <div style="font-size:15px;color:var(--text-body);line-height:1.8;text-align:justify;text-wrap:pretty">「信仰是提醒，不是迷信」，引導人向善、向正、向光明，使信仰回歸安定人心的真正力量。</div>
                 </div>
               </div>
               <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid #E8D8A0;margin-bottom:10px">
@@ -772,7 +825,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
                 </div>
                 <div style="padding:12px 16px;background:#FFF9F0;flex:1">
                   <div style="font-weight:700;font-size:18px;color:var(--gold-deep);margin-bottom:5px">以經典智慧為依歸</div>
-                  <div style="font-size:15px;color:var(--ink3);line-height:1.8;text-align:justify;text-wrap:pretty">以道教經典、易經智慧為信仰依據，使信仰有根有據，不流於空言與迷信。</div>
+                  <div style="font-size:15px;color:var(--text-body);line-height:1.8;text-align:justify;text-wrap:pretty">以道教經典、易經智慧為信仰依據，使信仰有根有據，不流於空言與迷信。</div>
                 </div>
               </div>
               <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid #E8D8A0;margin-bottom:10px">
@@ -782,7 +835,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
                 </div>
                 <div style="padding:12px 16px;background:#F0F8F4;flex:1">
                   <div style="font-weight:700;font-size:18px;color:var(--jade);margin-bottom:5px">以易經卜筮為指引</div>
-                  <div style="font-size:15px;color:var(--ink3);line-height:1.8;text-align:justify;text-wrap:pretty">透過卜卦求籤，協助信眾在人生的岔路口，明辨方向、看清局勢，知所取捨進退。</div>
+                  <div style="font-size:15px;color:var(--text-body);line-height:1.8;text-align:justify;text-wrap:pretty">透過卜卦求籤，協助信眾在人生的岔路口，明辨方向、看清局勢，知所取捨進退。</div>
                 </div>
               </div>
               <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid #E8D8A0">
@@ -792,7 +845,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
                 </div>
                 <div style="padding:12px 16px;background:#F0F4F8;flex:1">
                   <div style="font-weight:700;font-size:18px;color:var(--blue);margin-bottom:5px">以修心修德為修行</div>
-                  <div style="font-size:15px;color:var(--ink3);line-height:1.8;text-align:justify;text-wrap:pretty">修行不在遠離塵世，而在日常生活中修心積德，於家庭、工作與社會之中持續累積福報。</div>
+                  <div style="font-size:15px;color:var(--text-body);line-height:1.8;text-align:justify;text-wrap:pretty">修行不在遠離塵世，而在日常生活中修心積德，於家庭、工作與社會之中持續累積福報。</div>
                 </div>
               </div>
             </div>
@@ -809,8 +862,8 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
                   <span style="font-family:var(--serif);font-size:34px;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,0.25)">仁</span>
                 </div>
                 <div style="padding:11px 14px;background:var(--gold-pale);flex:1">
-                  <div style="font-weight:700;font-size:16px;color:var(--ink2);margin-bottom:4px">心存仁慈，待人以善</div>
-                  <div style="font-size:14px;color:var(--ink3);line-height:1.8;text-align:justify;text-wrap:pretty">修仁不只是對人好，而是使內心不刻薄、不殘忍、不冷漠，在日常生活中養其心、正其性、利物濟人。</div>
+                  <div style="font-weight:700;font-size:16px;color:var(--text-strong);margin-bottom:4px">心存仁慈，待人以善</div>
+                  <div style="font-size:14px;color:var(--text-body);line-height:1.8;text-align:justify;text-wrap:pretty">修仁不只是對人好，而是使內心不刻薄、不殘忍、不冷漠，在日常生活中養其心、正其性、利物濟人。</div>
                 </div>
               </div>
               <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid var(--gold-pale)">
@@ -818,8 +871,8 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
                   <span style="font-family:var(--serif);font-size:34px;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,0.25)">義</span>
                 </div>
                 <div style="padding:11px 14px;background:var(--gold-pale);flex:1">
-                  <div style="font-weight:700;font-size:16px;color:var(--ink2);margin-bottom:4px">行事有義，守正不偏</div>
-                  <div style="font-size:14px;color:var(--ink3);line-height:1.8;text-align:justify;text-wrap:pretty">修義是在利害、進退、是非、取捨之間，仍能守住該守之理，見利思義，不偏、不私、不亂。</div>
+                  <div style="font-weight:700;font-size:16px;color:var(--text-strong);margin-bottom:4px">行事有義，守正不偏</div>
+                  <div style="font-size:14px;color:var(--text-body);line-height:1.8;text-align:justify;text-wrap:pretty">修義是在利害、進退、是非、取捨之間，仍能守住該守之理，見利思義，不偏、不私、不亂。</div>
                 </div>
               </div>
               <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid var(--gold-pale)">
@@ -827,8 +880,8 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
                   <span style="font-family:var(--serif);font-size:34px;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,0.25)">禮</span>
                 </div>
                 <div style="padding:11px 14px;background:var(--jade-pale);flex:1">
-                  <div style="font-weight:700;font-size:16px;color:var(--ink2);margin-bottom:4px">尊重天地，敬神敬人</div>
-                  <div style="font-size:14px;color:var(--ink3);line-height:1.8;text-align:justify;text-wrap:pretty">修禮是知道如何敬天地、敬神明、敬父母、敬他人，以禮自持，不驕矜、不失序、不放肆。</div>
+                  <div style="font-weight:700;font-size:16px;color:var(--text-strong);margin-bottom:4px">尊重天地，敬神敬人</div>
+                  <div style="font-size:14px;color:var(--text-body);line-height:1.8;text-align:justify;text-wrap:pretty">修禮是知道如何敬天地、敬神明、敬父母、敬他人，以禮自持，不驕矜、不失序、不放肆。</div>
                 </div>
               </div>
               <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid var(--gold-pale)">
@@ -836,8 +889,8 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
                   <span style="font-family:var(--serif);font-size:34px;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,0.25)">智</span>
                 </div>
                 <div style="padding:11px 14px;background:var(--blue-pale);flex:1">
-                  <div style="font-weight:700;font-size:16px;color:var(--ink2);margin-bottom:4px">明辨是非，知所進退</div>
-                  <div style="font-size:14px;color:var(--ink3);line-height:1.8;text-align:justify;text-wrap:pretty">修智讓人心清、眼明、判斷正，不為欲望所蔽，不以小聰明壞大方向，在混亂中仍能守清楚。</div>
+                  <div style="font-weight:700;font-size:16px;color:var(--text-strong);margin-bottom:4px">明辨是非，知所進退</div>
+                  <div style="font-size:14px;color:var(--text-body);line-height:1.8;text-align:justify;text-wrap:pretty">修智讓人心清、眼明、判斷正，不為欲望所蔽，不以小聰明壞大方向，在混亂中仍能守清楚。</div>
                 </div>
               </div>
               <div style="display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:1.5px solid var(--gold-pale)">
@@ -845,8 +898,8 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
                   <span style="font-family:var(--serif);font-size:34px;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,0.25)">信</span>
                 </div>
                 <div style="padding:11px 14px;background:var(--cream2);flex:1">
-                  <div style="font-weight:700;font-size:16px;color:var(--ink2);margin-bottom:4px">言而有信，立身之本</div>
-                  <div style="font-size:14px;color:var(--ink3);line-height:1.8;text-align:justify;text-wrap:pretty">修信是言行一致、內外相符、前後不反覆，使人可託付、可依靠，以信作為道場治理與共事的根本。</div>
+                  <div style="font-weight:700;font-size:16px;color:var(--text-strong);margin-bottom:4px">言而有信，立身之本</div>
+                  <div style="font-size:14px;color:var(--text-body);line-height:1.8;text-align:justify;text-wrap:pretty">修信是言行一致、內外相符、前後不反覆，使人可託付、可依靠，以信作為道場治理與共事的根本。</div>
                 </div>
               </div>
             </div>
@@ -861,21 +914,21 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
           <div class="card-body" style="text-align:center;padding:20px 16px">
             <div style="font-size:38px;margin-bottom:10px">🔴</div>
             <div style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--vermillion);margin-bottom:10px">正信</div>
-            <div style="font-size:16px;color:var(--ink3);line-height:1.8;text-align:justify;text-wrap:pretty">信仰並非迷信，而是引導人向善、向正、向光明的人生道路</div>
+            <div style="font-size:16px;color:var(--text-body);line-height:1.8;text-align:justify;text-wrap:pretty">信仰並非迷信，而是引導人向善、向正、向光明的人生道路</div>
           </div>
         </div>
         <div class="card" style="border-top:4px solid var(--gold)">
           <div class="card-body" style="text-align:center;padding:20px 16px">
             <div style="font-size:38px;margin-bottom:10px">✨</div>
             <div style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--gold-deep);margin-bottom:10px">正念</div>
-            <div style="font-size:16px;color:var(--ink3);line-height:1.8;text-align:justify;text-wrap:pretty">神明不是控制人命運，而是守護、教化、提醒，學習神明所代表的精神</div>
+            <div style="font-size:16px;color:var(--text-body);line-height:1.8;text-align:justify;text-wrap:pretty">神明不是控制人命運，而是守護、教化、提醒，學習神明所代表的精神</div>
           </div>
         </div>
         <div class="card" style="border-top:4px solid var(--jade)">
           <div class="card-body" style="text-align:center;padding:20px 16px">
             <div style="font-size:38px;margin-bottom:10px">🌿</div>
             <div style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--jade);margin-bottom:10px">正行</div>
-            <div style="font-size:16px;color:var(--ink3);line-height:1.8;text-align:justify;text-wrap:pretty">修德、行善，以信仰作為人生方向，以修德作為修行的根本</div>
+            <div style="font-size:16px;color:var(--text-body);line-height:1.8;text-align:justify;text-wrap:pretty">修德、行善，以信仰作為人生方向，以修德作為修行的根本</div>
           </div>
         </div>
       </div>
@@ -886,29 +939,29 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
         <div class="card-body" style="padding:20px">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
             <div>
-              <div style="font-size:14px;color:var(--grey);font-weight:700;margin-bottom:12px;letter-spacing:1px">基本資料</div>
+              <div style="font-size:14px;color:var(--text-soft);font-weight:700;margin-bottom:12px;letter-spacing:1px">基本資料</div>
               <table style="width:100%;border-collapse:collapse;font-size:16px">
-                <tr><td style="padding:9px 0;color:var(--grey);width:110px;border-bottom:1px solid var(--cream3)">道場名稱</td><td style="font-weight:600;border-bottom:1px solid var(--cream3)">三聖宮</td></tr>
-                <tr><td style="padding:9px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">法人名稱</td><td style="font-weight:600;border-bottom:1px solid var(--cream3)">社團法人台灣三聖道教信仰協會</td></tr>
-                <tr><td style="padding:9px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">道場地址</td><td style="font-weight:600;border-bottom:1px solid var(--cream3)">新北市樹林區山佳</td></tr>
-                <tr><td style="padding:9px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">主神信仰</td><td style="font-weight:600;border-bottom:1px solid var(--cream3)">開臺聖王・關聖帝君・天上聖母</td></tr>
-                <tr><td style="padding:9px 0;color:var(--grey)">籌備現況</td><td><span style="background:#FFF8E1;color:#F57F17;padding:3px 12px;border-radius:10px;font-size:14px;font-weight:700">籌備中 2026</span></td></tr>
+                <tr><td style="padding:9px 0;color:var(--text-soft);width:110px;border-bottom:1px solid var(--cream3)">道場名稱</td><td style="font-weight:600;border-bottom:1px solid var(--cream3)">三聖宮</td></tr>
+                <tr><td style="padding:9px 0;color:var(--text-soft);border-bottom:1px solid var(--cream3)">法人名稱</td><td style="font-weight:600;border-bottom:1px solid var(--cream3)">社團法人台灣三聖道教信仰協會</td></tr>
+                <tr><td style="padding:9px 0;color:var(--text-soft);border-bottom:1px solid var(--cream3)">道場地址</td><td style="font-weight:600;border-bottom:1px solid var(--cream3)">新北市樹林區山佳</td></tr>
+                <tr><td style="padding:9px 0;color:var(--text-soft);border-bottom:1px solid var(--cream3)">主神信仰</td><td style="font-weight:600;border-bottom:1px solid var(--cream3)">開臺聖王・關聖帝君・天上聖母</td></tr>
+                <tr><td style="padding:9px 0;color:var(--text-soft)">籌備現況</td><td><span style="background:#FFF8E1;color:#F57F17;padding:3px 12px;border-radius:10px;font-size:14px;font-weight:700">籌備中 2026</span></td></tr>
               </table>
             </div>
             <div>
-              <div style="font-size:14px;color:var(--grey);font-weight:700;margin-bottom:12px;letter-spacing:1px">發展藍圖</div>
+              <div style="font-size:14px;color:var(--text-soft);font-weight:700;margin-bottom:12px;letter-spacing:1px">發展藍圖</div>
               <div style="display:flex;flex-direction:column;gap:8px">
                 <div style="background:var(--jade-pale);border-radius:8px;padding:12px 14px;border-left:3px solid var(--jade)">
                   <div style="font-size:13px;font-weight:700;color:var(--jade)">短期目標 ▶ 進行中</div>
-                  <div style="font-size:16px;color:var(--ink3);margin-top:4px;font-weight:500">成立社團法人</div>
+                  <div style="font-size:16px;color:var(--text-body);margin-top:4px;font-weight:500">成立社團法人</div>
                 </div>
                 <div style="background:var(--cream2);border-radius:8px;padding:12px 14px;border-left:3px solid var(--gold)">
                   <div style="font-size:13px;font-weight:700;color:var(--gold-deep)">中期目標</div>
-                  <div style="font-size:16px;color:var(--ink3);margin-top:4px;font-weight:500">轉型宗教財團法人</div>
+                  <div style="font-size:16px;color:var(--text-body);margin-top:4px;font-weight:500">轉型宗教財團法人</div>
                 </div>
                 <div style="background:var(--cream2);border-radius:8px;padding:12px 14px;border-left:3px solid var(--blue)">
                   <div style="font-size:13px;font-weight:700;color:var(--blue)">長期目標</div>
-                  <div style="font-size:16px;color:var(--ink3);margin-top:4px;font-weight:500">申請寺廟登記，建立固定道場</div>
+                  <div style="font-size:16px;color:var(--text-body);margin-top:4px;font-weight:500">申請寺廟登記，建立固定道場</div>
                 </div>
               </div>
             </div>
@@ -1047,7 +1100,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
               <p>誠心求籤，籤詩是神明的提醒，而非命運的決定</p>
             </div>
             <div class="div-controls">
-              <div style="font-size:12px;font-weight:700;color:var(--grey);margin-bottom:10px">請選擇問事類別</div>
+              <div style="font-size:12px;font-weight:700;color:var(--text-soft);margin-bottom:10px">請選擇問事類別</div>
               <div class="category-grid" id="cat-grid"></div>
               <div class="shake-area" id="shake-area" onclick="doShake()">
                 <div class="shake-container" id="shake-container">
@@ -1155,13 +1208,13 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
         </div>
         <div class="card-body">
           <div style="margin-bottom:16px">
-            <div style="font-size:14px;color:var(--ink3);line-height:1.8;margin-bottom:12px">
+            <div style="font-size:14px;color:var(--text-body);line-height:1.8;margin-bottom:12px">
               闡述開臺聖王「仁・義・禮・智・信」五常之道,為三聖宮主神之核心經典,信眾必讀必習。
             </div>
             <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
               <span style="background:var(--cream2);color:var(--vermillion);padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600">主神經典</span>
-              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">五常信條</span>
-              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">必讀經典</span>
+              <span style="background:var(--cream2);color:var(--text-body);padding:4px 10px;border-radius:12px;font-size:12px">五常信條</span>
+              <span style="background:var(--cream2);color:var(--text-body);padding:4px 10px;border-radius:12px;font-size:12px">必讀經典</span>
             </div>
           </div>
           <div style="display:flex;gap:10px">
@@ -1188,13 +1241,13 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
         </div>
         <div class="card-body">
           <div style="margin-bottom:16px">
-            <div style="font-size:14px;color:var(--ink3);line-height:1.8;margin-bottom:12px">
+            <div style="font-size:14px;color:var(--text-body);line-height:1.8;margin-bottom:12px">
               土地公經典,闡述福德正神慈悲守護、福報修行之道,教導信眾珍惜土地、勤勞行善。
             </div>
             <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
               <span style="background:var(--jade-pale);color:var(--jade);padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600">配祀經典</span>
-              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">土地守護</span>
-              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">福報修行</span>
+              <span style="background:var(--cream2);color:var(--text-body);padding:4px 10px;border-radius:12px;font-size:12px">土地守護</span>
+              <span style="background:var(--cream2);color:var(--text-body);padding:4px 10px;border-radius:12px;font-size:12px">福報修行</span>
             </div>
           </div>
           <div style="display:flex;gap:10px">
@@ -1221,13 +1274,13 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
         </div>
         <div class="card-body">
           <div style="margin-bottom:16px">
-            <div style="font-size:14px;color:var(--ink3);line-height:1.8;margin-bottom:12px">
+            <div style="font-size:14px;color:var(--text-body);line-height:1.8;margin-bottom:12px">
               太乙救苦天尊經典,教導化解災厄、護身保命之法,為道教重要護身經典之一。
             </div>
             <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
               <span style="background:var(--gold-pale);color:var(--gold-deep);padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600">護身經典</span>
-              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">救苦天尊</span>
-              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">化解災厄</span>
+              <span style="background:var(--cream2);color:var(--text-body);padding:4px 10px;border-radius:12px;font-size:12px">救苦天尊</span>
+              <span style="background:var(--cream2);color:var(--text-body);padding:4px 10px;border-radius:12px;font-size:12px">化解災厄</span>
             </div>
           </div>
           <div style="display:flex;gap:10px">
@@ -1254,13 +1307,13 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
         </div>
         <div class="card-body">
           <div style="margin-bottom:16px">
-            <div style="font-size:14px;color:var(--ink3);line-height:1.8;margin-bottom:12px">
+            <div style="font-size:14px;color:var(--text-body);line-height:1.8;margin-bottom:12px">
               靈寶天尊所示十戒,為道教戒律核心經典,信眾必須遵守的十條基本戒律。
             </div>
             <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
               <span style="background:var(--blue-pale);color:var(--blue);padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600">戒律經典</span>
-              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">靈寶天尊</span>
-              <span style="background:var(--cream2);color:var(--ink3);padding:4px 10px;border-radius:12px;font-size:12px">十戒準則</span>
+              <span style="background:var(--cream2);color:var(--text-body);padding:4px 10px;border-radius:12px;font-size:12px">靈寶天尊</span>
+              <span style="background:var(--cream2);color:var(--text-body);padding:4px 10px;border-radius:12px;font-size:12px">十戒準則</span>
             </div>
           </div>
           <div style="display:flex;gap:10px">
@@ -1279,6 +1332,39 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
           </div>
         </div>
       </div>
+
+      <!-- 太上老君說常清靜經 -->
+      <div class="card">
+        <div class="card-header" style="background:linear-gradient(135deg,var(--imperial-green),var(--imperial-green-l));color:white">
+          <h3 style="font-family:var(--serif);letter-spacing:2px">☯️ 太上老君說常清靜經</h3>
+        </div>
+        <div class="card-body">
+          <div style="margin-bottom:16px">
+            <div style="font-size:14px;color:var(--text-body);line-height:1.8;margin-bottom:12px">
+              太上老君所示清靜之道,闡述心性清濁動靜之理,教導信眾遣欲澄心、漸入真道。
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+              <span style="background:var(--imperial-green-pale);color:var(--imperial-green);padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600">修心經典</span>
+              <span style="background:var(--cream2);color:var(--text-body);padding:4px 10px;border-radius:12px;font-size:12px">太上老君</span>
+              <span style="background:var(--cream2);color:var(--text-body);padding:4px 10px;border-radius:12px;font-size:12px">清靜修心</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <button type="button" onclick="openScriptureViewer('scriptures/太上老君說常清靜經.pdf','太上老君說常清靜經')"
+               style="flex:1;background:var(--imperial-green);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition);border:none;cursor:pointer;width:100%;font-family:var(--sans);"
+               onmouseover="this.style.background='var(--imperial-green-l)'"
+               onmouseout="this.style.background='var(--imperial-green)'">
+              📖 線上閱讀
+            </button>
+            <a href="scriptures/太上老君說常清靜經.pdf" download
+               style="flex:1;background:var(--grey);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+               onmouseover="this.style.background='var(--grey-l)'"
+               onmouseout="this.style.background='var(--grey)'">
+              ⬇️ 下載PDF
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- 閱讀提示 -->
@@ -1287,7 +1373,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
         <div style="font-size:32px">📚</div>
         <div style="flex:1">
           <div style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--gold-deep);margin-bottom:10px">經典閱讀建議</div>
-          <ul style="margin:0;padding-left:20px;font-size:14px;color:var(--ink3);line-height:1.9">
+          <ul style="margin:0;padding-left:20px;font-size:14px;color:var(--text-body);line-height:1.9">
             <li>建議每日誦讀經典,以修心養性、明理悟道</li>
             <li>初學者可先從《開臺延平郡王五常真經》開始,理解五常之道</li>
             <li>《靈寶天尊說十戒經》為戒律基礎,信眾應熟讀並遵守</li>
@@ -1318,17 +1404,17 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
         <div style="background:white;border-radius:10px;padding:16px;box-shadow:var(--shadow);border-top:3px solid var(--vermillion);text-align:center">
           <div style="font-size:28px;margin-bottom:8px">📝</div>
           <div style="font-weight:700;font-size:15px;color:var(--vermillion);margin-bottom:5px">線上填寫</div>
-          <div style="font-size:13px;color:var(--ink3);line-height:1.7">點擊下方按鈕，於 Google 表單填寫基本資料與信仰聲明</div>
+          <div style="font-size:13px;color:var(--text-body);line-height:1.7">點擊下方按鈕，於 Google 表單填寫基本資料與信仰聲明</div>
         </div>
         <div style="background:white;border-radius:10px;padding:16px;box-shadow:var(--shadow);border-top:3px solid var(--jade);text-align:center">
           <div style="font-size:28px;margin-bottom:8px">🪪</div>
           <div style="font-weight:700;font-size:15px;color:var(--jade);margin-bottom:5px">上傳證件</div>
-          <div style="font-size:13px;color:var(--ink3);line-height:1.7">表單內上傳身分證正反面照片，檔案自動存入本會 Google Drive</div>
+          <div style="font-size:13px;color:var(--text-body);line-height:1.7">表單內上傳身分證正反面照片，檔案自動存入本會 Google Drive</div>
         </div>
         <div style="background:white;border-radius:10px;padding:16px;box-shadow:var(--shadow);border-top:3px solid var(--gold-deep);text-align:center">
           <div style="font-size:28px;margin-bottom:8px">✅</div>
           <div style="font-weight:700;font-size:15px;color:var(--gold-deep);margin-bottom:5px">等候審核</div>
-          <div style="font-size:13px;color:var(--ink3);line-height:1.7">送出後由理事會審核，通過後以電話或電子信箱通知</div>
+          <div style="font-size:13px;color:var(--text-body);line-height:1.7">送出後由理事會審核，通過後以電話或電子信箱通知</div>
         </div>
       </div>
 
@@ -1339,7 +1425,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
           <div style="color:rgba(255,255,255,0.9);font-size:15px">委員（體制會員）入會申請表單</div>
         </div>
         <div style="padding:28px 24px;text-align:center">
-          <p style="font-size:16px;color:var(--ink3);line-height:1.8;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto;">
+          <p style="font-size:16px;color:var(--text-body);line-height:1.8;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto;">
             請點擊下方按鈕開啟申請表單。表單由 Google 表單提供，填寫完成並送出後，資料將自動儲存至本會管理系統，上傳的證件照片將直接存入本會 Google Drive 指定資料夾。
           </p>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSdj_qFP1hSjoFFtiD8QsWUw004YkYxRIdx0Bkohl6645fpRXg/viewform?usp=header"
@@ -1357,7 +1443,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
             開啟委員入會申請表單
             <span style="font-size:16px;opacity:0.8">→</span>
           </a>
-          <div style="margin-top:14px;font-size:13px;color:var(--grey)">點擊後將在新視窗開啟 Google 表單</div>
+          <div style="margin-top:14px;font-size:13px;color:var(--text-soft)">點擊後將在新視窗開啟 Google 表單</div>
         </div>
       </div>
 
@@ -1365,7 +1451,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
       <div style="background:white;border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:20px;">
         <div style="padding:14px 20px;border-bottom:1px solid var(--cream3);display:flex;align-items:center;gap:10px;">
           <span style="font-size:18px">🖥️</span>
-          <span style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--ink2)">或直接在此填寫（內嵌版本）</span>
+          <span style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--text-strong)">或直接在此填寫（內嵌版本）</span>
         </div>
         <div style="padding:4px">
           <iframe
@@ -1385,8 +1471,8 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
       <div style="background:var(--cream2);border-radius:12px;padding:16px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:20px;border-left:4px solid var(--jade)">
         <div style="font-size:28px">🔒</div>
         <div style="flex:1;">
-          <div style="color:var(--ink2);font-size:16px;font-weight:700;margin-bottom:3px">個人資料保護聲明</div>
-          <div style="color:var(--ink3);font-size:14px;line-height:1.7">
+          <div style="color:var(--text-strong);font-size:16px;font-weight:700;margin-bottom:3px">個人資料保護聲明</div>
+          <div style="color:var(--text-body);font-size:14px;line-height:1.7">
             您上傳的身分證件僅供本會審核入會資格使用，存放於權限受限、僅授權人員可存取之雲端空間，依個人資料保護法規範辦理，不會公開分享、也不會轉作審核以外之用途。
           </div>
         </div>
@@ -1396,25 +1482,83 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
       <div style="background:var(--gold-pale);border:1.5px solid var(--gold);border-radius:12px;padding:18px 20px;">
         <div style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--gold-deep);margin-bottom:12px;">📌 申請前請確認</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <div style="background:white;border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink3);line-height:1.7;border-left:3px solid var(--vermillion)">
+          <div style="background:white;border-radius:8px;padding:11px 14px;font-size:14px;color:var(--text-body);line-height:1.7;border-left:3px solid var(--vermillion)">
             ✅ 認同三聖宮信仰宗旨與本會章程
           </div>
-          <div style="background:white;border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink3);line-height:1.7;border-left:3px solid var(--gold-deep)">
+          <div style="background:white;border-radius:8px;padding:11px 14px;font-size:14px;color:var(--text-body);line-height:1.7;border-left:3px solid var(--gold-deep)">
             ✅ 願遵守靈寶天尊十戒與五常信條
           </div>
-          <div style="background:white;border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink3);line-height:1.7;border-left:3px solid var(--jade)">
+          <div style="background:white;border-radius:8px;padding:11px 14px;font-size:14px;color:var(--text-body);line-height:1.7;border-left:3px solid var(--jade)">
             ✅ 每月至少前往道場參拜一次
           </div>
-          <div style="background:white;border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink3);line-height:1.7;border-left:3px solid var(--blue)">
+          <div style="background:white;border-radius:8px;padding:11px 14px;font-size:14px;color:var(--text-body);line-height:1.7;border-left:3px solid var(--blue)">
             ✅ 認同非私有化、制度化與永續傳承理念
           </div>
         </div>
-        <div style="margin-top:12px;font-size:13px;color:var(--grey);text-align:center;">
+        <div style="margin-top:12px;font-size:13px;color:var(--text-soft);text-align:center;">
           現階段委員登記、參拜慶典、年運卦與宮服，<strong>不收取任何費用</strong>
         </div>
       </div>
 
     </div>
+
+  <!-- ══════════════ 研修專區 ══════════════ -->
+  <div id="tab-study" class="tab-content" style="display:none">
+    <div class="content-wrap">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">🧘 研修專區</h2>
+          <p class="section-desc">課程教材與修持講義・部分教材僅供特定學員研習，需輸入通關密語</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:24px" id="study-grid">
+        <!-- 鐘府三聖：靜坐修持指南 -->
+        <div class="card">
+          <div class="card-header" style="background:linear-gradient(135deg,var(--jade),var(--jade-l));color:white">
+            <h3 style="font-family:var(--serif);letter-spacing:2px">🧘 鐘府三聖：靜坐修持指南</h3>
+          </div>
+          <div class="card-body">
+            <div style="margin-bottom:16px">
+              <div style="font-size:14px;color:var(--text-body);line-height:1.8;margin-bottom:12px">
+                從呼吸開始,讓心安定下來的實踐手冊。內含靜坐姿勢要領與道家八卦子午連環訣。
+              </div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+                <span style="background:var(--jade-pale);color:var(--jade);padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600">靜坐課程</span>
+                <span style="background:var(--cream2);color:var(--text-body);padding:4px 10px;border-radius:12px;font-size:12px">公開教材</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px">
+              <button type="button" onclick="openStudyMaterial('study/鐘府三聖靜坐入門_v3.pdf','鐘府三聖：靜坐修持指南', null)"
+                 style="flex:1;background:var(--jade);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition);border:none;cursor:pointer;width:100%;font-family:var(--sans);"
+                 onmouseover="this.style.background='var(--jade-l)'"
+                 onmouseout="this.style.background='var(--jade)'">
+                📖 線上閱讀
+              </button>
+              <a href="study/鐘府三聖靜坐入門_v3.pdf" download
+                 style="flex:1;background:var(--grey);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+                 onmouseover="this.style.background='var(--grey-l)'"
+                 onmouseout="this.style.background='var(--grey)'">
+                ⬇️ 下載PDF
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--cream2);border:2px solid var(--gold);border-radius:12px;padding:20px;margin-top:20px">
+        <div style="display:flex;gap:16px;align-items:start">
+          <div style="font-size:32px">🔒</div>
+          <div style="flex:1">
+            <div style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--gold-deep);margin-bottom:10px">關於通關密語</div>
+            <div style="font-size:14px;color:var(--text-body);line-height:1.9">
+              部分教材僅提供給特定學員或內部人員研習,需要輸入通關密語才能開啟;未特別標示的教材則所有人皆可自由閱讀。若您取得的密語無法開啟,請與本會聯繫確認。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div><!-- /temple mode -->
 
@@ -1457,22 +1601,22 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
             <div class="card-header"><h3 style="font-family:var(--serif)">協會基本資訊</h3></div>
             <div class="card-body">
               <table style="width:100%;font-size:13px;border-collapse:collapse">
-                <tr><td style="padding:8px 0;color:var(--grey);width:110px;border-bottom:1px solid var(--cream3)">法人名稱</td><td style="padding:8px 0;font-weight:700;border-bottom:1px solid var(--cream3)">社團法人台灣三聖道教信仰協會</td></tr>
-                <tr><td style="padding:8px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">道場名稱</td><td style="padding:8px 0;border-bottom:1px solid var(--cream3)">三聖宮</td></tr>
-                <tr><td style="padding:8px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">主管機關</td><td style="padding:8px 0;border-bottom:1px solid var(--cream3)">新北市政府社會局（人民團體法）</td></tr>
-                <tr><td style="padding:8px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">會址</td><td style="padding:8px 0;border-bottom:1px solid var(--cream3)">新北市樹林區山佳（三聖宮道場所在地）</td></tr>
-                <tr><td style="padding:8px 0;color:var(--grey);border-bottom:1px solid var(--cream3)">初期會員</td><td style="padding:8px 0;border-bottom:1px solid var(--cream3)">體制委員30名（家庭戶代表制）</td></tr>
-                <tr><td style="padding:8px 0;color:var(--grey)">會計年度</td><td style="padding:8px 0">每年1月1日至12月31日</td></tr>
+                <tr><td style="padding:8px 0;color:var(--text-soft);width:110px;border-bottom:1px solid var(--cream3)">法人名稱</td><td style="padding:8px 0;font-weight:700;border-bottom:1px solid var(--cream3)">社團法人台灣三聖道教信仰協會</td></tr>
+                <tr><td style="padding:8px 0;color:var(--text-soft);border-bottom:1px solid var(--cream3)">道場名稱</td><td style="padding:8px 0;border-bottom:1px solid var(--cream3)">三聖宮</td></tr>
+                <tr><td style="padding:8px 0;color:var(--text-soft);border-bottom:1px solid var(--cream3)">主管機關</td><td style="padding:8px 0;border-bottom:1px solid var(--cream3)">新北市政府社會局（人民團體法）</td></tr>
+                <tr><td style="padding:8px 0;color:var(--text-soft);border-bottom:1px solid var(--cream3)">會址</td><td style="padding:8px 0;border-bottom:1px solid var(--cream3)">新北市樹林區山佳（三聖宮道場所在地）</td></tr>
+                <tr><td style="padding:8px 0;color:var(--text-soft);border-bottom:1px solid var(--cream3)">初期會員</td><td style="padding:8px 0;border-bottom:1px solid var(--cream3)">體制委員30名（家庭戶代表制）</td></tr>
+                <tr><td style="padding:8px 0;color:var(--text-soft)">會計年度</td><td style="padding:8px 0">每年1月1日至12月31日</td></tr>
               </table>
             </div>
           </div>
           <div class="card">
             <div class="card-header"><h3 style="font-family:var(--serif)">協會宗旨（章程第三條）</h3></div>
             <div class="card-body">
-              <div style="font-size:13px;color:var(--ink3);line-height:2;background:var(--cream2);border-radius:8px;padding:14px;font-family:var(--serif);border-left:4px solid var(--vermillion)">
+              <div style="font-size:13px;color:var(--text-body);line-height:2;background:var(--cream2);border-radius:8px;padding:14px;font-family:var(--serif);border-left:4px solid var(--vermillion)">
                 本會以弘揚道教正信文化、三聖精神信仰、修心修身修行，信仰教化、文化傳承、公益服務與道場制度化治理為宗旨，並以建立可長久傳承、非私有化、合法合理且有合規管理制度之道場為核心方向。
               </div>
-              <div style="margin-top:14px;font-size:12px;color:var(--grey);font-weight:700;margin-bottom:8px">核心精神</div>
+              <div style="margin-top:14px;font-size:12px;color:var(--text-soft);font-weight:700;margin-bottom:8px">核心精神</div>
               <div style="display:flex;gap:6px;flex-wrap:wrap">
                 <span style="background:var(--vermillion);color:white;padding:4px 12px;border-radius:12px;font-size:11px;font-weight:600">正信</span>
                 <span style="background:var(--gold-deep);color:white;padding:4px 12px;border-radius:12px;font-size:11px;font-weight:600">非私有化</span>
@@ -1504,8 +1648,8 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
               <h4 style="color:var(--blue)">監事（四名）</h4>
               <p>分為財務監事二名（預決算、收支、帳務監督）與事務監事二名（會務程序、制度執行監督）。首屆四名，採單數配置。</p>
             </div>
-            <div class="rule-item" style="border-color:var(--grey)">
-              <h4 style="color:var(--grey)">任務編組</h4>
+            <div class="rule-item" style="border-color:var(--text-soft)">
+              <h4 style="color:var(--text-soft)">任務編組</h4>
               <p>得視實際需要設秘書、總務、文書、課程、祭典、志工、文史、資訊等任務編組或委員會，其設置辦法由理事會另定之。</p>
             </div>
           </div>
@@ -1555,7 +1699,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
             </div>
             <div style="margin-top:16px;background:var(--gold-pale);border-radius:10px;padding:14px;border:1px solid var(--gold)">
               <div style="font-weight:700;font-size:13px;color:var(--gold-deep);margin-bottom:6px">委員年度福利</div>
-              <div style="font-size:13px;color:var(--ink3)">
+              <div style="font-size:13px;color:var(--text-body)">
                 🎯 每年三聖賜與易經占卜年運卦乙次（年度自省與方向提醒）<br>
                 👘 得領取宮服一套<br>
                 📋 <span style="color:var(--jade);font-weight:600">現階段委員登記、基本參拜、慶典活動、年運卦與宮服，不收取任何費用</span>
@@ -1749,7 +1893,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
           </a>
         </div>
         <!-- 底部補充說明 -->
-        <div style="background:var(--cream2);padding:12px 24px;text-align:center;font-size:13px;color:var(--grey);">
+        <div style="background:var(--cream2);padding:12px 24px;text-align:center;font-size:13px;color:var(--text-soft);">
           服務時間：週一至週五 09:00–17:00｜假日訊息將於上班日回覆
         </div>
       </div>
@@ -1758,7 +1902,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
         <div style="background:white;border-radius:12px;box-shadow:var(--shadow);padding:20px;border-top:4px solid var(--jade)">
           <div style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--jade);margin-bottom:12px">🏦 捐款匯款流程</div>
-          <div style="font-size:15px;color:var(--ink3);line-height:2;">
+          <div style="font-size:15px;color:var(--text-body);line-height:2;">
             <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px">
               <span style="background:var(--jade);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px">1</span>
               <span>透過 LINE 聯繫本會，取得指定匯款帳號</span>
@@ -1779,16 +1923,16 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
         </div>
         <div style="background:white;border-radius:12px;box-shadow:var(--shadow);padding:20px;border-top:4px solid var(--gold-deep)">
           <div style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--gold-deep);margin-bottom:12px">📄 收據申請說明</div>
-          <div style="font-size:15px;color:var(--ink3);line-height:1.9;">
+          <div style="font-size:15px;color:var(--text-body);line-height:1.9;">
             <div style="background:var(--gold-pale);border-radius:8px;padding:10px 14px;margin-bottom:10px">
               <div style="font-weight:600;color:var(--gold-deep);margin-bottom:4px">捐款收據（依所得稅法第17條）</div>
               <div style="font-size:14px">需提供：姓名、身分證字號、捐款金額、捐款日期</div>
             </div>
             <div style="background:var(--cream2);border-radius:8px;padding:10px 14px">
-              <div style="font-weight:600;color:var(--ink2);margin-bottom:4px">服務費用收據</div>
+              <div style="font-weight:600;color:var(--text-strong);margin-bottom:4px">服務費用收據</div>
               <div style="font-size:14px">需提供：姓名、服務項目、日期、金額</div>
             </div>
-            <div style="margin-top:10px;font-size:13px;color:var(--grey)">
+            <div style="margin-top:10px;font-size:13px;color:var(--text-soft)">
               ※ 所有收據均以本會統一編號開立，請透過 LINE 申請
             </div>
           </div>
@@ -1830,7 +1974,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
                   <div style="font-size:20px;opacity:0.8">→</div>
                 </div>
               </a>
-              <div style="font-size:13px;color:var(--grey);line-height:1.7;padding:0 4px">
+              <div style="font-size:13px;color:var(--text-soft);line-height:1.7;padding:0 4px">
                 包含章程草案、申請文件、財務規劃、組織架構等所有籌備期間的重要文件
               </div>
             </div>
@@ -1850,7 +1994,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
                   <div style="font-size:20px;opacity:0.8">→</div>
                 </div>
               </a>
-              <div style="font-size:13px;color:var(--grey);line-height:1.7;padding:8px 4px 0 4px">
+              <div style="font-size:13px;color:var(--text-soft);line-height:1.7;padding:8px 4px 0 4px">
                 委員申請表單上傳的身分證照片會自動儲存於此資料夾
               </div>
             </div>
@@ -1866,7 +2010,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
               <div style="font-weight:700;font-size:14px;color:var(--vermillion);margin-bottom:8px;display:flex;align-items:center;gap:6px">
                 <span>⚠️</span> 重要提醒
               </div>
-              <ul style="margin:0;padding-left:18px;font-size:13px;color:var(--ink3);line-height:1.8">
+              <ul style="margin:0;padding-left:18px;font-size:13px;color:var(--text-body);line-height:1.8">
                 <li>雲端資料夾內含敏感個資與內部文件</li>
                 <li>僅限理事會成員與授權人員訪問</li>
                 <li>請勿分享資料夾連結給未授權人員</li>
@@ -1878,7 +2022,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
               <div style="font-weight:700;font-size:14px;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px">
                 <span>🔐</span> 權限管理
               </div>
-              <div style="font-size:13px;color:var(--ink3);line-height:1.8">
+              <div style="font-size:13px;color:var(--text-body);line-height:1.8">
                 資料夾權限由執事長統一管理。如需訪問權限,請聯繫執事長申請。所有訪問記錄將被 Google Drive 記錄備查。
               </div>
             </div>
@@ -1891,7 +2035,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
           <div style="font-size:32px">📌</div>
           <div style="flex:1">
             <div style="font-family:var(--serif);font-size:17px;font-weight:700;color:var(--gold-deep);margin-bottom:10px">資料夾使用規範</div>
-            <ul style="margin:0;padding-left:20px;font-size:14px;color:var(--ink3);line-height:1.9">
+            <ul style="margin:0;padding-left:20px;font-size:14px;color:var(--text-body);line-height:1.9">
               <li>所有上傳文件請使用清楚的檔名,標註日期與版本號</li>
               <li>重要文件修改前請先建立備份版本</li>
               <li>定期清理過期或無效文件,保持資料夾整潔</li>
@@ -2348,6 +2492,24 @@ function switchIntroTab(id, btn) {
   document.querySelectorAll('.intro-tab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 }
+function initNightTheme() {
+  let saved = null;
+  try { saved = localStorage.getItem('sansheng_theme'); } catch(e) {}
+  if (saved === 'dark') applyNightTheme(true);
+  else if (saved === 'light') applyNightTheme(false);
+}
+function applyNightTheme(isDark) {
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  const btn = document.getElementById('theme-toggle-btn');
+  if (btn) btn.textContent = isDark ? '☀️' : '🌙';
+}
+function toggleNightTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  applyNightTheme(!isDark);
+  try { localStorage.setItem('sansheng_theme', !isDark ? 'dark' : 'light'); } catch(e) {}
+}
+initNightTheme();
+
 function switchPrecept(id, btn) {
   document.querySelectorAll('.prec-panel').forEach(p=>p.style.display='none');
   document.getElementById('prec-'+id).style.display='block';
@@ -2370,6 +2532,18 @@ function closeScriptureViewer() {
   document.getElementById('scripture-modal').style.display = 'none';
   document.getElementById('scripture-modal-frame').src = '';
   document.body.style.overflow = '';
+}
+
+function openStudyMaterial(path, title, password) {
+  if (password) {
+    const input = prompt('「' + title + '」需要輸入通關密語才能開啟：');
+    if (input === null) return;
+    if (input !== password) {
+      alert('密語不正確，請確認後再試一次。');
+      return;
+    }
+  }
+  openScriptureViewer(path, title);
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -2458,7 +2632,7 @@ function renderCalendar() {
   const list = m===0 ? FESTIVALS : FESTIVALS.filter(f=>f.m===m);
   const typeEmoji = {'重要':'🔔','主神':'⛩️','配祀':'🙏','指導':'☁️','節慶':'🎋'};
   if (!list.length) {
-    document.getElementById('festival-list').innerHTML='<div style="color:var(--grey);text-align:center;padding:30px">本月無節慶活動</div>';
+    document.getElementById('festival-list').innerHTML='<div style="color:var(--text-soft);text-align:center;padding:30px">本月無節慶活動</div>';
     return;
   }
   // Grid card layout
@@ -2474,10 +2648,10 @@ function renderCalendar() {
             <span style="background:${f.color}18;color:${f.color};padding:2px 10px;border-radius:10px;
               font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0">${f.type}</span>
           </div>
-          <div style="font-family:var(--serif);font-size:15px;font-weight:600;color:var(--grey)">
+          <div style="font-family:var(--serif);font-size:15px;font-weight:600;color:var(--text-soft)">
             農曆 ${f.lunar}
           </div>
-          <div style="font-size:14px;color:var(--ink3);line-height:1.6">${f.desc}</div>
+          <div style="font-size:14px;color:var(--text-body);line-height:1.6">${f.desc}</div>
         </div>`).join('')}
     </div>`;
 }
@@ -2609,7 +2783,7 @@ function resetQian() {
 function renderHistory() {
   const el = document.getElementById('div-history');
   if (!qian_history.length) {
-    el.innerHTML='<div style="text-align:center;color:var(--grey-l);font-size:12px;padding:12px">尚無求籤紀錄</div>';return;
+    el.innerHTML='<div style="text-align:center;color:var(--text-soft2);font-size:12px;padding:12px">尚無求籤紀錄</div>';return;
   }
   el.innerHTML = qian_history.map(h=>`
     <div class="history-item" onclick="showQian(${h.n})">
@@ -2664,7 +2838,7 @@ function renderGantt() {
           <div class="gantt-label">
             <div class="gantt-label-check" style="border-color:${phase.color};background:${isDone?phase.color:'white'};color:white"
               onclick="toggleTask('${t.id}','${phase.color}')">${isDone?'✓':''}</div>
-            <div class="gantt-label-text" style="${isDone?'text-decoration:line-through;color:var(--grey)':''}">${t.label}</div>
+            <div class="gantt-label-text" style="${isDone?'text-decoration:line-through;color:var(--text-soft)':''}">${t.label}</div>
           </div>
           <div class="gantt-timeline">
             <div class="gantt-bar" style="left:${l}%;width:${w}%;background:${isDone?phase.color+'88':phase.color};opacity:${isDone?0.6:1}">
@@ -2804,10 +2978,10 @@ function saveNote(id, val) {
 function renderFinance() {
   document.getElementById('fin-table-body').innerHTML = FINANCE_DATA.map((f,i)=>`
     <tr style="background:${i%2===0?'white':'var(--blue-pale)'}">
-      <td style="padding:14px 16px;font-weight:700;font-size:15px;color:var(--ink2)">${f.type}</td>
-      <td style="padding:14px 16px;font-size:14px;color:var(--ink3)">${f.law}</td>
-      <td style="padding:14px 16px;font-size:14px;color:var(--ink3)">${f.tax}</td>
-      <td style="padding:14px 16px;font-size:14px;color:var(--ink3);line-height:1.6">${f.note}</td>
+      <td style="padding:14px 16px;font-weight:700;font-size:15px;color:var(--text-strong)">${f.type}</td>
+      <td style="padding:14px 16px;font-size:14px;color:var(--text-body)">${f.law}</td>
+      <td style="padding:14px 16px;font-size:14px;color:var(--text-body)">${f.tax}</td>
+      <td style="padding:14px 16px;font-size:14px;color:var(--text-body);line-height:1.6">${f.note}</td>
       <td style="padding:14px 16px;text-align:center">
         <span style="background:${f.rc};color:${f.tc};padding:4px 14px;border-radius:12px;font-size:14px;font-weight:700;white-space:nowrap">${f.risk}</span>
       </td>
@@ -2826,7 +3000,7 @@ function renderFinance() {
       <span style="background:var(--blue);color:white;width:26px;height:26px;border-radius:50%;
         display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;
         flex-shrink:0;margin-top:1px">${i+1}</span>
-      <span style="font-size:15px;color:var(--ink3);line-height:1.7">${r}</span>
+      <span style="font-size:15px;color:var(--text-body);line-height:1.7">${r}</span>
     </div>`).join('');
 
   document.getElementById('fin-qa').innerHTML = [
@@ -2838,7 +3012,7 @@ function renderFinance() {
   ].map(([q,a])=>`
     <div style="margin-bottom:16px;background:var(--cream);border-radius:10px;padding:14px 16px">
       <div style="font-size:15px;font-weight:700;color:var(--blue);margin-bottom:6px">Q：${q}</div>
-      <div style="font-size:14px;color:var(--ink3);line-height:1.8;padding-left:10px;border-left:3px solid var(--blue)">A：${a}</div>
+      <div style="font-size:14px;color:var(--text-body);line-height:1.8;padding-left:10px;border-left:3px solid var(--blue)">A：${a}</div>
     </div>`).join('');
 }
 
@@ -2893,12 +3067,12 @@ init();
       <div style="color:rgba(255,255,255,0.65);font-size:13px">社團法人台灣三聖道教信仰協會｜內部專用</div>
     </div>
     <div style="padding:28px 28px 24px">
-      <div style="font-size:15px;font-weight:700;color:var(--ink2);margin-bottom:10px">請輸入管理密碼</div>
+      <div style="font-size:15px;font-weight:700;color:var(--text-strong);margin-bottom:10px">請輸入管理密碼</div>
       <input id="pw-input" type="password"
         placeholder="輸入密碼後按 Enter"
         onkeydown="pwKeydown(event)"
         style="width:100%;padding:13px 16px;border:2px solid var(--cream3);border-radius:10px;
-               font-size:18px;font-family:var(--sans);color:var(--ink);letter-spacing:4px;
+               font-size:18px;font-family:var(--sans);color:var(--text-strongest);letter-spacing:4px;
                outline:none;transition:border-color 0.2s;box-sizing:border-box;"
         onfocus="this.style.borderColor='var(--blue)'"
         onblur="this.style.borderColor='var(--cream3)'">
@@ -2912,7 +3086,7 @@ init();
         <button onclick="closePasswordModal()"
           style="flex:1;padding:12px;border:2px solid var(--cream3);background:white;
                  border-radius:10px;font-size:15px;font-family:var(--sans);
-                 color:var(--grey);cursor:pointer;transition:all 0.2s;"
+                 color:var(--text-soft);cursor:pointer;transition:all 0.2s;"
           onmouseover="this.style.background='var(--cream2)'"
           onmouseout="this.style.background='white'">取消</button>
         <button onclick="submitPassword()"
@@ -2924,7 +3098,7 @@ init();
           onmouseover="this.style.transform='translateY(-1px)'"
           onmouseout="this.style.transform=''">🔓 進入管理系統</button>
       </div>
-      <div style="margin-top:14px;text-align:center;font-size:12px;color:var(--grey-l)">此系統僅供本會核心委員使用</div>
+      <div style="margin-top:14px;text-align:center;font-size:12px;color:var(--text-soft2)">此系統僅供本會核心委員使用</div>
     </div>
   </div>
 </div>
