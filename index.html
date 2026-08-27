@@ -214,6 +214,19 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 .sub-tab:hover{color:var(--ink2);background:rgba(0,0,0,0.03);}
 .sub-tab.active{color:var(--vermillion);border-bottom-color:var(--vermillion);}
 
+/* 道場介紹群組內頁籤（道場介紹／神明資料／戒行準則） */
+.about-tabs{display:flex;gap:8px;flex-wrap:wrap;}
+.about-tab{
+  padding:9px 22px;font-size:14px;font-weight:600;color:var(--grey);
+  border:2px solid var(--cream3);background:white;border-radius:24px;
+  cursor:pointer;font-family:var(--sans);transition:var(--transition);
+}
+.about-tab:hover{border-color:var(--vermillion);color:var(--vermillion);}
+.about-tab.active{background:var(--vermillion);border-color:var(--vermillion);color:white;}
+
+/* 經典線上閱讀彈窗 */
+.scripture-modal-bar a:hover, .scripture-modal-bar button:hover{background:rgba(255,255,255,0.28) !important;}
+
 /* ═══════════════════════════════════════════════════════════
    CONTENT LAYOUT
 ═══════════════════════════════════════════════════════════ */
@@ -680,12 +693,11 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
     </a>
     <div class="nav-modes">
       <span class="mode-separator">⛩</span>
-      <button class="mode-btn active" onclick="switchSubTab('tab-about', this)">道場介紹</button>
-      <button class="mode-btn" onclick="switchSubTab('tab-scriptures', this)">經典閱讀</button>
-      <button class="mode-btn" onclick="switchMode('temple','tab-precepts')">戒行準則</button>
-      <button class="mode-btn" onclick="switchMode('temple','tab-calendar')">節慶月曆</button>
-      <button class="mode-btn" onclick="switchMode('temple','tab-divination')">求籤問事</button>
-      <button class="mode-btn" onclick="switchSubTab('tab-apply', this)">委員申請</button>
+      <button class="mode-btn active" data-group="tab-about" onclick="switchMode('temple','tab-about')">道場介紹</button>
+      <button class="mode-btn" data-group="tab-scriptures" onclick="switchMode('temple','tab-scriptures')">經典閱讀</button>
+      <button class="mode-btn" data-group="tab-calendar" onclick="switchMode('temple','tab-calendar')">節慶月曆</button>
+      <button class="mode-btn" data-group="tab-divination" onclick="switchMode('temple','tab-divination')">求籤問事</button>
+      <button class="mode-btn" data-group="tab-apply" onclick="switchMode('temple','tab-apply')">委員申請</button>
       <span class="mode-separator">｜</span>
       <button class="mode-btn" onclick="switchMode('admin',this)">⚙ 籌備管理</button>
     </div>
@@ -724,20 +736,16 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
     </div>
   </div>
 
-  <!-- Sub Tabs -->
-  <div class="sub-tabs">
-    <div class="sub-tabs-inner">
-      <button class="sub-tab active" onclick="switchSubTab('tab-about',this)">① 道場介紹</button>
-      <button class="sub-tab" onclick="switchSubTab('tab-deities',this)">② 神明資料</button>
-      <button class="sub-tab" onclick="switchSubTab('tab-precepts',this)">③ 戒行準則</button>
-      <button class="sub-tab" onclick="switchSubTab('tab-calendar',this)">④ 節慶月曆</button>
-      <button class="sub-tab" onclick="switchSubTab('tab-divination',this)">⑤ 求籤問事</button>
-    </div>
-  </div>
-
   <!-- ① 道場介紹 -->
   <div id="tab-about" class="tab-content active">
-    <div class="content-wrap">
+    <div class="content-wrap" style="padding-bottom:0">
+      <div class="about-tabs">
+        <button class="about-tab active" onclick="switchAboutTab('about-intro',this)">道場介紹</button>
+        <button class="about-tab" onclick="switchAboutTab('about-deities',this)">神明資料</button>
+        <button class="about-tab" onclick="switchAboutTab('about-precepts',this)">戒行準則</button>
+      </div>
+    </div>
+    <div id="about-intro" class="content-wrap about-panel">
       <div class="section-heading">道場核心宗旨</div>
       <p class="section-desc">以道教正信為根本，在現代社會協助信眾安定身心、明辨方向</p>
       <div class="grid-2" style="margin-bottom:28px">
@@ -976,8 +984,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
         </div>
       </div>
     </div>
-  </div>
-  <div id="tab-deities" class="tab-content">
+  <div id="about-deities" class="about-panel" style="display:none">
     <div class="content-wrap">
       <div class="section-heading">三聖主神</div>
       <p class="section-desc">開臺聖王・關聖帝君・天上聖母</p>
@@ -994,7 +1001,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
   </div>
 
   <!-- ③ 戒行準則 -->
-  <div id="tab-precepts" class="tab-content">
+  <div id="about-precepts" class="about-panel" style="display:none">
     <div class="content-wrap">
       <div class="precept-tabs">
         <button class="precept-tab-btn active" onclick="switchPrecept('tencmd',this)"
@@ -1005,6 +1012,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
       <div id="prec-tencmd" class="prec-panel" id="prec-tencmd"></div>
       <div id="prec-wuchang" class="prec-panel" style="display:none" id="prec-wuchang"></div>
     </div>
+  </div>
   </div>
 
   <!-- ④ 節慶月曆 -->
@@ -1157,12 +1165,12 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
             </div>
           </div>
           <div style="display:flex;gap:10px">
-            <a href="scriptures/開臺延平郡王五常真經.pdf" target="_blank" 
-               style="flex:1;background:var(--vermillion);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+            <button type="button" onclick="openScriptureViewer('scriptures/開臺延平郡王五常真經.pdf','開臺延平郡王五常真經')"
+               style="flex:1;background:var(--vermillion);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition);border:none;cursor:pointer;width:100%;font-family:var(--sans);"
                onmouseover="this.style.background='var(--vermillion-l)'"
                onmouseout="this.style.background='var(--vermillion)'">
               📖 線上閱讀
-            </a>
+            </button>
             <a href="scriptures/開臺延平郡王五常真經.pdf" download 
                style="flex:1;background:var(--blue);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
                onmouseover="this.style.background='var(--blue-l)'"
@@ -1190,12 +1198,12 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
             </div>
           </div>
           <div style="display:flex;gap:10px">
-            <a href="scriptures/福德正神真經.pdf" target="_blank" 
-               style="flex:1;background:var(--jade);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+            <button type="button" onclick="openScriptureViewer('scriptures/福德正神真經.pdf','福德正神真經')"
+               style="flex:1;background:var(--jade);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition);border:none;cursor:pointer;width:100%;font-family:var(--sans);"
                onmouseover="this.style.background='var(--jade-l)'"
                onmouseout="this.style.background='var(--jade)'">
               📖 線上閱讀
-            </a>
+            </button>
             <a href="scriptures/福德正神真經.pdf" download 
                style="flex:1;background:var(--blue);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
                onmouseover="this.style.background='var(--blue-l)'"
@@ -1223,12 +1231,12 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
             </div>
           </div>
           <div style="display:flex;gap:10px">
-            <a href="scriptures/太乙救苦護身妙經.pdf" target="_blank" 
-               style="flex:1;background:var(--gold);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+            <button type="button" onclick="openScriptureViewer('scriptures/太乙救苦護身妙經.pdf','太乙救苦護身妙經')"
+               style="flex:1;background:var(--gold);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition);border:none;cursor:pointer;width:100%;font-family:var(--sans);"
                onmouseover="this.style.background='var(--gold-l)'"
                onmouseout="this.style.background='var(--gold)'">
               📖 線上閱讀
-            </a>
+            </button>
             <a href="scriptures/太乙救苦護身妙經.pdf" download 
                style="flex:1;background:var(--blue);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
                onmouseover="this.style.background='var(--blue-l)'"
@@ -1256,12 +1264,12 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
             </div>
           </div>
           <div style="display:flex;gap:10px">
-            <a href="scriptures/靈寶天尊說十戒經.pdf" target="_blank" 
-               style="flex:1;background:var(--blue);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
+            <button type="button" onclick="openScriptureViewer('scriptures/靈寶天尊說十戒經.pdf','靈寶天尊說十戒經')"
+               style="flex:1;background:var(--blue);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition);border:none;cursor:pointer;width:100%;font-family:var(--sans);"
                onmouseover="this.style.background='var(--blue-l)'"
                onmouseout="this.style.background='var(--blue)'">
               📖 線上閱讀
-            </a>
+            </button>
             <a href="scriptures/靈寶天尊說十戒經.pdf" download 
                style="flex:1;background:var(--grey);color:white;padding:12px 20px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;font-size:14px;transition:var(--transition)"
                onmouseover="this.style.background='var(--grey-l)'"
@@ -2310,17 +2318,20 @@ function switchSubTab(id, btn) {
     el.classList.add('active');
     el.style.display='block';
   }
-  document.querySelectorAll('.sub-tab').forEach(b=>b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  else {
-    const idx = ['tab-about','tab-deities','tab-scriptures','tab-precepts','tab-calendar','tab-divination'].indexOf(id);
-    const btns = document.querySelectorAll('.sub-tab');
-    if (idx>=0 && btns[idx]) btns[idx].classList.add('active');
-  }
-  if (id==='tab-deities') renderDeities();
-  if (id==='tab-precepts') renderPrecepts();
+  document.querySelectorAll('.mode-btn[data-group]').forEach(b=>b.classList.remove('active'));
+  const groupBtn = document.querySelector('.mode-btn[data-group="'+id+'"]');
+  if (groupBtn) groupBtn.classList.add('active');
   if (id==='tab-calendar') renderCalendar();
   if (id==='tab-divination') renderDivination();
+}
+function switchAboutTab(id, btn) {
+  document.querySelectorAll('#tab-about .about-panel').forEach(p=>{p.style.display='none';});
+  const el = document.getElementById(id);
+  if (el) el.style.display='block';
+  document.querySelectorAll('#tab-about .about-tab').forEach(b=>b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  if (id==='about-deities') renderDeities();
+  if (id==='about-precepts') renderPrecepts();
 }
 function switchAdminTab(id, btn) {
   document.querySelectorAll('#mode-admin .tab-content').forEach(t=>{t.style.display='none';});
@@ -2345,6 +2356,20 @@ function switchPrecept(id, btn) {
   });
   btn.style.background=id==='tencmd'?'var(--vermillion)':'var(--gold-deep)';
   btn.style.color='white';
+}
+
+function openScriptureViewer(path, title) {
+  const fullUrl = new URL(path, document.baseURI).href;
+  document.getElementById('scripture-modal-title').textContent = '📖 ' + title;
+  document.getElementById('scripture-modal-download').href = path;
+  document.getElementById('scripture-modal-frame').src = 'https://docs.google.com/viewer?embedded=true&url=' + encodeURIComponent(fullUrl);
+  document.getElementById('scripture-modal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeScriptureViewer() {
+  document.getElementById('scripture-modal').style.display = 'none';
+  document.getElementById('scripture-modal-frame').src = '';
+  document.body.style.overflow = '';
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -2837,6 +2862,22 @@ function init() {
 init();
 </script>
 
+<!-- ══════════════ 經典線上閱讀視窗 ══════════════ -->
+<div id="scripture-modal" style="display:none;position:fixed;inset:0;z-index:9200;background:rgba(10,5,0,0.9);flex-direction:column;">
+  <div class="scripture-modal-bar" style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:linear-gradient(135deg,var(--ink2),#3A1808);flex-wrap:wrap;gap:8px;">
+    <div style="color:var(--gold-l);font-family:var(--serif);font-size:16px;font-weight:700;letter-spacing:1px" id="scripture-modal-title">經典閱讀</div>
+    <div style="display:flex;gap:8px">
+      <a id="scripture-modal-download" href="#" download
+         style="background:rgba(255,255,255,0.15);color:white;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600;transition:var(--transition)">⬇️ 下載PDF</a>
+      <button onclick="closeScriptureViewer()"
+         style="background:rgba(255,255,255,0.15);color:white;border:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:var(--transition)">✕ 關閉</button>
+    </div>
+  </div>
+  <iframe id="scripture-modal-frame" src="" style="flex:1;width:100%;border:none;background:white;"></iframe>
+  <div style="background:var(--ink2);color:rgba(255,255,255,0.55);font-size:12px;text-align:center;padding:6px;">
+    若畫面無法顯示，可點右上角「下載PDF」直接下載閱讀
+  </div>
+</div>
 <!-- ══════════════ 密碼驗證視窗 ══════════════ -->
 <div id="pw-modal" style="
   display:none;position:fixed;inset:0;z-index:9000;
