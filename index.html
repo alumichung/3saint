@@ -58,21 +58,21 @@
 ══════════════════════════════════════════════════════════ */
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --cream:#14111C; --cream2:#1D1930; --cream3:#2B2542;
-    --grey:#9C93B0; --grey-l:#7D7495;
-    --text-strongest:#F1ECDD; --text-strong:#E3D9C4; --text-body:#C7BEDC;
-    --text-soft:#9C93B0; --text-soft2:#7D7495;
-    --surface:#211C33;
-    --hero-c1:#151233; --hero-c2:#1F1B4A; --hero-c3:#2A2566; --hero-c4:#4A3B7A;
+    --cream:#17140F; --cream2:#211D16; --cream3:#3A342A;
+    --grey:#9B9284; --grey-l:#6B6558;
+    --text-strongest:#F2EEE3; --text-strong:#DED7C5; --text-body:#C0B8A5;
+    --text-soft:#9B9284; --text-soft2:#6B6558;
+    --surface:#221E17;
+    --hero-c1:#0A0908; --hero-c2:#171310; --hero-c3:#241F17; --hero-c4:#372E20;
   }
 }
 :root[data-theme="dark"]{
-  --cream:#14111C; --cream2:#1D1930; --cream3:#2B2542;
-  --grey:#9C93B0; --grey-l:#7D7495;
-  --text-strongest:#F1ECDD; --text-strong:#E3D9C4; --text-body:#C7BEDC;
-  --text-soft:#9C93B0; --text-soft2:#7D7495;
-  --surface:#211C33;
-  --hero-c1:#151233; --hero-c2:#1F1B4A; --hero-c3:#2A2566; --hero-c4:#4A3B7A;
+  --cream:#17140F; --cream2:#211D16; --cream3:#3A342A;
+  --grey:#9B9284; --grey-l:#6B6558;
+  --text-strongest:#F2EEE3; --text-strong:#DED7C5; --text-body:#C0B8A5;
+  --text-soft:#9B9284; --text-soft2:#6B6558;
+  --surface:#221E17;
+  --hero-c1:#0A0908; --hero-c2:#171310; --hero-c3:#241F17; --hero-c4:#372E20;
 }
 :root[data-theme="light"]{
   --cream:#FBF5E6; --cream2:#F5EDD8; --cream3:#EDE0C4;
@@ -81,6 +81,17 @@
   --text-soft:#8A7A6A; --text-soft2:#B5A898;
   --surface:#FFFFFF;
   --hero-c1:#7A5C00; --hero-c2:#B8860B; --hero-c3:#DAA520; --hero-c4:#C8941A;
+}
+
+/* 籌備管理後台固定日間配色，不隨日夜主題切換（後台非對外公開頁面） */
+#mode-admin{
+  --cream:#FBF5E6; --cream2:#F5EDD8; --cream3:#EDE0C4;
+  --grey:#8A7A6A; --grey-l:#B5A898;
+  --text-strongest:#1A0A00; --text-strong:#2C1810; --text-body:#4A3020;
+  --text-soft:#8A7A6A; --text-soft2:#B5A898;
+  --surface:#FFFFFF;
+  --hero-c1:#7A5C00; --hero-c2:#B8860B; --hero-c3:#DAA520; --hero-c4:#C8941A;
+  background:var(--cream);
 }
 
 .theme-toggle{
@@ -170,6 +181,22 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
   background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm30 0c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zM20 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm30 0c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10z' fill='%23C9941A' fill-opacity='0.06'/%3E%3C/svg%3E");
   pointer-events:none;
 }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .temple-hero::before{
+    background-image:
+      radial-gradient(ellipse 70% 45% at 12% 108%, rgba(232,227,213,0.06), transparent 70%),
+      radial-gradient(ellipse 55% 40% at 52% 112%, rgba(232,227,213,0.04), transparent 70%),
+      radial-gradient(ellipse 65% 42% at 92% 108%, rgba(232,227,213,0.05), transparent 70%),
+      radial-gradient(circle at 88% 14%, rgba(242,238,227,0.16), transparent 42%);
+  }
+}
+:root[data-theme="dark"] .temple-hero::before{
+  background-image:
+    radial-gradient(ellipse 70% 45% at 12% 108%, rgba(232,227,213,0.06), transparent 70%),
+    radial-gradient(ellipse 55% 40% at 52% 112%, rgba(232,227,213,0.04), transparent 70%),
+    radial-gradient(ellipse 65% 42% at 92% 108%, rgba(232,227,213,0.05), transparent 70%),
+    radial-gradient(circle at 88% 14%, rgba(242,238,227,0.16), transparent 42%);
+}
 .temple-hero::after{
   content:'';position:absolute;bottom:0;left:0;right:0;height:120px;
   background:linear-gradient(to bottom,transparent,var(--cream));
@@ -210,6 +237,18 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
   color:white;font-weight:900;margin-bottom:8px;position:relative;z-index:1;
   text-shadow:0 2px 16px rgba(80,40,0,0.4), 0 4px 32px rgba(201,148,26,0.3);
   letter-spacing:8px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .hero-main-title::after{
+    content:'';display:block;margin:14px auto 0;width:46px;height:2px;
+    background:linear-gradient(90deg,var(--vermillion-l) 0%,var(--vermillion-l) 45%,var(--jade-l) 55%,var(--jade-l) 100%);
+    opacity:0.8;
+  }
+}
+:root[data-theme="dark"] .hero-main-title::after{
+  content:'';display:block;margin:14px auto 0;width:46px;height:2px;
+  background:linear-gradient(90deg,var(--vermillion-l) 0%,var(--vermillion-l) 45%,var(--jade-l) 55%,var(--jade-l) 100%);
+  opacity:0.8;
 }
 .hero-sub-title{
   font-family:var(--serif);font-size:clamp(16px,2.2vw,22px);
@@ -275,6 +314,12 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 }
 .about-tab:hover{border-color:var(--vermillion);color:var(--vermillion);}
 .about-tab.active{background:var(--vermillion);border-color:var(--vermillion);color:white;}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .about-tab{background:var(--cream2);border-color:var(--grey-l);color:var(--text-body);}
+  :root:not([data-theme="light"]) .about-tab:hover{border-color:var(--vermillion-l);color:var(--vermillion-l);}
+}
+:root[data-theme="dark"] .about-tab{background:var(--cream2);border-color:var(--grey-l);color:var(--text-body);}
+:root[data-theme="dark"] .about-tab:hover{border-color:var(--vermillion-l);color:var(--vermillion-l);}
 
 /* 經典線上閱讀彈窗 */
 .scripture-modal-bar a:hover, .scripture-modal-bar button:hover{background:rgba(255,255,255,0.28) !important;}
@@ -302,7 +347,8 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 /* ═══════════════════════════════════════════════════════════
    CARDS
 ═══════════════════════════════════════════════════════════ */
-.card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+.card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;position:relative;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold) 0%,var(--vermillion) 50%,var(--gold) 100%);opacity:0.85;z-index:1;}
 .card-header{padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--cream3);}
 .card-header h3{font-family:var(--serif);font-size:17px;font-weight:700;flex:1;}
 .card-body{padding:14px 16px;}
@@ -749,8 +795,8 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
       <button class="mode-btn" data-group="tab-scriptures" onclick="switchMode('temple','tab-scriptures')">經典閱讀</button>
       <button class="mode-btn" data-group="tab-calendar" onclick="switchMode('temple','tab-calendar')">節慶月曆</button>
       <button class="mode-btn" data-group="tab-divination" onclick="switchMode('temple','tab-divination')">求籤問事</button>
-      <button class="mode-btn" data-group="tab-apply" onclick="switchMode('temple','tab-apply')">委員申請</button>
       <button class="mode-btn" data-group="tab-study" onclick="switchMode('temple','tab-study')">研修專區</button>
+      <button class="mode-btn" data-group="tab-apply" onclick="switchMode('temple','tab-apply')">委員申請</button>
       <span class="mode-separator">｜</span>
       <button class="mode-btn" onclick="switchMode('admin',this)">⚙ 籌備管理</button>
     </div>
