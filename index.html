@@ -1212,7 +1212,7 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
       </div>
 
       <!-- 服務預約 -->
-      <div class="section-heading" style="margin-top:32px">服務預約</div>
+      <div class="section-heading" id="divination-booking" style="margin-top:32px;scroll-margin-top:90px">服務預約</div>
       <p class="section-desc">歡迎線上預約以下服務，我們將盡快與您聯繫確認</p>
       <div style="border-radius:14px;overflow:hidden;box-shadow:var(--shadow-lg);margin-bottom:24px;">
         <div style="display:grid;grid-template-columns:1fr 1fr;">
@@ -3100,8 +3100,33 @@ function showToast(msg) {
 // ═══════════════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════
+// DEEP LINK（LINE 官方帳號選單／外部連結用：讀取網址 #tab-xxx 自動切換分頁）
+// ══════════════════════════════════════════════════════════════════
+const DEEPLINK_TABS = ['tab-about','tab-scriptures','tab-calendar','tab-divination','tab-study','tab-apply'];
+function applyDeepLinkFromHash() {
+  const raw = (location.hash || '').replace('#','');
+  if (!raw) return;
+  let targetTab = raw;
+  let scrollId = null;
+  if (raw === 'tab-divination-booking') {
+    targetTab = 'tab-divination';
+    scrollId = 'divination-booking';
+  }
+  if (!DEEPLINK_TABS.includes(targetTab)) return;
+  switchMode('temple', targetTab);
+  if (scrollId) {
+    setTimeout(function(){
+      const el = document.getElementById(scrollId);
+      if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 150);
+  }
+}
+
 function init() {
   renderCalendar();
+  applyDeepLinkFromHash();
+  window.addEventListener('hashchange', applyDeepLinkFromHash);
 }
 init();
 </script>
