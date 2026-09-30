@@ -160,6 +160,15 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
   font-size:13px;text-decoration:none;transition:var(--transition);white-space:nowrap;
 }
 .quick-drive:hover{background:rgba(255,255,255,0.2);color:white;}
+.nav-toggle{
+  display:none;
+  width:40px;height:40px;
+  align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);
+  border-radius:8px;color:white;font-size:20px;cursor:pointer;
+  flex-shrink:0;
+}
+.nav-toggle:hover{background:rgba(255,255,255,0.16);}
 
 /* ═══════════════════════════════════════════════════════════
    MODE PANELS
@@ -791,11 +800,23 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
 .shaking .shake-container{animation:shakeAnim 0.8s ease-in-out;}
 .falling-stick{animation:fallOut 0.6s ease forwards;}
 
-/* Responsive nav */
+/* Responsive nav: collapsible menu (hamburger button + dropdown panel), avoids the old wrap-to-multi-row nav getting too tall on narrow screens */
 @media(max-width:768px){
-  .nav-inner{flex-direction:column;align-items:flex-start;padding:8px 12px;}
-  .nav-modes{flex-wrap:wrap;gap:0;width:100%;}
-  .nav-right{width:100%;padding:4px 0;}
+  .nav-inner{flex-wrap:nowrap;padding:8px 12px;}
+  .nav-toggle{display:flex;}
+  .nav-modes{
+    display:none;
+    position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;flex-wrap:nowrap;gap:0;width:100%;
+    background:linear-gradient(135deg,var(--ink) 0%,var(--ink2) 60%,var(--vermillion-d) 100%);
+    border-bottom:2px solid var(--gold);
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+    padding:4px 0;
+  }
+  .nav-modes.open{display:flex;}
+  .nav-modes .mode-btn{width:100%;text-align:left;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .nav-modes .mode-separator{display:none;}
+  .nav-right{padding:4px 0;}
   .sub-tabs{top:110px;}
   .admin-tabs{top:110px;}
   .div-layout{grid-template-columns:1fr;}
@@ -813,7 +834,10 @@ p, .precept-text .explain, .precept-text .practice, .deity-meaning, .rule-item p
         <span>三聖宮道場｜樹林山佳</span>
       </div>
     </a>
-    <div class="nav-modes">
+    <button id="nav-toggle-btn" class="nav-toggle" onclick="toggleNavMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="nav-modes">
+      <span class="nav-toggle-icon">&#9776;</span>
+    </button>
+    <div class="nav-modes" id="nav-modes">
       <span class="mode-separator">⛩</span>
       <button class="mode-btn active" data-group="tab-about" onclick="switchMode('temple','tab-about')">道場介紹</button>
       <button class="mode-btn" data-group="tab-scriptures" onclick="switchMode('temple','tab-scriptures')">經典閱讀</button>
@@ -2465,6 +2489,34 @@ function saveState() {
 // ═══════════════════════════════════════════════════════════════════
 // NAV
 // ═══════════════════════════════════════════════════════════════════
+// Mobile nav collapse/expand: narrow screens use a hamburger button + dropdown instead of wrapping
+function toggleNavMenu() {
+  const menu = document.getElementById('nav-modes');
+  const btn = document.getElementById('nav-toggle-btn');
+  if (!menu || !btn) return;
+  const isOpen = menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  const icon = btn.querySelector('.nav-toggle-icon');
+  if (icon) icon.innerHTML = isOpen ? '&#10005;' : '&#9776;';
+}
+function closeNavMenu() {
+  const menu = document.getElementById('nav-modes');
+  const btn = document.getElementById('nav-toggle-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  menu.classList.remove('open');
+  if (btn) {
+    btn.setAttribute('aria-expanded', 'false');
+    const icon = btn.querySelector('.nav-toggle-icon');
+    if (icon) icon.innerHTML = '&#9776;';
+  }
+}
+document.addEventListener('click', function(e){
+  const menu = document.getElementById('nav-modes');
+  const btn = document.getElementById('nav-toggle-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (menu.contains(e.target) || (btn && btn.contains(e.target))) return;
+  closeNavMenu();
+});
 function switchMode(mode, tabOrBtn) {
   if (mode === 'admin') {
     // 檢查是否已通過驗證
@@ -2476,6 +2528,7 @@ function switchMode(mode, tabOrBtn) {
   _doSwitchMode(mode, tabOrBtn);
 }
 function _doSwitchMode(mode, tabOrBtn) {
+  closeNavMenu();
   document.querySelectorAll('.mode-panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('mode-'+mode).classList.add('active');
   document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
