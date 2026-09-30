@@ -3104,6 +3104,16 @@ function showToast(msg) {
 // DEEP LINK（LINE 官方帳號選單／外部連結用：讀取網址 #tab-xxx 自動切換分頁）
 // ══════════════════════════════════════════════════════════════════
 const DEEPLINK_TABS = ['tab-about','tab-scriptures','tab-calendar','tab-divination','tab-study','tab-apply'];
+// 手機版導覽列會因為選單換行而高度不固定（實測窄螢幕可達 260px），
+// 用固定的 CSS scroll-margin-top 無法適應每種螢幕寬度，
+// 改成即時量測目前導覽列的實際高度，再手動捲動到剛好在它下面的位置。
+function scrollBelowNav(el) {
+  if (!el) return;
+  const nav = document.querySelector('.site-nav');
+  const navHeight = nav ? nav.getBoundingClientRect().height : 0;
+  const absoluteTop = el.getBoundingClientRect().top + window.scrollY;
+  window.scrollTo({ top: Math.max(0, absoluteTop - navHeight - 12), behavior: 'auto' });
+}
 function applyDeepLinkFromHash() {
   const raw = (location.hash || '').replace('#','');
   if (!raw) return;
@@ -3114,13 +3124,16 @@ function applyDeepLinkFromHash() {
     scrollId = 'divination-booking';
   }
   if (!DEEPLINK_TABS.includes(targetTab)) return;
-  switchMode('temple', targetTab);
-  if (scrollId) {
-    setTimeout(function(){
-      const el = document.getElementById(scrollId);
-      if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
-    }, 150);
+  // 先把網址上的 #tab-xxx 清掉，避免瀏覽器在後面畫面重新排版時（例如載入字型、
+  // renderDivination() 動態產生內容）又自己跳回原生的錨點捲動位置，把我們手動
+  // 算好的捲動位置蓋掉。
+  if (history.replaceState) {
+    history.replaceState(null, '', location.pathname + location.search);
   }
+  switchMode('temple', targetTab);
+  const target = () => document.getElementById(scrollId || targetTab);
+  setTimeout(function(){ scrollBelowNav(target()); }, 80);
+  setTimeout(function(){ scrollBelowNav(target()); }, 400);
 }
 
 function init() {
