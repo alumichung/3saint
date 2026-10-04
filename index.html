@@ -1470,13 +1470,14 @@
     box.innerHTML = '<div class="announce-empty">公告載入中…</div>';
     openModal('modalAnnouncements');
     fetch(ANNOUNCEMENTS_CSV_URL).then(function(r){ return r.text(); }).then(function(csv){
+      // Google表單回覆試算表欄位固定為：A時間戳記／B標題／C日期／D內容（時間戳記欄位為Google表單自動產生，不需手動調整）
       var rows = csv.trim().split('\n').slice(1).map(function(line){
         var cols = line.match(/(".*?"|[^,]+)(?=,|$)/g) || [];
         return cols.map(function(c){ return c.replace(/^"|"$/g,'').replace(/""/g,'"').trim(); });
-      }).filter(function(r){ return r.length>=3 && r[0]; });
+      }).filter(function(r){ return r.length>=4 && r[1]; });
       if(!rows.length){ box.innerHTML = '<div class="announce-empty">目前尚無最新公告，歡迎關注我們的 LINE、Facebook 與 Instagram。</div>'; return; }
       box.innerHTML = rows.reverse().map(function(r){
-        return '<div class="announce-item"><div class="announce-date">'+r[1]+'</div><div class="announce-title">'+r[0]+'</div><div class="announce-body">'+r[2]+'</div></div>';
+        return '<div class="announce-item"><div class="announce-date">'+r[2]+'</div><div class="announce-title">'+r[1]+'</div><div class="announce-body">'+r[3]+'</div></div>';
       }).join('');
     }).catch(function(){
       box.innerHTML = '<div class="announce-empty">公告載入失敗，請稍後再試，或關注我們的 LINE、Facebook 與 Instagram。</div>';
