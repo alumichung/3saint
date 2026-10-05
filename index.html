@@ -1532,9 +1532,19 @@
     body.innerHTML = '<div class="pdf-msg">經文載入中，請稍候…</div>';
     openModal('scriptureViewer');
     body.scrollTop = 0;
-    var pdfUrl = new URL(file, window.location.href).href;
+    // 線上閱讀用「瘦身＋可分頁載入」的版本（放在 web/ 子資料夾），下載連結仍給原始檔
+    var webFile = file.replace(/\/([^\/]+)$/, '/web/$1');
+    function openDoc(lib, f){
+      var task = lib.getDocument({url: new URL(f, window.location.href).href, disableAutoFetch: true, rangeChunkSize: 131072});
+      task.onProgress = function(pr){
+        if(token !== pdfToken || !pr.total) return;
+        var m = body.querySelector('.pdf-msg');
+        if(m && !pdfDoc) m.textContent = '經文載入中… ' + Math.min(99, Math.round(pr.loaded / pr.total * 100)) + '%';
+      };
+      return task.promise;
+    }
     loadPdfLib().then(function(lib){
-      return lib.getDocument({url: pdfUrl}).promise;
+      return openDoc(lib, webFile).catch(function(){ return openDoc(lib, file); });
     }).then(function(doc){
       if(token !== pdfToken){ doc.destroy(); return; }
       pdfDoc = doc;
@@ -1552,9 +1562,16 @@
         }
         pdfObserver = new IntersectionObserver(function(entries){
           entries.forEach(function(en){
-            if(en.isIntersecting && !en.target.getAttribute('data-done') && !en.target.getAttribute('data-busy')){
-              en.target.setAttribute('data-busy','1');
-              renderPdfPage(doc, +en.target.getAttribute('data-n'), en.target, token);
+            var t = en.target;
+            if(en.isIntersecting){
+              if(!t.getAttribute('data-done') && !t.getAttribute('data-busy')){
+                t.setAttribute('data-busy','1');
+                renderPdfPage(doc, +t.getAttribute('data-n'), t, token);
+              }
+            } else if(t.getAttribute('data-done')){
+              // 離開畫面很遠的頁面把畫布釋放掉，手機才不會因記憶體不足而打不開
+              var cv = t.querySelector('canvas'); if(cv){ cv.width = 0; cv.height = 0; cv.remove(); }
+              t.removeAttribute('data-done'); t.removeAttribute('data-busy');
             }
           });
         }, {root: body, rootMargin: '900px 0px'});
