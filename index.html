@@ -36,7 +36,10 @@
   /* ===== Desktop Header ===== */
   .site-header{position:sticky;top:0;z-index:50;background:rgba(11,11,11,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--gold-pale)}
   .site-header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
-  .logo{font-size:22px;letter-spacing:4px;font-weight:700;color:var(--text-light)}
+  .logo{font-size:22px;letter-spacing:4px;font-weight:700;color:var(--text-light);display:inline-flex;align-items:center;gap:10px}
+  /* 宮印：與旁邊的字同高（1em）；hero 大標題旁縮小 */
+  .seal{height:1em;width:auto;display:block;flex-shrink:0}
+  .seal-hero{height:.46em;margin-left:.35em}
   .desktop-nav{display:flex;gap:40px;align-items:center}
   .desktop-nav a{font-size:16px;letter-spacing:2px;color:var(--text-light-soft);transition:color .2s}
   .desktop-nav a:hover{color:var(--gold-light)}
@@ -71,7 +74,7 @@
   .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,6,4,.92) 0%,rgba(6,6,4,.55) 32%,rgba(6,6,4,.15) 60%,rgba(6,6,4,.35) 100%)}
   .hero-inner{position:relative;z-index:2;padding:0 40px 56px;max-width:1200px;margin:0 auto;width:100%}
   .hero-eyebrow{color:var(--gold-light);font-size:13px;letter-spacing:6px;margin-bottom:16px}
-  .hero-title{font-size:76px;font-weight:900;color:#fff;letter-spacing:10px;text-shadow:0 4px 24px rgba(0,0,0,.5)}
+  .hero-title{font-size:76px;font-weight:900;color:#fff;letter-spacing:10px;text-shadow:0 4px 24px rgba(0,0,0,.5);display:flex;align-items:center}
   .hero-sub{font-size:20px;color:var(--text-light-soft);margin:14px 0 32px;letter-spacing:2px}
   .hero-side{position:absolute;right:40px;top:40px;z-index:2;text-align:right;color:var(--text-light-soft);font-size:14px;line-height:2;writing-mode:vertical-rl}
   .hero-quick{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);background:rgba(10,9,7,0.82);border-top:1px solid var(--gold-pale)}
@@ -159,7 +162,7 @@
   .vert-text span{display:block;line-height:1}
   .card-row2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
   .card-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
-  .svc-card{background:#17130F;border:1px solid var(--gold-pale);border-radius:6px;padding:28px 30px;display:flex;align-items:center;gap:20px}
+  .svc-card{background:rgba(16,12,9,.52);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(214,180,110,.32);border-radius:6px;padding:28px 30px;display:flex;align-items:center;gap:20px}
   .svc-ic{width:44px;height:44px;color:var(--gold-light);flex-shrink:0}
   .svc-title{font-size:19px;font-weight:700;color:var(--text-light)}
   .svc-sub{font-size:13px;color:var(--text-light-soft);margin-top:4px}
@@ -179,7 +182,7 @@
 
   /* ===== 07 宮務 extras ===== */
   .quad-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-  .quad-card{background:#17130F;border:1px solid var(--gold-pale);border-radius:6px;padding:26px 22px}
+  .quad-card{background:rgba(16,12,9,.52);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(214,180,110,.32);border-radius:6px;padding:26px 22px}
   .quad-ic{width:34px;height:34px;color:var(--gold-light);margin-bottom:14px}
   .quad-title{font-size:17px;font-weight:700;color:var(--text-light)}
   .quad-sub{font-size:12.5px;color:var(--text-light-soft);margin-top:6px}
@@ -191,6 +194,7 @@
   footer{background:#08070 5;background:#080705;padding:50px 0 24px}
   .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,0.08)}
   .foot-brand{font-size:20px;color:var(--text-light);letter-spacing:3px;font-weight:700}
+  .foot-brand .brand-line{display:flex;align-items:center;gap:10px}
   .foot-brand .tag{display:block;font-size:12.5px;color:var(--text-light-soft);font-weight:400;margin-top:6px;letter-spacing:1px}
   .foot-info{font-size:13.5px;color:var(--text-light-soft);line-height:2}
   .foot-social{display:flex;gap:14px}
@@ -207,15 +211,18 @@
     .hamburger-btn span{width:22px;height:2px;background:var(--text-light)}
     .site-header{display:none}
 
-    #hero{min-height:auto}
-    .hero-media{position:relative;height:62vw;max-height:420px}
-    .hero-media::after{background:linear-gradient(0deg,rgba(6,6,4,.95) 10%,rgba(6,6,4,.25) 70%)}
-    .hero-inner{position:static;padding:26px 20px 34px}
+    /* 手機 hero：背景圖鋪滿整個 hero，文字與快捷卡片疊在圖上（不再分成「圖＋下方一大塊黑底」） */
+    #hero{min-height:560px;min-height:calc(100svh - 60px - 62px)}
+    .hero-media{position:absolute;inset:0;height:auto;max-height:none}
+    .hero-media img{object-position:62% center}
+    .hero-media::after{background:linear-gradient(0deg,rgba(6,6,4,.9) 0%,rgba(6,6,4,.72) 30%,rgba(6,6,4,.25) 58%,rgba(6,6,4,.3) 100%)}
+    .hero-inner{position:relative;padding:26px 20px 22px}
     .hero-title{font-size:44px;letter-spacing:6px}
+    .seal-hero{height:.5em}
     .hero-sub{font-size:15px;margin:10px 0 22px}
     .hero-side{display:none}
-    .hero-quick{grid-template-columns:1fr 1fr 1fr;gap:10px;background:transparent;border-top:none;padding:0 16px 24px;margin-top:-6px;position:relative;z-index:2}
-    .hero-quick a{flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px 8px;gap:8px;background:rgba(15,13,10,0.9);border:1px solid var(--gold-pale);border-radius:10px}
+    .hero-quick{grid-template-columns:1fr 1fr 1fr;gap:10px;background:transparent;border-top:none;padding:0 16px 66px;margin-top:0;position:relative;z-index:2}
+    .hero-quick a{flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px 6px;gap:6px;background:rgba(14,11,8,0.42);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(214,180,110,.35);border-radius:10px}
     .hq-ic{width:24px;height:24px}
     .hq-title{font-size:13.5px}
     .hq-sub{display:none}
@@ -246,9 +253,19 @@
     .scene-grid{grid-template-columns:1fr;gap:20px}
     .vert-text{display:none}
     .card-row2,.card-row3{grid-template-columns:1fr}
-    .svc-card{flex-wrap:wrap}
+    /* 手機卡片：縮小、橫向排列，不再是大塊黑磚 */
+    .svc-card{flex-wrap:nowrap;padding:14px 16px;gap:14px;min-height:0}
+    .svc-ic{width:32px;height:32px}
+    .svc-card>div:not(.svc-cta){flex:1;min-width:0}
+    .svc-title{font-size:16.5px}
+    .svc-sub{font-size:12.5px;margin-top:2px}
+    .svc-cta{margin-left:auto;width:auto;align-items:center;flex-shrink:0}
+    .card-row2,.card-row3{gap:12px}
+    .card-row3 .svc-card{display:grid;grid-template-columns:32px 1fr auto;align-items:center;min-height:0;gap:6px 14px}
+    .card-row3 .svc-cta{margin-left:0;width:auto;grid-column:3;grid-row:1}
+    .card-row3 .svc-cta a.btn-outline,.card-row3 .svc-cta button.btn-outline{width:auto;padding:8px 12px;font-size:13px}
+    .arrow-circ{width:30px;height:30px}
     .closer p{white-space:normal;max-width:340px}
-    .svc-cta{margin-left:0;width:100%;align-items:flex-start}
 
     #daochang{background-image:linear-gradient(180deg,rgba(246,240,228,.88),rgba(239,230,212,.72) 45%,rgba(246,240,228,.9)),url("images/backgrounds/03-daochang-bg-desktop.jpg");background-position:center,80% center}
     #xiuxin{background-image:linear-gradient(180deg,rgba(246,240,228,.92),rgba(239,230,212,.74) 40%,rgba(246,240,228,.88)),url("images/backgrounds/04-xiuxin-bg-desktop.jpg");background-position:center,75% 30%}
@@ -256,7 +273,14 @@
     #canon{background-image:linear-gradient(180deg,rgba(7,6,5,.18),rgba(7,6,5,.66)),url("images/backgrounds/06-canon-bg-desktop.jpg");background-position:center,42% 78%}
     #gongwu{background-image:linear-gradient(180deg,rgba(7,6,5,.12),rgba(7,6,5,.56)),url("images/backgrounds/07-gongwu-bg-desktop-FINAL.jpg");background-position:center,22% 40%}
 
-    .quad-row{grid-template-columns:1fr 1fr;gap:14px}
+    .quad-row{grid-template-columns:1fr 1fr;gap:12px}
+    .quad-card{padding:16px 14px}
+    .quad-ic{width:28px;height:28px;margin-bottom:8px}
+    .quad-title{font-size:15.5px}
+    .quad-sub{font-size:12px;margin-top:3px}
+    .quad-card{position:relative}
+    .quad-arrow{position:absolute;top:12px;right:12px;margin:0;width:26px;height:26px}
+    .quad-arrow .ic-arrow{width:13px;height:13px}
     .foot-top{flex-direction:column}
 
     section{scroll-margin-top:60px}
@@ -499,7 +523,7 @@
 <!-- Desktop Header -->
 <header class="site-header">
   <div class="wrap">
-    <div class="logo">三聖宮</div>
+    <div class="logo"><img class="seal" src="images/seal.png" alt="" aria-hidden="true">三聖宮</div>
     <nav class="desktop-nav">
       <a href="#sansheng">三聖宮</a>
       <a href="#xiuxin">信仰</a>
@@ -513,7 +537,7 @@
 
 <!-- Mobile Header -->
 <header class="mobile-header">
-  <div class="logo">三聖宮</div>
+  <div class="logo"><img class="seal" src="images/seal.png" alt="" aria-hidden="true">三聖宮</div>
   <button class="hamburger-btn" onclick="document.getElementById('drawer').classList.add('open')">
     <span></span><span></span><span></span>
   </button>
@@ -522,7 +546,7 @@
 <!-- Mobile Drawer -->
 <div class="mobile-drawer" id="drawer">
   <div class="drawer-top">
-    <div class="logo">三聖宮</div>
+    <div class="logo"><img class="seal" src="images/seal.png" alt="" aria-hidden="true">三聖宮</div>
     <button class="drawer-close" onclick="document.getElementById('drawer').classList.remove('open')">✕</button>
   </div>
   <div class="drawer-list">
@@ -547,7 +571,7 @@
   <div class="hero-side">山水・有道　人間有善緣</div>
   <div class="hero-inner">
     <div class="hero-eyebrow">02・道場</div>
-    <h1 class="hero-title">三聖宮</h1>
+    <h1 class="hero-title">三聖宮<img class="seal seal-hero" src="images/seal.png" alt="" aria-hidden="true"></h1>
     <p class="hero-sub">道在日常・心正則明</p>
     <a href="javascript:void(0)" onclick="openTempleIntro('tiIntro')" class="btn"><span>進入道場</span><svg class="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
   </div>
@@ -783,7 +807,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div>
-        <div class="foot-brand">三聖宮<span class="tag">道在日常・心正則明</span></div>
+        <div class="foot-brand"><span class="brand-line"><img class="seal" src="images/seal.png" alt="" aria-hidden="true">三聖宮</span><span class="tag">道在日常・心正則明</span></div>
       </div>
       <div class="foot-info">
         📍 道場位置：238新北市樹林區八德街998號<br>
