@@ -355,8 +355,15 @@
   #scriptureViewer .viewer-head{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid rgba(32,26,18,0.12);flex-shrink:0}
   #scriptureViewer .viewer-head .modal-title{font-size:17px;margin:0}
   #scriptureViewer .viewer-head .modal-close{position:static}
-  #scriptureViewer iframe{flex:1;width:100%;border:none;background:#fff}
-  #scriptureViewer .viewer-foot{padding:10px 22px;border-top:1px solid rgba(32,26,18,0.1);flex-shrink:0}
+  #scriptureViewer{z-index:300}
+  #scriptureViewer .modal-panel{overflow:hidden}
+  #scriptureViewer .pdf-body{position:relative;flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;background:#3a3631;padding:12px 0 2px}
+  #scriptureViewer .pdf-page{position:relative;width:min(calc(100% - 24px),860px);margin:0 auto 12px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);aspect-ratio:3/4}
+  #scriptureViewer .pdf-page canvas{display:block;width:100%;height:100%}
+  #scriptureViewer .pdf-msg{color:#e8dfc8;text-align:center;padding:48px 24px;font-size:14px;line-height:1.9}
+  #scriptureViewer .pdf-msg a{color:#f0cf8a;text-decoration:underline}
+  #scriptureViewer .viewer-foot{padding:10px 22px;border-top:1px solid rgba(32,26,18,0.1);flex-shrink:0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  #scriptureViewer .viewer-pageno{font-size:12.5px;color:var(--text-body)}
   #scriptureViewer .viewer-foot a{font-size:12.5px;color:var(--vermilion)}
   @media(max-width:600px){
     .modal-panel{padding:26px 18px;max-height:92vh}
@@ -867,8 +874,8 @@
       <div class="modal-title" id="scriptureViewerTitle">經典</div>
       <button class="modal-close" onclick="closeScriptureViewer()">&times;</button>
     </div>
-    <iframe id="scriptureViewerFrame" src=""></iframe>
-    <div class="viewer-foot"><a id="scriptureViewerDownload" href="#" download>下載原始 PDF 檔案</a></div>
+    <div class="pdf-body" id="scriptureViewerBody"></div>
+    <div class="viewer-foot"><a id="scriptureViewerDownload" href="#" download>下載原始 PDF 檔案</a><span class="viewer-pageno" id="scriptureViewerPageNo"></span></div>
   </div>
 </div>
 
@@ -1208,7 +1215,7 @@
 
   /* ───────── 共用彈窗 ───────── */
   function openModal(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
-  function closeModal(id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+  function closeModal(id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow = document.querySelector('.site-modal.open') ? 'hidden' : ''; }
 
   /* ───────── 求籤（五狀態）：64籤資料重新比對「鐘府三聖64首籤詩.pdf」原始文稿校正，解曰採完整版（不設等第） ───────── */
   const QIAN_DATA = [
@@ -1451,11 +1458,11 @@
 
   /* ───────── 經典閱讀 ───────── */
   const CANON_LIST = [
-    { title:'開臺延平郡王五常真經', sub:'仁義禮智信・修心立身', file:'開臺延平郡王五常真經.pdf' },
-    { title:'太上老君說常清靜經', sub:'清靜無為・道法自然', file:'太上老君說常清靜經.pdf' },
-    { title:'靈寶天尊說十戒經', sub:'修行戒律・日常規範', file:'靈寶天尊說十戒經.pdf' },
-    { title:'太乙救苦護身妙經', sub:'救苦慈悲・護身安心', file:'太乙救苦護身妙經.pdf' },
-    { title:'福德正神真經', sub:'土地福報・民生安定', file:'福德正神真經.pdf' }
+    { title:'開臺延平郡王五常真經', sub:'仁義禮智信・修心立身', file:'scriptures/開臺延平郡王五常真經.pdf' },
+    { title:'太上老君說常清靜經', sub:'清靜無為・道法自然', file:'scriptures/太上老君說常清靜經.pdf' },
+    { title:'靈寶天尊說十戒經', sub:'修行戒律・日常規範', file:'scriptures/靈寶天尊說十戒經.pdf' },
+    { title:'太乙救苦護身妙經', sub:'救苦慈悲・護身安心', file:'scriptures/太乙救苦護身妙經.pdf' },
+    { title:'福德正神真經', sub:'土地福報・民生安定', file:'scriptures/福德正神真經.pdf' }
   ];
   const BOOK_ICON = '<svg class="modal-list-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5c2.6-.9 5.2-.5 8 1.3v12c-2.8-1.8-5.4-2.2-8-1.3zM20 5.5c-2.6-.9-5.2-.5-8 1.3v12c2.8-1.8 5.4-2.2 8-1.3zM7 9h2.5M7 12h2.5M14.5 9H17m-2.5 3H17"/></svg>';
   const ARROW_ICON = '<span class="modal-list-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M14 7l5 5-5 5"/></svg></span>';
@@ -1468,17 +1475,105 @@
     openModal('modalCanonLibrary');
   }
 
-  function openScripture(file, title){
+  /* PDF 閱讀器：用 PDF.js 直接在頁面內逐頁繪製（手機、電腦都能看，不靠外部服務） */
+  var pdfLibPromise = null, pdfDoc = null, pdfToken = 0, pdfObserver = null;
+  function loadPdfLib(){
+    if(pdfLibPromise) return pdfLibPromise;
+    pdfLibPromise = new Promise(function(resolve, reject){
+      if(window.pdfjsLib){ resolve(window.pdfjsLib); return; }
+      var s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+      s.onload = function(){
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        resolve(window.pdfjsLib);
+      };
+      s.onerror = function(){ pdfLibPromise = null; reject(new Error('pdfjs load failed')); };
+      document.head.appendChild(s);
+    });
+    return pdfLibPromise;
+  }
+  function pdfCleanup(){
+    pdfToken++;
+    if(pdfObserver){ pdfObserver.disconnect(); pdfObserver = null; }
+    if(pdfDoc){ try{ pdfDoc.destroy(); }catch(e){} pdfDoc = null; }
+    document.getElementById('scriptureViewerBody').innerHTML = '';
+    document.getElementById('scriptureViewerPageNo').textContent = '';
+  }
+  function pdfFail(file, token){
+    if(token !== pdfToken) return;
     var url = new URL(file, window.location.href).href;
+    document.getElementById('scriptureViewerBody').innerHTML =
+      '<div class="pdf-msg">這份文件暫時無法在頁面內開啟。<br><a href="'+url+'" target="_blank" rel="noopener">點此在新分頁開啟</a>，或使用下方「下載原始 PDF 檔案」。</div>';
+  }
+  function renderPdfPage(doc, num, box, token){
+    doc.getPage(num).then(function(page){
+      if(token !== pdfToken) return;
+      var base = page.getViewport({scale:1});
+      var W = box.clientWidth || 800;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var vp = page.getViewport({scale: (W / base.width) * dpr});
+      var c = document.createElement('canvas');
+      c.width = Math.floor(vp.width); c.height = Math.floor(vp.height);
+      box.style.aspectRatio = base.width + ' / ' + base.height;
+      return page.render({canvasContext: c.getContext('2d'), viewport: vp}).promise.then(function(){
+        if(token !== pdfToken) return;
+        box.appendChild(c);
+        box.setAttribute('data-done','1');
+      });
+    }).catch(function(){});
+  }
+  function openScripture(file, title){
+    var body = document.getElementById('scriptureViewerBody');
+    pdfCleanup();
+    var token = pdfToken;
     document.getElementById('scriptureViewerTitle').textContent = title;
-    document.getElementById('scriptureViewerFrame').src = 'https://docs.google.com/viewer?embedded=true&url=' + encodeURIComponent(url);
-    document.getElementById('scriptureViewerDownload').href = file;
-    document.getElementById('scriptureViewerDownload').setAttribute('download', title + '.pdf');
+    var dl = document.getElementById('scriptureViewerDownload');
+    dl.href = file; dl.setAttribute('download', title + '.pdf');
+    body.innerHTML = '<div class="pdf-msg">經文載入中，請稍候…</div>';
     openModal('scriptureViewer');
+    body.scrollTop = 0;
+    var pdfUrl = new URL(file, window.location.href).href;
+    loadPdfLib().then(function(lib){
+      return lib.getDocument({url: pdfUrl}).promise;
+    }).then(function(doc){
+      if(token !== pdfToken){ doc.destroy(); return; }
+      pdfDoc = doc;
+      return doc.getPage(1).then(function(p1){
+        if(token !== pdfToken) return;
+        var b = p1.getViewport({scale:1});
+        body.innerHTML = '';
+        var total = doc.numPages, boxes = [];
+        for(var i = 1; i <= total; i++){
+          var box = document.createElement('div');
+          box.className = 'pdf-page';
+          box.style.aspectRatio = b.width + ' / ' + b.height;
+          box.setAttribute('data-n', i);
+          body.appendChild(box); boxes.push(box);
+        }
+        pdfObserver = new IntersectionObserver(function(entries){
+          entries.forEach(function(en){
+            if(en.isIntersecting && !en.target.getAttribute('data-done') && !en.target.getAttribute('data-busy')){
+              en.target.setAttribute('data-busy','1');
+              renderPdfPage(doc, +en.target.getAttribute('data-n'), en.target, token);
+            }
+          });
+        }, {root: body, rootMargin: '900px 0px'});
+        boxes.forEach(function(bx){ pdfObserver.observe(bx); });
+        var pn = document.getElementById('scriptureViewerPageNo');
+        pn.textContent = '共 ' + total + ' 頁';
+        body.onscroll = function(){
+          var mid = body.scrollTop + body.clientHeight * 0.35, cur = 1;
+          for(var k = 0; k < boxes.length; k++){ if(boxes[k].offsetTop <= mid) cur = k + 1; else break; }
+          pn.textContent = '第 ' + cur + ' / ' + total + ' 頁';
+        };
+        body.onscroll();
+      });
+    }).catch(function(){ pdfFail(file, token); });
   }
   function closeScriptureViewer(){
     closeModal('scriptureViewer');
-    document.getElementById('scriptureViewerFrame').src = '';
+    document.getElementById('scriptureViewerBody').onscroll = null;
+    pdfCleanup();
   }
 
   /* ───────── 修行指引 ───────── */
