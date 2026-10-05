@@ -231,6 +231,9 @@
     .deity-card[data-d="mazu"]{order:3}
     .deity-photo{aspect-ratio:16/10}
     .deity-photo img{object-position:50% 20%}
+    /* 手機版裁切窗較短，三尊神像的臉部在原照片中高度不同，需各自校正，確保臉部完整露出 */
+    .deity-card[data-d="mazu"] .deity-photo img{object-position:50% 47%}
+    .deity-card[data-d="gsdj"] .deity-photo img{object-position:50% 53%}
 
     .daochang-grid{grid-template-columns:1fr;gap:26px}
     .h2{font-size:28px}
@@ -579,7 +582,7 @@
       </div>
       <div class="deity-row">
         <div class="deity-card" data-d="mazu">
-          <div class="deity-photo"><img src="images/天上聖母.jpeg" alt="天上聖母"></div>
+          <div class="deity-photo"><img src="images/天上聖母.jpeg" alt="天上聖母" loading="lazy"></div>
           <div class="deity-info">
             <div class="deity-name">天上聖母</div>
             <div class="deity-tag">慈悲・護佑・安人</div>
@@ -587,7 +590,7 @@
           </div>
         </div>
         <div class="deity-card" data-d="kst">
-          <div class="deity-photo"><img src="images/開臺聖王.jpeg" alt="開臺聖王"></div>
+          <div class="deity-photo"><img src="images/開臺聖王.jpeg" alt="開臺聖王" loading="lazy"></div>
           <div class="deity-info">
             <div class="deity-name">開臺聖王</div>
             <div class="deity-tag">正氣・開創・守護</div>
@@ -595,7 +598,7 @@
           </div>
         </div>
         <div class="deity-card" data-d="gsdj">
-          <div class="deity-photo"><img src="images/關聖帝君2.jpeg" alt="關聖帝君"></div>
+          <div class="deity-photo"><img src="images/關聖帝君2.jpeg" alt="關聖帝君" loading="lazy"></div>
           <div class="deity-info">
             <div class="deity-name">關聖帝君</div>
             <div class="deity-tag">忠義・守信・正道</div>
