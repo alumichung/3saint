@@ -3272,5 +3272,22 @@ init();
   80%{transform:translateX(6px);}
 }
 </style>
+<script>
+/* ADMIN-DIRECT-ENTRY：從官網「委員／理監事內部登入」進來時，直接顯示籌備管理密碼視窗，不先停在舊版道場頁面 */
+(function(){
+  var adminBtn = function(){ return document.querySelector('.mode-btn[onclick*="admin"]'); };
+  var origClose = closePasswordModal;
+  closePasswordModal = function(){
+    origClose();
+    if (!sessionStorage.getItem('sansheng_auth')) { location.href = 'index.html'; }
+  };
+  function boot(){
+    if (sessionStorage.getItem('sansheng_auth')) { _doSwitchMode('admin', adminBtn()); }
+    else { showPasswordModal(adminBtn()); }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ setTimeout(boot, 50); });
+  else setTimeout(boot, 50);
+})();
+</script>
 </body>
 </html>
