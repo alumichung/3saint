@@ -336,6 +336,10 @@
   .med-guide[open] summary::after{content:"－"}
   .med-guide-body{padding:0 14px 14px;font-size:13.5px;color:var(--text-body);text-align:justify}
   .med-guide-body p+p{margin-top:8px}
+  .med-guide-body .med-intro{margin-bottom:12px}
+  .med-verse{padding:14px 8px;border-top:1px solid rgba(32,26,18,.1);text-align:center;color:var(--text-dark);font-size:15.5px;line-height:2;letter-spacing:2px}
+  .med-verse div{white-space:nowrap}
+  @media (max-width:420px){ .med-verse{padding:12px 2px;font-size:min(15px,3.3vw);letter-spacing:.06em} }
   .med-tabs{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(156,59,46,.4);border-radius:4px;overflow:hidden;margin-bottom:22px}
   .med-tabs button{padding:11px 0;background:rgba(255,255,255,.4);border:none;font-family:inherit;font-size:15px;color:var(--text-dark);cursor:pointer;letter-spacing:2px}
   .med-tabs button.on{background:var(--vermilion);color:#fff;font-weight:700}
@@ -975,7 +979,7 @@
     <div class="modal-sub">寧靜的計時陪伴，收神、靜心、養性，修心。</div>
 
     <details class="med-guide" id="medGuide" hidden>
-      <summary>靜坐前引導</summary>
+      <summary id="medGuideSum">靜坐前引導</summary>
       <div class="med-guide-body" id="medGuideBody"></div>
     </details>
 
@@ -1749,8 +1753,20 @@
   /* ───────── 靜坐計時 ─────────
      • 用「結束時間」計算，不靠計數，手機鎖屏或切到別的分頁再回來，時間仍然準確。
      • 紀錄只存在使用者自己的瀏覽器（localStorage），只存「每天累計秒數」，不存姓名、不送出任何資料。
-     • 靜坐前引導文：之後由道場提供，貼進 MED_GUIDE（每個字串一段）；空陣列時整個區塊不顯示。 */
-  var MED_GUIDE = [];
+     • 靜坐前引導文：內容在下方 MED_GUIDE（summary 標題、intro 說明、verse 每行一句）；intro 與 verse 都留空時整個區塊不顯示。 */
+  var MED_GUIDE = {
+    summary: '靜坐前・先誦念「金光神咒」',
+    intro: '靜坐前誦念「金光神咒」1–3 次，用來穩定心神、淨化磁場、抵禦干擾。',
+    verse: [
+      '天地玄宗，萬炁本根。廣修萬劫，證吾神通。',
+      '三界內外，惟道獨尊。體有金光，覆映吾身。',
+      '視之不見，聽之不聞。包羅天地，養育群生。',
+      '受持萬遍，身有光明。三界侍衛，五帝司迎。',
+      '萬神朝禮，役使雷霆。鬼妖喪膽，精怪亡形。',
+      '內有霹靂，雷神隱名。洞慧交徹，五炁騰騰。',
+      '金光速現，覆護真人。'
+    ]
+  };
   var MED_KEY = 'sansheng_med_v1';
   var MED_MAX_MIN = 180;        // 定時最長 180 分鐘
   var MED_OPEN_MAX_MIN = 240;   // 不限時模式的保險上限：滿 4 小時自動結束（避免忘記關）
@@ -1921,8 +1937,11 @@
   function openMeditation(){
     if(med.state !== 'run' && med.state !== 'pause'){ med.state = 'idle'; medShow('medSetup'); }
     var g = document.getElementById('medGuide'), body = document.getElementById('medGuideBody');
-    if(MED_GUIDE.length){
-      body.innerHTML = MED_GUIDE.map(function(t){ return '<p>'+String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</p>'; }).join('');
+    if(MED_GUIDE.intro || (MED_GUIDE.verse && MED_GUIDE.verse.length)){
+      var esc = function(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); };
+      body.innerHTML = (MED_GUIDE.intro ? '<p class="med-intro">'+esc(MED_GUIDE.intro)+'</p>' : '')
+        + '<div class="med-verse">' + (MED_GUIDE.verse||[]).map(function(t){ return '<div>'+esc(t)+'</div>'; }).join('') + '</div>';
+      document.getElementById('medGuideSum').textContent = MED_GUIDE.summary || '靜坐前引導';
       g.hidden = false;
     }else{ g.hidden = true; }
     medPaintDur(); medSetMode(med.mode); medRenderStats();
