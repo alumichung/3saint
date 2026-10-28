@@ -325,6 +325,65 @@
   .modal-list-arrow{margin-left:auto;color:var(--gold);flex-shrink:0}
   .btn-outline-paper{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(156,59,46,0.4);color:var(--text-dark);font-size:14px;padding:11px 20px;border-radius:4px;background:rgba(255,255,255,0.4);cursor:pointer}
   .btn-outline-paper:hover{background:rgba(255,255,255,0.65)}
+  /* ── 靜坐計時（藏經 06 第三張卡 + Modal） ── */
+  .site-modal [hidden]{display:none !important}
+  @media (min-width:861px){ .card-row3.canon-row3 .svc-cta{width:auto;align-self:flex-end;align-items:flex-end} }
+  .med-panel{max-width:460px}
+  .med-guide{margin:0 0 18px;border:1px solid rgba(32,26,18,.12);border-radius:6px;background:rgba(255,255,255,.4)}
+  .med-guide summary{cursor:pointer;padding:11px 14px;font-size:14px;font-weight:700;color:var(--vermilion);list-style:none}
+  .med-guide summary::-webkit-details-marker{display:none}
+  .med-guide summary::after{content:"＋";float:right;color:var(--gold)}
+  .med-guide[open] summary::after{content:"－"}
+  .med-guide-body{padding:0 14px 14px;font-size:13.5px;color:var(--text-body);text-align:justify}
+  .med-guide-body p+p{margin-top:8px}
+  .med-tabs{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(156,59,46,.4);border-radius:4px;overflow:hidden;margin-bottom:22px}
+  .med-tabs button{padding:11px 0;background:rgba(255,255,255,.4);border:none;font-family:inherit;font-size:15px;color:var(--text-dark);cursor:pointer;letter-spacing:2px}
+  .med-tabs button.on{background:var(--vermilion);color:#fff;font-weight:700}
+  .med-dur{display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:16px}
+  .med-dur b{font-size:64px;line-height:1;font-weight:700;color:var(--text-dark);font-variant-numeric:tabular-nums}
+  .med-dur span{font-size:16px;color:var(--text-body)}
+  .med-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:10px}
+  #medChips{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+  .med-chip{min-width:0;padding:8px 4px;border:1px solid rgba(156,59,46,.4);border-radius:999px;background:rgba(255,255,255,.4);font-family:inherit;font-size:14px;color:var(--text-dark);cursor:pointer}
+  .med-chip.on{background:var(--vermilion);border-color:var(--vermilion);color:#fff}
+  .med-chip.add{border-style:dashed;min-width:60px;padding:8px 16px}
+  .med-open-hint{text-align:center;font-size:14px;color:var(--text-body);padding:22px 8px 26px}
+  .med-opt{display:flex;align-items:center;justify-content:center;gap:8px;margin:16px 0 18px;font-size:13.5px;color:var(--text-body);cursor:pointer}
+  .med-opt input{accent-color:var(--vermilion);width:16px;height:16px}
+  .med-start{width:100%;justify-content:center}
+  .med-ringwrap{position:relative;width:min(240px,72vw);aspect-ratio:1;margin:4px auto 14px}
+  .med-ringwrap svg{width:100%;height:100%;display:block}
+  .med-ring-bg{fill:none;stroke:rgba(32,26,18,.1);stroke-width:5}
+  .med-ring-fg{fill:none;stroke:var(--vermilion);stroke-width:5;stroke-linecap:round;transition:stroke-dashoffset .3s linear}
+  .med-ring-breathe{fill:rgba(156,59,46,.07);stroke:none;transform-origin:100px 100px;animation:medBreathe 8s ease-in-out infinite}
+  @keyframes medBreathe{0%,100%{transform:scale(.78)}50%{transform:scale(1)}}
+  .med-paused .med-ring-breathe{animation-play-state:paused}
+  .med-time{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:46px;font-weight:700;letter-spacing:1px;color:var(--text-dark);font-variant-numeric:tabular-nums;line-height:1.1}
+  .med-time small{font-size:13px;font-weight:400;letter-spacing:2px;color:var(--text-body);margin-top:8px}
+  .med-run-btns{display:flex;gap:10px;justify-content:center}
+  .med-run-btns>*{flex:1;justify-content:center;max-width:180px}
+  .med-wake{text-align:center;font-size:12px;color:var(--text-body);margin-top:12px}
+  .med-leave{margin-top:14px;padding:12px 14px;border:1px solid rgba(156,59,46,.35);border-radius:6px;background:rgba(156,59,46,.06);text-align:center;font-size:13.5px}
+  .med-leave div{display:flex;gap:10px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+  .med-done{text-align:center;padding:6px 0 4px}
+  .med-done-big{font-size:34px;font-weight:700;color:var(--vermilion);margin:6px 0 4px}
+  .med-done p{font-size:14px;color:var(--text-body);margin-bottom:16px}
+  .med-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+  .med-stat{padding:12px 4px;border:1px solid rgba(32,26,18,.1);border-radius:6px;background:rgba(255,255,255,.4)}
+  .med-stat b{display:block;font-size:26px;line-height:1.1;color:var(--vermilion);font-variant-numeric:tabular-nums}
+  .med-stat em{font-style:normal;font-size:12px;color:var(--text-body)}
+  .med-stat span{display:block;font-size:12.5px;color:var(--text-dark);margin-top:4px;font-weight:700}
+  .med-note{font-size:12px;color:var(--text-body);text-align:center;margin-top:12px}
+  .med-linkbtn{background:none;border:none;font-family:inherit;font-size:12px;color:var(--vermilion);text-decoration:underline;cursor:pointer;padding:2px 4px}
+  .med-foot{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:12.5px;color:var(--text-body)}
+  .med-foot label{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+  .med-foot input{accent-color:var(--vermilion)}
+  @media (max-width:860px){
+    .med-panel{padding:30px 20px 24px}
+    .med-dur b{font-size:54px}
+    .med-time{font-size:40px}
+  }
+  @media (prefers-reduced-motion:reduce){ .med-ring-breathe{animation:none;transform:scale(.9)} .med-ring-fg{transition:none} }
   .practice-block{margin-bottom:18px}
   .practice-block h4{font-size:15px;color:var(--vermilion);margin-bottom:6px;letter-spacing:.5px}
   .practice-block p{font-size:13.5px;color:var(--text-body);text-align:justify}
@@ -759,7 +818,7 @@
       <h2 class="h2 on-dark">藏經</h2>
       <p>經典為本・智慧常在。典籍不只是文字，而是千年智慧的累積，也是修心修行的依歸。</p>
     </div>
-    <div class="card-row2">
+    <div class="card-row3 canon-row3">
       <div class="svc-card" onclick="openCanonLibrary()" style="cursor:pointer">
         <svg class="svc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5c2.6-.9 5.2-.5 8 1.3v12c-2.8-1.8-5.4-2.2-8-1.3zM20 5.5c-2.6-.9-5.2-.5-8 1.3v12c2.8-1.8 5.4-2.2 8-1.3zM7 9h2.5M7 12h2.5M14.5 9H17m-2.5 3H17"/></svg>
         <div><div class="svc-title">經典閱讀</div><div class="svc-sub">研經典・修心性</div></div>
@@ -768,6 +827,11 @@
       <div class="svc-card" onclick="openPracticeGuide()" style="cursor:pointer">
         <svg class="svc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c-4.8-2.2-7.2-5.2-7.2-8.5 3.1.1 5.4 1.3 7.2 3.6 1.8-2.3 4.1-3.5 7.2-3.6 0 3.3-2.4 6.3-7.2 8.5zM12 15.1c-2.2-2.5-2.8-5.4 0-9.1 2.8 3.7 2.2 6.6 0 9.1z"/></svg>
         <div><div class="svc-title">修行指引</div><div class="svc-sub">日常修持・善念實踐</div></div>
+        <div class="svc-cta"><span class="arrow-circ"><svg class="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M14 7l5 5-5 5"/></svg></span></div>
+      </div>
+      <div class="svc-card" onclick="openMeditation()" style="cursor:pointer">
+        <svg class="svc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5.2" r="2.2"/><path d="M12 8.4v4.2M8.2 10.6 12 12l3.8-1.4M4.5 19c1.6-1.3 3.4-2 5.2-2.3M19.5 19c-1.6-1.3-3.4-2-5.2-2.3M9.7 16.7c1.5.4 3.1.4 4.6 0M6.5 14.2c1.7 1.8 3.5 2.7 5.5 2.8 2-.1 3.8-1 5.5-2.8"/></svg>
+        <div><div class="svc-title">靜坐計時</div><div class="svc-sub">定時或不限時・靜心陪伴</div></div>
         <div class="svc-cta"><span class="arrow-circ"><svg class="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M14 7l5 5-5 5"/></svg></span></div>
       </div>
     </div>
@@ -903,6 +967,92 @@
 </div>
 
 <!-- 最新公告 -->
+<div class="site-modal" id="modalMeditation" onclick="if(event.target===this) medTryClose()">
+  <div class="modal-panel med-panel" id="medPanel">
+    <button class="modal-close" onclick="medTryClose()" aria-label="關閉">&times;</button>
+    <div class="modal-eyebrow">藏經．靜坐計時</div>
+    <div class="modal-title">靜坐計時</div>
+    <div class="modal-sub">一個安靜的計時工具，陪您靜坐、收心。可設定時間，也可以不限時。</div>
+
+    <details class="med-guide" id="medGuide" hidden>
+      <summary>靜坐前引導</summary>
+      <div class="med-guide-body" id="medGuideBody"></div>
+    </details>
+
+    <!-- 設定 -->
+    <div id="medSetup">
+      <div class="med-tabs">
+        <button type="button" id="medTabFixed" class="on" onclick="medSetMode('fixed')">定時</button>
+        <button type="button" id="medTabOpen" onclick="medSetMode('open')">不限時</button>
+      </div>
+      <div id="medFixedBox">
+        <div class="med-dur"><b id="medDurNum">20</b><span>分鐘</span></div>
+        <div class="med-chips" id="medChips">
+          <button type="button" class="med-chip" data-m="10" onclick="medPick(10)">10</button>
+          <button type="button" class="med-chip" data-m="15" onclick="medPick(15)">15</button>
+          <button type="button" class="med-chip on" data-m="20" onclick="medPick(20)">20</button>
+          <button type="button" class="med-chip" data-m="30" onclick="medPick(30)">30</button>
+          <button type="button" class="med-chip" data-m="45" onclick="medPick(45)">45</button>
+          <button type="button" class="med-chip" data-m="60" onclick="medPick(60)">60</button>
+        </div>
+        <div class="med-chips">
+          <button type="button" class="med-chip add" onclick="medAdd(1)">+1</button>
+          <button type="button" class="med-chip add" onclick="medAdd(5)">+5</button>
+          <button type="button" class="med-chip add" onclick="medAdd(30)">+30</button>
+        </div>
+      </div>
+      <div id="medOpenBox" hidden>
+        <div class="med-open-hint">不設時間上限，從零開始計時。<br>坐到想收的時候，再按「結束」。</div>
+      </div>
+      <label class="med-opt"><input type="checkbox" id="medChime" checked> 開始與結束時敲一聲鐘</label>
+      <button type="button" class="btn med-start" onclick="medStart()"><span>開始靜坐</span></button>
+    </div>
+
+    <!-- 進行中 -->
+    <div id="medRun" hidden>
+      <div class="med-ringwrap" id="medRingWrap">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <circle class="med-ring-breathe" cx="100" cy="100" r="82"/>
+          <circle class="med-ring-bg" cx="100" cy="100" r="92"/>
+          <circle class="med-ring-fg" id="medRingFg" cx="100" cy="100" r="92" transform="rotate(-90 100 100)" stroke-dasharray="578.05" stroke-dashoffset="0"/>
+        </svg>
+        <div class="med-time"><span id="medTimeTxt">20:00</span><small id="medTimeSub">剩餘</small></div>
+      </div>
+      <div class="med-run-btns">
+        <button type="button" class="btn-outline-paper" id="medPauseBtn" onclick="medTogglePause()"><span>暫停</span></button>
+        <button type="button" class="btn-outline-paper" onclick="medEnd()"><span>結束</span></button>
+      </div>
+      <div class="med-wake" id="medWakeNote"></div>
+      <div class="med-leave" id="medLeave" hidden>
+        靜坐還在進行，確定要離開嗎？
+        <div>
+          <button type="button" class="btn-outline-paper" onclick="medLeaveCancel()"><span>繼續靜坐</span></button>
+          <button type="button" class="btn-outline-paper" onclick="medLeaveNow()"><span>結束並離開</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 結束 -->
+    <div id="medDone" class="med-done" hidden>
+      <div class="med-done-big" id="medDoneBig">20 分鐘</div>
+      <p id="medDoneMsg"></p>
+      <button type="button" class="btn med-start" onclick="medAgain()"><span>再靜坐一次</span></button>
+    </div>
+
+    <hr class="modal-divider">
+    <div class="med-stats">
+      <div class="med-stat"><b id="medStTotal">0</b><em id="medStTotalU">分鐘</em><span>累積時數</span></div>
+      <div class="med-stat"><b id="medStStreak">0</b><em>天</em><span>連續天數</span></div>
+      <div class="med-stat"><b id="medStDays">0</b><em>天</em><span>累積天數</span></div>
+    </div>
+    <div class="med-foot">
+      <label><input type="checkbox" id="medRec" onchange="medToggleRec()"> 記下我的靜坐</label>
+      <button type="button" class="med-linkbtn" onclick="medClear()">清除紀錄</button>
+    </div>
+    <div class="med-note">紀錄只存在您自己這支手機或瀏覽器裡，三聖宮不會蒐集、也看不到。</div>
+  </div>
+</div>
+
 <div class="site-modal" id="modalAnnouncements" onclick="if(event.target===this) closeModal('modalAnnouncements')">
   <div class="modal-panel">
     <button class="modal-close" onclick="closeModal('modalAnnouncements')">&times;</button>
@@ -1595,6 +1745,199 @@
 
   /* ───────── 修行指引 ───────── */
   function openPracticeGuide(){ openModal('modalPracticeGuide'); }
+
+  /* ───────── 靜坐計時 ─────────
+     • 用「結束時間」計算，不靠計數，手機鎖屏或切到別的分頁再回來，時間仍然準確。
+     • 紀錄只存在使用者自己的瀏覽器（localStorage），只存「每天累計秒數」，不存姓名、不送出任何資料。
+     • 靜坐前引導文：之後由道場提供，貼進 MED_GUIDE（每個字串一段）；空陣列時整個區塊不顯示。 */
+  var MED_GUIDE = [];
+  var MED_KEY = 'sansheng_med_v1';
+  var MED_MAX_MIN = 180;        // 定時最長 180 分鐘
+  var MED_OPEN_MAX_MIN = 240;   // 不限時模式的保險上限：滿 4 小時自動結束（避免忘記關）
+  var MED_MIN_SAVE_SEC = 60;    // 少於 1 分鐘不計入累積
+  var MED_CIRC = 2 * Math.PI * 92;
+  var med = {mode:'fixed', mins:20, state:'idle', targetMs:0, accMs:0, startTs:0, timer:null, wake:null, ctx:null};
+  var medMem = null;
+
+  function medLoad(){
+    var d = null;
+    try{ var s = localStorage.getItem(MED_KEY); if(s) d = JSON.parse(s); }catch(e){}
+    if(!d || typeof d !== 'object') d = medMem || {rec:true, days:{}};
+    if(!d.days || typeof d.days !== 'object') d.days = {};
+    if(typeof d.rec !== 'boolean') d.rec = true;
+    return d;
+  }
+  function medSave(d){ medMem = d; try{ localStorage.setItem(MED_KEY, JSON.stringify(d)); }catch(e){} }
+  function medDayKey(t){ var d = new Date(t); return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); }
+
+  function medRenderStats(){
+    var d = medLoad(), total = 0, cnt = 0, k, v;
+    for(k in d.days){ v = +d.days[k]; if(v > 0){ total += v; cnt++; } }
+    var cur = new Date();
+    if(!(+d.days[medDayKey(cur)] > 0)) cur.setDate(cur.getDate()-1);
+    var streak = 0;
+    while(+d.days[medDayKey(cur)] > 0){ streak++; cur.setDate(cur.getDate()-1); }
+    var big = total >= 3600;
+    document.getElementById('medStTotal').textContent = big ? (Math.round(total/360)/10).toString() : Math.floor(total/60);
+    document.getElementById('medStTotalU').textContent = big ? '小時' : '分鐘';
+    document.getElementById('medStStreak').textContent = streak;
+    document.getElementById('medStDays').textContent = cnt;
+    document.getElementById('medRec').checked = d.rec;
+  }
+  function medToggleRec(){ var d = medLoad(); d.rec = document.getElementById('medRec').checked; medSave(d); }
+  function medClear(){
+    if(!window.confirm('確定要清除這支手機上的靜坐紀錄嗎？清除後無法復原。')) return;
+    var d = medLoad(); d.days = {}; medSave(d); medRenderStats();
+  }
+  function medRecord(sec){
+    var d = medLoad();
+    if(!d.rec || sec < MED_MIN_SAVE_SEC) return false;
+    var key = medDayKey(Date.now());
+    d.days[key] = (+d.days[key] || 0) + Math.round(sec);
+    medSave(d); return true;
+  }
+
+  function medShow(which){
+    ['medSetup','medRun','medDone'].forEach(function(id){ document.getElementById(id).hidden = (id !== which); });
+  }
+  function medSetMode(m){
+    med.mode = m;
+    document.getElementById('medTabFixed').classList.toggle('on', m==='fixed');
+    document.getElementById('medTabOpen').classList.toggle('on', m==='open');
+    document.getElementById('medFixedBox').hidden = (m !== 'fixed');
+    document.getElementById('medOpenBox').hidden = (m !== 'open');
+  }
+  function medPaintDur(){
+    document.getElementById('medDurNum').textContent = med.mins;
+    var chips = document.querySelectorAll('#medChips .med-chip');
+    for(var i=0;i<chips.length;i++) chips[i].classList.toggle('on', +chips[i].getAttribute('data-m') === med.mins);
+  }
+  function medPick(m){ med.mins = m; medPaintDur(); }
+  function medAdd(n){ med.mins = Math.min(MED_MAX_MIN, med.mins + n); medPaintDur(); }
+
+  function medElapsed(){ return med.accMs + (med.state === 'run' ? Date.now() - med.startTs : 0); }
+  function medFmt(sec){
+    var h = Math.floor(sec/3600), m = Math.floor(sec%3600/60), s = sec%60;
+    return (h ? h+':' : '') + ('0'+m).slice(-2) + ':' + ('0'+s).slice(-2);
+  }
+  function medPaint(){
+    var el = medElapsed(), fixed = med.mode === 'fixed', fg = document.getElementById('medRingFg');
+    if(fixed){
+      var left = Math.max(0, Math.ceil((med.targetMs - el)/1000));
+      document.getElementById('medTimeTxt').textContent = medFmt(left);
+      document.getElementById('medTimeSub').textContent = '剩餘';
+      fg.style.strokeDashoffset = (MED_CIRC * Math.min(1, el/med.targetMs)).toFixed(2);
+    }else{
+      document.getElementById('medTimeTxt').textContent = medFmt(Math.floor(el/1000));
+      document.getElementById('medTimeSub').textContent = '已靜坐';
+      fg.style.strokeDashoffset = MED_CIRC;
+    }
+  }
+  function medTick(){
+    if(med.state !== 'run') return;
+    var el = medElapsed();
+    if(med.mode === 'fixed' && el >= med.targetMs){ medFinish(true); return; }
+    if(med.mode === 'open' && el >= MED_OPEN_MAX_MIN*60000){ medFinish(true); return; }
+    medPaint();
+  }
+
+  function medUnlockAudio(){
+    try{
+      var AC = window.AudioContext || window.webkitAudioContext; if(!AC) return;
+      if(!med.ctx) med.ctx = new AC();
+      if(med.ctx.state === 'suspended') med.ctx.resume();
+    }catch(e){}
+  }
+  function medStrike(c, t){
+    // 以幾個漸弱的正弦波合成類似磬的聲音（自製合成音，無版權問題）
+    [[1,.5,7],[2.76,.28,4.5],[5.4,.12,2.6],[8.93,.05,1.5]].forEach(function(p){
+      var o = c.createOscillator(), g = c.createGain();
+      o.type = 'sine'; o.frequency.value = 196*p[0];
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(p[1]*.55, t+.012);
+      g.gain.exponentialRampToValueAtTime(0.0001, t+p[2]);
+      o.connect(g); g.connect(c.destination);
+      o.start(t); o.stop(t+p[2]+.1);
+    });
+  }
+  function medBell(n){
+    if(!document.getElementById('medChime').checked || !med.ctx) return;
+    try{
+      if(med.ctx.state === 'suspended') med.ctx.resume();
+      var t0 = med.ctx.currentTime + .05;
+      for(var i=0;i<n;i++) medStrike(med.ctx, t0 + i*4.5);
+    }catch(e){}
+  }
+  function medWake(on){
+    try{
+      if(on){
+        if(navigator.wakeLock && !med.wake){
+          navigator.wakeLock.request('screen').then(function(l){
+            med.wake = l; l.addEventListener('release', function(){ med.wake = null; });
+          }).catch(function(){});
+        }
+      }else if(med.wake){ med.wake.release(); med.wake = null; }
+    }catch(e){}
+  }
+
+  function medStart(){
+    medUnlockAudio();
+    med.targetMs = med.mode === 'fixed' ? med.mins*60000 : 0;
+    med.accMs = 0; med.startTs = Date.now(); med.state = 'run';
+    document.getElementById('medPauseBtn').firstChild.textContent = '暫停';
+    document.getElementById('medRingWrap').classList.remove('med-paused');
+    document.getElementById('medLeave').hidden = true;
+    document.getElementById('medWakeNote').textContent = ('wakeLock' in navigator)
+      ? '靜坐期間會保持螢幕亮著' : '此瀏覽器無法保持螢幕不熄滅，請先把手機自動鎖定時間調長';
+    medShow('medRun'); medPaint();
+    clearInterval(med.timer); med.timer = setInterval(medTick, 250);
+    medWake(true); medBell(1);
+  }
+  function medTogglePause(){
+    var btn = document.getElementById('medPauseBtn').firstChild;
+    if(med.state === 'run'){
+      med.accMs = medElapsed(); med.state = 'pause'; btn.textContent = '繼續';
+      document.getElementById('medRingWrap').classList.add('med-paused'); medWake(false);
+    }else if(med.state === 'pause'){
+      med.startTs = Date.now(); med.state = 'run'; btn.textContent = '暫停';
+      document.getElementById('medRingWrap').classList.remove('med-paused'); medWake(true);
+    }
+  }
+  function medEnd(){ medFinish(false); }
+  function medFinish(auto){
+    if(med.state !== 'run' && med.state !== 'pause') return;
+    var ms = medElapsed();
+    if(auto) ms = med.mode === 'fixed' ? med.targetMs : Math.min(ms, MED_OPEN_MAX_MIN*60000);
+    clearInterval(med.timer); med.timer = null; med.state = 'done'; medWake(false);
+    if(auto) medBell(3); else medBell(1);
+    var sec = Math.round(ms/1000), saved = medRecord(sec), m = Math.floor(sec/60);
+    document.getElementById('medDoneBig').textContent = sec < 60 ? (sec + ' 秒') : (m >= 60 ? Math.floor(m/60)+' 小時 '+(m%60)+' 分鐘' : m+' 分鐘');
+    document.getElementById('medDoneMsg').textContent = saved ? '辛苦了，這次的靜坐已加入您的累積。'
+      : (sec < MED_MIN_SAVE_SEC ? '不到 1 分鐘，這次不計入累積。' : '辛苦了。（您已關閉「記下我的靜坐」，這次沒有記錄。）');
+    medShow('medDone'); medRenderStats();
+  }
+  function medAgain(){ med.state = 'idle'; medShow('medSetup'); }
+
+  function openMeditation(){
+    if(med.state !== 'run' && med.state !== 'pause'){ med.state = 'idle'; medShow('medSetup'); }
+    var g = document.getElementById('medGuide'), body = document.getElementById('medGuideBody');
+    if(MED_GUIDE.length){
+      body.innerHTML = MED_GUIDE.map(function(t){ return '<p>'+String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</p>'; }).join('');
+      g.hidden = false;
+    }else{ g.hidden = true; }
+    medPaintDur(); medSetMode(med.mode); medRenderStats();
+    document.getElementById('medLeave').hidden = true;
+    openModal('modalMeditation');
+  }
+  function medTryClose(){
+    if(med.state === 'run' || med.state === 'pause'){ document.getElementById('medLeave').hidden = false; return; }
+    closeModal('modalMeditation'); med.state = 'idle'; medShow('medSetup');
+  }
+  function medLeaveCancel(){ document.getElementById('medLeave').hidden = true; }
+  function medLeaveNow(){ medFinish(false); closeModal('modalMeditation'); med.state = 'idle'; medShow('medSetup'); }
+  document.addEventListener('visibilitychange', function(){
+    if(document.visibilityState === 'visible' && med.state === 'run'){ medTick(); if(med.state === 'run') medWake(true); }
+  });
 
   /* ───────── 最新公告（Google表單＋試算表發布） ───────── */
   // 之後將道場「最新公告」Google試算表「發布到網路」的 CSV 連結貼在這裡即可自動顯示公告
