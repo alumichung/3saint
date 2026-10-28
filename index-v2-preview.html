@@ -330,14 +330,14 @@
   @media (min-width:861px){ .card-row3.canon-row3 .svc-cta{width:auto;align-self:flex-end;align-items:flex-end} }
   .med-panel{max-width:460px}
   .med-guide{margin:0 0 18px;border:1px solid rgba(32,26,18,.12);border-radius:6px;background:rgba(255,255,255,.4)}
-  .med-guide summary{cursor:pointer;padding:11px 14px;font-size:14px;font-weight:700;color:var(--vermilion);list-style:none}
+  .med-guide summary{cursor:pointer;padding:12px 38px 12px 14px;font-size:14.5px;font-weight:700;color:var(--vermilion);list-style:none;position:relative}
+  .med-guide summary small{display:block;margin-top:3px;font-size:12.5px;font-weight:400;color:var(--text-body);line-height:1.6}
   .med-guide summary::-webkit-details-marker{display:none}
-  .med-guide summary::after{content:"＋";float:right;color:var(--gold)}
+  .med-guide summary::after{content:"＋";position:absolute;right:14px;top:11px;color:var(--gold)}
   .med-guide[open] summary::after{content:"－"}
-  .med-guide-body{padding:0 14px 14px;font-size:13.5px;color:var(--text-body);text-align:justify}
+  .med-guide-body{padding:0 14px 8px;font-size:13.5px;color:var(--text-body);text-align:justify}
   .med-guide-body p+p{margin-top:8px}
-  .med-guide-body .med-intro{margin-bottom:12px}
-  .med-verse{padding:14px 8px;border-top:1px solid rgba(32,26,18,.1);text-align:center;color:var(--text-dark);font-size:15.5px;line-height:2;letter-spacing:2px}
+  .med-verse{padding:6px 8px 10px;border-top:1px solid rgba(32,26,18,.1);text-align:center;color:var(--text-dark);font-size:15.5px;line-height:2;letter-spacing:2px}
   .med-verse div{white-space:nowrap}
   @media (max-width:420px){ .med-verse{padding:12px 2px;font-size:min(15px,3.3vw);letter-spacing:.06em} }
   .med-tabs{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(156,59,46,.4);border-radius:4px;overflow:hidden;margin-bottom:22px}
@@ -979,7 +979,7 @@
     <div class="modal-sub">寧靜的計時陪伴，收神、靜心、養性，修心。</div>
 
     <details class="med-guide" id="medGuide" hidden>
-      <summary id="medGuideSum">靜坐前引導</summary>
+      <summary><span id="medGuideSum">靜坐前引導</span><small id="medGuideSub"></small></summary>
       <div class="med-guide-body" id="medGuideBody"></div>
     </details>
 
@@ -1753,10 +1753,10 @@
   /* ───────── 靜坐計時 ─────────
      • 用「結束時間」計算，不靠計數，手機鎖屏或切到別的分頁再回來，時間仍然準確。
      • 紀錄只存在使用者自己的瀏覽器（localStorage），只存「每天累計秒數」，不存姓名、不送出任何資料。
-     • 靜坐前引導文：內容在下方 MED_GUIDE（summary 標題、intro 說明、verse 每行一句）；intro 與 verse 都留空時整個區塊不顯示。 */
+     • 靜坐前引導文：內容在下方 MED_GUIDE（summary 紅字標題、intro 標題下小字、verse 展開後每行一句）；intro 與 verse 都留空時整個區塊不顯示。 */
   var MED_GUIDE = {
     summary: '靜坐前・先誦念「金光神咒」',
-    intro: '靜坐前誦念「金光神咒」1–3 次，用來穩定心神、淨化磁場、抵禦干擾。',
+    intro: '1–3 次，用來穩定心神、淨化磁場、抵禦干擾。',   // 顯示在標題下方的小字（收合時也看得到）
     verse: [
       '天地玄宗，萬炁本根。廣修萬劫，證吾神通。',
       '三界內外，惟道獨尊。體有金光，覆映吾身。',
@@ -1939,9 +1939,10 @@
     var g = document.getElementById('medGuide'), body = document.getElementById('medGuideBody');
     if(MED_GUIDE.intro || (MED_GUIDE.verse && MED_GUIDE.verse.length)){
       var esc = function(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); };
-      body.innerHTML = (MED_GUIDE.intro ? '<p class="med-intro">'+esc(MED_GUIDE.intro)+'</p>' : '')
-        + '<div class="med-verse">' + (MED_GUIDE.verse||[]).map(function(t){ return '<div>'+esc(t)+'</div>'; }).join('') + '</div>';
+      body.innerHTML = '<div class="med-verse">' + (MED_GUIDE.verse||[]).map(function(t){ return '<div>'+esc(t)+'</div>'; }).join('') + '</div>';
       document.getElementById('medGuideSum').textContent = MED_GUIDE.summary || '靜坐前引導';
+      // 小字依標點分段、段內不折行，避免一個字被孤零零折到下一行
+      document.getElementById('medGuideSub').innerHTML = (MED_GUIDE.intro || '').replace(/([，、。])/g,'$1|').split('|').filter(Boolean).map(function(t){ return '<span style="white-space:nowrap">'+esc(t)+'</span>'; }).join('');
       g.hidden = false;
     }else{ g.hidden = true; }
     medPaintDur(); medSetMode(med.mode); medRenderStats();
