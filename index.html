@@ -1802,19 +1802,14 @@
     if((window.location.hash || '').replace('#','') === 'tab-divination-booking') scrollToWendao();
   });
 
-  /* ───────── 背景音樂（兩首輪播，瀏覽器規定需使用者先點一下才能出聲） ───────── */
-  var BG_TRACKS = ['audio/crystal-bowls-piano.mp3', 'audio/mountain-spring-guzheng.mp3'];
-  var bgTrackIndex = 0;
+  /* ───────── 背景音樂（單曲循環，瀏覽器規定需使用者先點一下才能出聲） ───────── */
+  var BG_TRACK = 'audio/crystal-bowls-piano.mp3';
   var bgPlaying = false;
   var bgAudio = document.getElementById('bgAudio');
   var bgBtn = document.getElementById('bgMusicBtn');
   bgAudio.volume = 0.38;
-  bgAudio.src = BG_TRACKS[bgTrackIndex];
-  bgAudio.addEventListener('ended', function(){
-    bgTrackIndex = (bgTrackIndex + 1) % BG_TRACKS.length;
-    bgAudio.src = BG_TRACKS[bgTrackIndex];
-    bgAudio.play();
-  });
+  bgAudio.src = BG_TRACK;
+  bgAudio.loop = true;
   function toggleBgMusic(){
     if(bgPlaying){
       bgAudio.pause();
