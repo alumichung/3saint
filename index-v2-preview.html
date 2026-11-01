@@ -2307,7 +2307,7 @@
       dojoFrame = document.createElement('iframe');
       dojoFrame.title = '三聖宮 3D 線上道場';
       dojoFrame.setAttribute('allow', 'fullscreen; autoplay');
-      dojoFrame.src = DOJO_URL;
+      dojoFrame.src = DOJO_URL + (/[?&]debug=1(&|$)/.test(location.search) ? '?debug=1' : '');   // 網址加 debug=1 時，連同道場的除錯訊息一起打開
       ov.insertBefore(dojoFrame, ov.firstChild);
     }
     ov.classList.add('open'); ov.setAttribute('aria-hidden','false');
