@@ -428,6 +428,21 @@
   #scriptureViewer .pdf-page canvas{display:block;width:100%;height:100%}
   #scriptureViewer .pdf-msg{color:#e8dfc8;text-align:center;padding:48px 24px;font-size:14px;line-height:1.9}
   #scriptureViewer .pdf-msg a{color:#f0cf8a;text-decoration:underline}
+  /* 經典閱讀：誦讀計次列（紀錄只存在自己的瀏覽器） */
+  #scriptureViewer .rc-bar{flex-shrink:0;border-top:1px solid rgba(32,26,18,0.1);padding:10px 22px 8px;background:rgba(255,255,255,.35)}
+  #scriptureViewer .rc-row{display:flex;align-items:center;gap:8px}
+  #scriptureViewer .rc-lab{font-size:13px;font-weight:700;color:var(--text-dark);margin-right:2px;white-space:nowrap}
+  #scriptureViewer .rc-chip{font-family:inherit;font-size:13px;line-height:1;padding:8px 13px;border:1px solid rgba(156,60,46,.45);border-radius:999px;background:transparent;color:var(--vermilion);cursor:pointer;white-space:nowrap}
+  #scriptureViewer .rc-chip:active{background:rgba(156,60,46,.1)}
+  #scriptureViewer .rc-cur{margin-left:auto;font-size:13px;color:var(--text-body);white-space:nowrap}
+  #scriptureViewer .rc-cur b{font-size:22px;line-height:1;color:var(--vermilion);font-variant-numeric:tabular-nums;margin:0 2px}
+  #scriptureViewer .rc-row2{margin-top:8px}
+  #scriptureViewer .rc-reset{font-family:inherit;font-size:13px;padding:9px 16px;border:1px solid rgba(32,26,18,.25);border-radius:6px;background:transparent;color:var(--text-dark);cursor:pointer}
+  #scriptureViewer .rc-ok{flex:1;font-family:inherit;font-size:14px;font-weight:700;letter-spacing:1px;padding:9px 12px;border:0;border-radius:6px;background:linear-gradient(180deg,#dcc176,#c4a24f);color:#2a2112;cursor:pointer}
+  #scriptureViewer .rc-ok:disabled{opacity:.45;cursor:default}
+  #scriptureViewer .rc-sum{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:7px;font-size:12px;color:var(--text-body);line-height:1.5}
+  #scriptureViewer .rc-sum .med-linkbtn{white-space:nowrap}
+  #scriptureViewer .rc-note{font-size:11.5px;color:var(--text-body);opacity:.8;margin-top:2px}
   #scriptureViewer .viewer-foot{padding:10px 22px;border-top:1px solid rgba(32,26,18,0.1);flex-shrink:0;display:flex;justify-content:space-between;align-items:center;gap:12px}
   #scriptureViewer .viewer-pageno{font-size:12.5px;color:var(--text-body)}
   #scriptureViewer .viewer-foot a{font-size:12.5px;color:var(--vermilion)}
@@ -960,6 +975,21 @@
       <button class="modal-close" onclick="closeScriptureViewer()">&times;</button>
     </div>
     <div class="pdf-body" id="scriptureViewerBody"></div>
+    <div class="rc-bar" id="rcBar">
+      <div class="rc-row">
+        <span class="rc-lab">誦讀計次</span>
+        <button type="button" class="rc-chip" onclick="rcAdd(1)">+1</button>
+        <button type="button" class="rc-chip" onclick="rcAdd(3)">+3</button>
+        <button type="button" class="rc-chip" onclick="rcAdd(10)">+10</button>
+        <span class="rc-cur">本次 <b id="rcCur">0</b> 次</span>
+      </div>
+      <div class="rc-row rc-row2">
+        <button type="button" class="rc-reset" onclick="rcReset()">重設</button>
+        <button type="button" class="rc-ok" id="rcOk" onclick="rcCommit()" disabled>記下這次誦讀</button>
+      </div>
+      <div class="rc-sum"><span id="rcSum"></span><button type="button" class="med-linkbtn" onclick="rcClear()">清除紀錄</button></div>
+      <div class="rc-note">紀錄只存在您自己這支手機或瀏覽器裡，三聖宮不會蒐集、也看不到。</div>
+    </div>
     <div class="viewer-foot"><a id="scriptureViewerDownload" href="#" download>下載原始 PDF 檔案</a><span class="viewer-pageno" id="scriptureViewerPageNo"></span></div>
   </div>
 </div>
@@ -1723,6 +1753,7 @@
     pdfCleanup();
     var token = pdfToken;
     document.getElementById('scriptureViewerTitle').textContent = title;
+    rcTitle = title; rcCur = 0; clearTimeout(rcFlashTimer); rcFlashTimer = null; rcPaint();
     var dl = document.getElementById('scriptureViewerDownload');
     dl.href = file; dl.setAttribute('download', title + '.pdf');
     body.innerHTML = '<div class="pdf-msg">經文載入中，請稍候…</div>';
@@ -1853,6 +1884,53 @@
     var key = medDayKey(Date.now());
     d.days[key] = (+d.days[key] || 0) + Math.round(sec);
     medSave(d); return true;
+  }
+
+  /* ───────── 經典誦讀計次（每部經各自累計；存在自己的瀏覽器，不送出任何資料） ───────── */
+  var RC_KEY = 'sansheng_recite_v1';
+  var rcMem = null, rcCur = 0, rcTitle = '', rcFlashTimer = null;
+  function rcLoad(){
+    var d = null;
+    try{ var s = localStorage.getItem(RC_KEY); if(s) d = JSON.parse(s); }catch(e){}
+    if(!d || typeof d !== 'object') d = rcMem || {books:{}};
+    if(!d.books || typeof d.books !== 'object') d.books = {};
+    return d;
+  }
+  function rcSave(d){ rcMem = d; try{ localStorage.setItem(RC_KEY, JSON.stringify(d)); }catch(e){} }
+  function rcStats(title){
+    var b = rcLoad().books[title], total = 0, days = 0, k, v;
+    if(b && b.days){ for(k in b.days){ v = +b.days[k]; if(v > 0){ total += v; days++; } } }
+    return {total: total, days: days, today: b && b.days ? (+b.days[medDayKey(Date.now())] || 0) : 0};
+  }
+  function rcPaint(){
+    document.getElementById('rcCur').textContent = rcCur;
+    document.getElementById('rcOk').disabled = rcCur <= 0;
+    if(!rcFlashTimer) document.getElementById('rcOk').textContent = '記下這次誦讀';
+    var st = rcStats(rcTitle);
+    document.getElementById('rcSum').textContent = st.total > 0
+      ? '本經累積 ' + st.total + ' 次・共 ' + st.days + ' 天' + (st.today ? '（今天 ' + st.today + ' 次）' : '')
+      : '本經尚無誦讀紀錄';
+  }
+  function rcAdd(n){ rcCur = Math.min(rcCur + n, 9999); rcPaint(); }
+  function rcReset(){ rcCur = 0; rcPaint(); }
+  function rcCommit(){
+    if(rcCur <= 0 || !rcTitle) return;
+    var d = rcLoad(), b = d.books[rcTitle];
+    if(!b || typeof b !== 'object') b = d.books[rcTitle] = {days:{}};
+    if(!b.days) b.days = {};
+    var key = medDayKey(Date.now()), n = rcCur;
+    b.days[key] = (+b.days[key] || 0) + n;
+    rcSave(d);
+    rcCur = 0;
+    var ok = document.getElementById('rcOk');
+    clearTimeout(rcFlashTimer);
+    rcFlashTimer = setTimeout(function(){ rcFlashTimer = null; rcPaint(); }, 1800);
+    rcPaint();
+    ok.textContent = '已記下 ' + n + ' 次 ✓';
+  }
+  function rcClear(){
+    if(!window.confirm('確定要清除這支手機上所有經典的誦讀紀錄嗎？清除後無法復原。')) return;
+    var d = rcLoad(); d.books = {}; rcSave(d); rcPaint();
   }
 
   function medShow(which){
