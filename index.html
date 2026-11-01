@@ -1441,7 +1441,18 @@
 
   /* ───────── 共用彈窗 ───────── */
   function openModal(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
-  function closeModal(id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow = (document.querySelector('.site-modal.open') || dojoOpen) ? 'hidden' : ''; dojoModalClosed(id); }
+  function closeModal(id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow = (document.querySelector('.site-modal.open') || dojoOpen) ? 'hidden' : ''; dojoModalClosed(id); dojoViewerAutoClose(); }
+  /* 單獨開 /dojo/ 時，3D 會用自己的小視窗載入官網頁面（右上「返回道場」）。
+     這時在官網視窗按 ✕ 關掉最後一個功能窗，就順便關掉那層，直接回到道場，不必再按「返回道場」。
+     只在「本頁是被同網域 /dojo/ 載入」時才會動作，其他情況完全不影響。 */
+  var dojoViewerMode = (function(){ try{ return window.parent !== window && parent.location.origin === location.origin && /^\/dojo\/?/.test(parent.location.pathname) && !!parent.document.getElementById('fortuneClose'); }catch(e){ return false; } })();
+  function dojoViewerAutoClose(){
+    if(!dojoViewerMode) return;
+    setTimeout(function(){
+      if(document.querySelector('.site-modal.open')) return;
+      try{ parent.document.getElementById('fortuneClose').click(); }catch(e){}
+    }, 120);
+  }
 
   /* ───────── 求籤（五狀態）：64籤資料重新比對「鐘府三聖64首籤詩.pdf」原始文稿校正，解曰採完整版（不設等第） ───────── */
   const QIAN_DATA = [
