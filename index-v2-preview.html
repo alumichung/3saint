@@ -2405,11 +2405,11 @@
   });
 
   /* ───────── 背景音樂（單曲循環，瀏覽器規定需使用者先點一下才能出聲） ───────── */
-  var BG_TRACK = 'audio/crystal-bowls-piano.mp3';
+  var BG_TRACK = 'audio/crystal-bowls-piano-v2.mp3';  // v2：檔案本身降 6dB。iPhone 的瀏覽器會無視網頁設定的音量（一律滿音量），原檔在 iPhone 喇叭上容易破音／有雜訊
   var bgPlaying = false;
   var bgAudio = document.getElementById('bgAudio');
   var bgBtn = document.getElementById('bgMusicBtn');
-  bgAudio.volume = 0.38;
+  bgAudio.volume = 0.76;   // 檔案已降 6dB，這裡 0.76 ≈ 原本電腦上的 0.38 音量；iPhone 會忽略此值
   bgAudio.src = BG_TRACK;
   bgAudio.loop = true;
   function toggleBgMusic(){
