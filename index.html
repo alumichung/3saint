@@ -437,6 +437,20 @@
   }
 
   /* ── 道場介紹（寬版彈窗・現場實景刷淡） ── */
+  /* ───── 3D 線上道場：iframe 疊層與橋接 ───── */
+  #dojoOverlay{position:fixed;inset:0;z-index:500;background:#0e0b07;display:none}
+  #dojoOverlay.open{display:block}
+  #dojoOverlay iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#0e0b07}
+  .dojo-back{position:absolute;top:max(12px,env(safe-area-inset-top));left:max(12px,env(safe-area-inset-left));z-index:2;display:flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(20,16,10,.55);color:#f6f0e4;font-size:13px;letter-spacing:1px;cursor:pointer;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+  body.dojo-open .site-modal{z-index:600}
+  body.dojo-open #scriptureViewer{z-index:700}
+  .modal-panel-deity{max-width:440px;padding-top:54px}
+  .modal-panel-deity .ti-deity-card{background:transparent;border:0;padding:0;backdrop-filter:none}
+  @media(max-width:600px){
+    body.dojo-open .site-modal{padding:0;align-items:stretch}
+    body.dojo-open .site-modal .modal-panel{max-width:none;width:100%;height:100vh;height:100dvh;max-height:100vh;max-height:100dvh;border-radius:0;border:0;box-sizing:border-box;padding-top:max(26px,env(safe-area-inset-top))}
+    body.dojo-open #scriptureViewer .modal-panel{height:100vh;height:100dvh;padding:0}
+  }
   .modal-panel-wide{max-width:960px;background-image:linear-gradient(180deg,rgba(246,240,228,.90) 0%,rgba(239,230,212,.82) 40%,rgba(246,240,228,.92) 100%),url("images/backgrounds/02-sansheng-modal-light.jpg");background-size:cover;background-position:center 22%;background-repeat:no-repeat;background-attachment:local}
   .ti-tabs{display:flex;gap:8px;margin-bottom:26px;border-bottom:1px solid rgba(32,26,18,0.15);flex-wrap:wrap}
   .ti-tab-btn{background:none;border:none;color:var(--text-body);font-family:var(--serif);font-size:14.5px;padding:10px 4px;margin-right:22px;cursor:pointer;border-bottom:2px solid transparent}
@@ -647,7 +661,7 @@
     <div class="hero-eyebrow">02・道場</div>
     <h1 class="hero-title">三聖宮<img class="seal seal-hero" src="images/seal.png" alt="" aria-hidden="true"></h1>
     <p class="hero-sub">道在日常・心正則明</p>
-    <a href="javascript:void(0)" onclick="openTempleIntro('tiIntro')" class="btn"><span>進入道場</span><svg class="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+    <a href="javascript:void(0)" onclick="enterDojo()" class="btn"><span>進入道場</span><svg class="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
   </div>
   <div class="hero-quick">
     <a href="javascript:void(0)" onclick="openFortune()">
@@ -1239,6 +1253,31 @@
 </div>
 
 <!-- 求籤（六狀態） -->
+<!-- 3D 線上道場（iframe 疊層；未開啟時不載入） -->
+<div id="dojoOverlay" aria-hidden="true">
+  <button class="dojo-back" type="button" onclick="closeDojo()" aria-label="返回官網">← 返回官網</button>
+</div>
+
+<!-- 神明卡片（單尊；供 3D 道場點神尊時開啟，文字與「宮廟介紹」同一份資料） -->
+<div class="site-modal" id="modalDeity" onclick="if(event.target===this) closeModal('modalDeity')">
+  <div class="modal-panel modal-panel-deity">
+    <button class="modal-close" onclick="closeModal('modalDeity')" aria-label="關閉">&times;</button>
+    <div id="deityOne"></div>
+  </div>
+</div>
+
+<!-- 易經卜卦（線上版尚未上線前的說明；上線後由 window.openOnlineDivination 接手） -->
+<div class="site-modal" id="modalDivination" onclick="if(event.target===this) closeModal('modalDivination')">
+  <div class="modal-panel">
+    <button class="modal-close" onclick="closeModal('modalDivination')" aria-label="關閉">&times;</button>
+    <div class="modal-eyebrow">問事服務</div>
+    <div class="modal-title">易經卜卦</div>
+    <div class="modal-sub">觀局勢，明位取捨。</div>
+    <div style="font-size:14px;line-height:1.9;color:var(--text-body);margin-bottom:20px">在人生的關鍵時刻，以求籤、易經卜卦為法，觀局勢、明位取捨，為當下的選擇提供方向與智慧。</div>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScKvOh6eTvfX0IA0hPfp23m_LXS1LEYvgVoqCNhu0cYQGk6hA/viewform" target="_blank" rel="noopener" class="btn-outline"><span>預約問事表單</span></a>
+  </div>
+</div>
+
 <div class="site-modal" id="modalFortune" onclick="if(event.target===this) closeModal('modalFortune')">
   <div class="modal-panel modal-panel-fortune" id="fortunePanel">
     <button class="modal-close" onclick="closeModal('modalFortune')">&times;</button>
@@ -1372,7 +1411,7 @@
 
   /* ───────── 共用彈窗 ───────── */
   function openModal(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
-  function closeModal(id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow = document.querySelector('.site-modal.open') ? 'hidden' : ''; }
+  function closeModal(id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow = (document.querySelector('.site-modal.open') || dojoOpen) ? 'hidden' : ''; dojoModalClosed(id); }
 
   /* ───────── 求籤（五狀態）：64籤資料重新比對「鐘府三聖64首籤詩.pdf」原始文稿校正，解曰採完整版（不設等第） ───────── */
   const QIAN_DATA = [
@@ -2143,6 +2182,119 @@
   /* ───────── 委員會申請 ───────── */
   function openCommittee(){ openModal('modalCommittee'); }
 
+  /* ───────── 3D 線上道場 ↔ 官網 橋接 ─────────
+     道場以 iframe 疊在官網上（同網域 /dojo/），兩邊用 postMessage 溝通：
+       道場 → 官網：{type:'dojo:open', target, id, minutes}、{type:'dojo:incense', count}、{type:'dojo:close'}
+       官網 → 道場：{type:'site:closed'}（官網視窗關閉時回報）
+     DOJO_ENABLED=false 時「進入道場」維持原本行為（開宮廟介紹）；網址加 ?dojo=1 可先自己測，不影響訪客。 */
+  var DOJO_URL = '/dojo/';
+  var DOJO_ENABLED = false;
+  try{ if(/[?&]dojo=1(&|$)/.test(location.search)) DOJO_ENABLED = true; }catch(e){}
+  var dojoOpen = false, dojoPendingModal = null, dojoFrame = null, dojoWasMusic = false;
+  var DOJO_DEITY_ALIAS = {
+    kaitai:'開臺聖王', guandi:'關聖帝君', mazu:'天上聖母',
+    xuantan:'玄壇真君', zhongtan:'中壇元帥', fude:'福德正神', jinhu:'金虎將軍',
+    taiyi:'太乙救苦天尊', renshen:'東嶽仁聖大帝'
+  };
+  function dojoFindDeity(id){
+    var all = [].concat(TI_DEITIES_MAIN, TI_DEITIES_SIDE, TI_DEITIES_GUIDE);
+    var name = DOJO_DEITY_ALIAS[id] || id;
+    for(var i=0;i<all.length;i++){ if(all[i].name === name) return all[i]; }
+    return null;
+  }
+  function dojoFindCanon(id){
+    id = String(id || '').replace(/\s+/g,'');
+    if(!id) return null;
+    for(var i=0;i<CANON_LIST.length;i++){
+      var t = CANON_LIST[i].title;
+      if(t === id || t.indexOf(id) > -1 || (id.length > 2 && id.indexOf(t) > -1)) return CANON_LIST[i];
+    }
+    return null;
+  }
+  function dojoPost(msg){
+    if(dojoFrame && dojoFrame.contentWindow){ try{ dojoFrame.contentWindow.postMessage(msg, location.origin); }catch(e){} }
+  }
+  function dojoModalClosed(id){
+    if(dojoPendingModal && dojoPendingModal === id){
+      dojoPendingModal = null;
+      dojoPost({type:'site:closed'});
+    }
+  }
+  function enterDojo(){
+    if(!DOJO_ENABLED){ openTempleIntro('tiIntro'); return; }
+    var ov = document.getElementById('dojoOverlay');
+    if(!dojoFrame){
+      dojoFrame = document.createElement('iframe');
+      dojoFrame.title = '三聖宮 3D 線上道場';
+      dojoFrame.setAttribute('allow', 'fullscreen; autoplay');
+      dojoFrame.src = DOJO_URL;
+      ov.insertBefore(dojoFrame, ov.firstChild);
+    }
+    ov.classList.add('open'); ov.setAttribute('aria-hidden','false');
+    dojoOpen = true; document.body.classList.add('dojo-open'); document.body.style.overflow = 'hidden';
+    // 道場有自己的音樂，進入時先把官網背景音樂停下，離開時再接回去
+    dojoWasMusic = bgPlaying;
+    if(bgPlaying) toggleBgMusic();
+  }
+  function closeDojo(){
+    dojoPendingModal = null;
+    if(document.getElementById('scriptureViewer').classList.contains('open')) closeScriptureViewer();
+    if(med.state === 'run' || med.state === 'pause') medLeaveNow();
+    document.querySelectorAll('.site-modal.open').forEach(function(m){ m.classList.remove('open'); });
+    var ov = document.getElementById('dojoOverlay');
+    ov.classList.remove('open'); ov.setAttribute('aria-hidden','true');
+    dojoOpen = false; document.body.classList.remove('dojo-open'); document.body.style.overflow = '';
+    if(dojoFrame){ dojoFrame.remove(); dojoFrame = null; }   // 拆掉 iframe，3D 與音樂一起停止、省電
+    if(dojoWasMusic && !bgPlaying) toggleBgMusic();
+    dojoWasMusic = false;
+  }
+  function openDeity(id){
+    var d = dojoFindDeity(id);
+    if(!d) return false;
+    document.getElementById('deityOne').innerHTML = tiDeityCard(d);
+    openModal('modalDeity');
+    dojoPendingModal = 'modalDeity';
+    return true;
+  }
+  /* 對外入口：window.DojoBridge.open(target, id, extra)；成功回傳 true，不認得的目標回傳 false */
+  function dojoOpenTarget(target, id, extra){
+    extra = extra || {};
+    var ok = true;
+    if(target === 'fortune'){
+      openFortune(); dojoPendingModal = 'modalFortune';
+    } else if(target === 'scripture'){
+      var b = dojoFindCanon(id);
+      if(b){ openScripture(b.file, b.title); dojoPendingModal = 'scriptureViewer'; }
+      else { openCanonLibrary(); dojoPendingModal = 'modalCanonLibrary'; }   // 沒帶代號或找不到 → 開經典清單
+    } else if(target === 'meditation'){
+      openMeditation();
+      var m = parseInt(extra.minutes, 10);
+      if(m > 0 && med.state !== 'run' && med.state !== 'pause'){ medSetMode('fixed'); med.mins = Math.min(m, MED_MAX_MIN); medPaintDur(); }
+      dojoPendingModal = 'modalMeditation';
+    } else if(target === 'divination'){
+      if(typeof window.openOnlineDivination === 'function'){ var mid = window.openOnlineDivination(extra); dojoPendingModal = (typeof mid === 'string') ? mid : null; }   // 日後線上卜卦上線：回傳視窗 id 即可接上關閉回報
+      else { openModal('modalDivination'); dojoPendingModal = 'modalDivination'; }
+    } else if(target === 'deity'){
+      ok = openDeity(id);
+    } else { ok = false; }
+    return ok;
+  }
+  window.DojoBridge = { open: dojoOpenTarget, close: closeDojo, enter: enterDojo };
+  window.addEventListener('message', function(ev){
+    if(ev.origin !== location.origin) return;                         // 只收同網域（/dojo/）的訊息
+    if(!dojoFrame || ev.source !== dojoFrame.contentWindow) return;   // 而且必須來自道場那個 iframe
+    var d = ev.data;
+    if(!d || typeof d !== 'object') return;
+    if(d.type === 'dojo:open'){
+      if(!dojoOpenTarget(d.target, d.id, d)) dojoPost({type:'site:closed'});   // 打不開就立刻回報，3D 不會卡住
+    } else if(d.type === 'dojo:incense'){
+      window.dojoIncenseCount = +d.count || 0;
+      try{ document.dispatchEvent(new CustomEvent('dojo:incense', {detail:{count: window.dojoIncenseCount}})); }catch(e){}
+    } else if(d.type === 'dojo:close'){
+      closeDojo();
+    }
+  });
+
   /* ───────── LINE 官方帳號選單深連結（沿用舊站 Rich Menu 已設定的 4 組網址，不需使用者重新設定） ───────── */
   function scrollToWendao(){
     var el = document.getElementById('wendao');
@@ -2159,6 +2311,10 @@
       openCanonLibrary();
     } else if(hash === 'tab-apply'){
       openCommittee();
+    } else if(hash === 'tab-meditation'){
+      openMeditation();
+    } else if(hash === 'dojo'){
+      enterDojo();
     }
   }
   applyDeepLinkFromHash();
