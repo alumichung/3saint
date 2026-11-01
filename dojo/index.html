@@ -91,7 +91,7 @@
   #seatBar.on{display:flex}
   body.touch #seatBar{bottom:calc(168px + env(safe-area-inset-bottom))}
   #dock{position:fixed;z-index:4;display:flex;gap:10px;left:50%;transform:translateX(-50%);bottom:calc(86px + env(safe-area-inset-bottom))}
-  body.touch #dock{gap:4px 3px;flex-wrap:wrap;justify-content:flex-start;max-width:calc(100vw - 140px - env(safe-area-inset-left));left:calc(132px + env(safe-area-inset-left));transform:none;bottom:calc(52px + env(safe-area-inset-bottom))}
+  body.touch #dock{gap:4px 3px;flex-wrap:nowrap;justify-content:flex-start;max-width:calc(100vw - 140px - env(safe-area-inset-left));left:calc(132px + env(safe-area-inset-left));transform:none;bottom:calc(52px + env(safe-area-inset-bottom))}
   .ic{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;padding:0;backdrop-filter:none;font-size:10px;letter-spacing:.08em;color:#f0dfb4;text-shadow:0 1px 3px #000,0 0 6px #000}
   .ic i{font-style:normal;position:relative;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;color:#f0dfb4;
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 6a44 44 0 1 1 0 88a22 22 0 0 1 0-44a22 22 0 0 0 0-44z' fill='%23c9a14a' fill-opacity='.16'/%3E%3C/svg%3E") center/78% no-repeat,radial-gradient(circle at 35% 30%,#4a3322,#1a0f09 70%);
@@ -99,7 +99,7 @@
   .ic:active i{filter:brightness(1.4)}
   .ic.reserve i{opacity:.6;border-style:dashed}
   body.touch .ic{font-size:9px;gap:2px;letter-spacing:.02em}
-  body.touch .ic i{width:clamp(26px,calc((100vw - 158px)/8),31px);height:clamp(26px,calc((100vw - 158px)/8),31px);font-size:14px}
+  body.touch .ic i{width:clamp(24px,calc((100vw - 172px)/8),31px);height:clamp(24px,calc((100vw - 172px)/8),31px);font-size:14px}
   body.touch #joy{width:104px;height:104px}
   body.inviewer #dock,body.infortune #dock{display:none!important}
   #seatBar button{white-space:nowrap;font-size:15px;padding:10px 18px;letter-spacing:.15em}
