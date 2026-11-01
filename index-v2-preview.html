@@ -2277,7 +2277,7 @@
        官網 → 道場：{type:'site:closed'}（官網視窗關閉時回報）
      DOJO_ENABLED=false 時「進入道場」維持原本行為（開宮廟介紹）；網址加 ?dojo=1 可先自己測，不影響訪客。 */
   var DOJO_URL = '/dojo/';
-  var DOJO_ENABLED = false;
+  var DOJO_ENABLED = true;   // 2026-11-01 正式開放（要暫時關掉就改回 false）
   try{ if(/[?&]dojo=1(&|$)/.test(location.search)) DOJO_ENABLED = true; }catch(e){}
   // 道場開放時，首頁按鈕改叫「進入線上道場」；未開放前維持「進入道場」（開宮廟介紹），文字與實際行為一致
   (function(){ var l = document.getElementById('dojoBtnLabel'); if(l && DOJO_ENABLED) l.textContent = '進入線上道場'; })();
