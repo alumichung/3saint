@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WebGL 檢測</title>
+<style>body{font:14px/1.6 monospace;background:#111;color:#9f9;margin:0;padding:14px;white-space:pre-wrap}b{color:#fc6}</style></head><body><div id="o"></div><script>
+var o=document.getElementById('o'),t='';
+function p(s){t+=s+'\n';o.textContent=t;}
+p('<WebGL 檢測> 請整頁截圖給我');
+p('UA: '+navigator.userAgent);
+p('螢幕: '+screen.width+'x'+screen.height+' dpr='+devicePixelRatio+'  deviceMemory='+(navigator.deviceMemory||'?'));
+var tests=[['webgl2',undefined],['webgl2',{antialias:false}],['webgl2',{powerPreference:'high-performance'}],['webgl2',{alpha:false,antialias:false,depth:true,stencil:false}],['webgl',undefined],['webgl',{antialias:false}],['experimental-webgl',undefined]];
+tests.forEach(function(x,i){
+  try{
+    var c=document.createElement('canvas'); c.width=300;c.height=150;
+    var g=c.getContext(x[0],x[1]);
+    if(!g){p((i+1)+'. '+x[0]+' '+JSON.stringify(x[1]||{})+' → 失敗(null)');return;}
+    var e=g.getExtension('WEBGL_debug_renderer_info');
+    p((i+1)+'. '+x[0]+' '+JSON.stringify(x[1]||{})+' → 成功  '+(e?g.getParameter(e.UNMASKED_RENDERER_WEBGL):g.getParameter(g.RENDERER))+'  maxTex='+g.getParameter(g.MAX_TEXTURE_SIZE));
+    var l=g.getExtension('WEBGL_lose_context'); if(l) l.loseContext();
+  }catch(err){p((i+1)+'. '+x[0]+' → 例外 '+err.message);}
+});
+p('--- 直接放在頁面上的畫布 ---');
+try{var d=document.createElement('canvas');document.body.appendChild(d);var g2=d.getContext('webgl2');p('頁面畫布 webgl2: '+(g2?'成功':'失敗'));}catch(err){p('例外 '+err.message);}
+</script></body></html>

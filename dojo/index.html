@@ -11,7 +11,12 @@
     if(done) return; done=true;
     var d=document.createElement('div'); d.id='fatal'; d.style.cssText='position:fixed;left:50%;top:42%;transform:translate(-50%,-50%);max-width:84vw;padding:16px 20px;border-radius:12px;background:#1b100af2;border:1px solid #c9a14a99;color:#f3e6c0;font:15px/1.7 sans-serif;text-align:center;z-index:99998';
     d.textContent='此瀏覽器暫時無法顯示 3D，請改用 Safari 或 LINE 開啟。'+(DBG?'\n['+why+'] 停在：'+last:'');
-    d.style.whiteSpace='pre-wrap'; (document.body||document.documentElement).appendChild(d);
+    d.style.whiteSpace='pre-wrap';
+    var tip=document.createElement('div'); tip.style.cssText='font-size:13px;opacity:.85;margin-top:8px'; tip.textContent='（Chrome 點右上角「⋯」或分享鈕 → 在 Safari 中開啟；或複製網址貼到 Safari）'; d.appendChild(tip);
+    var bt=document.createElement('button'); bt.textContent='複製網址'; bt.style.cssText='margin-top:10px;padding:8px 18px;border-radius:99px;border:1px solid #c9a14a;background:#3a2a14;color:#f3e6c0;font-size:14px;pointer-events:auto';
+    bt.onclick=function(){ var u=location.origin+location.pathname; try{ navigator.clipboard.writeText(u).then(function(){bt.textContent='已複製，請到 Safari 貼上';},function(){bt.textContent=u;}); }catch(e){ bt.textContent=u; } };
+    d.appendChild(document.createElement('br')); d.appendChild(bt);
+    (document.body||document.documentElement).appendChild(d);
   };
   window.__ok=function(){ done=true; var f=document.getElementById('fatal'); if(f) f.remove(); };
   window.addEventListener('error',function(e){ window.__boot('ERROR '+(e.message||'')+(e.lineno?' @'+e.lineno:'')); if(!window.__frame1) window.__fatal('error'); });
