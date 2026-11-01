@@ -2311,8 +2311,18 @@
       dojoPost({type:'site:closed'});
     }
   }
+  // iPhone 在道場裡輸入名字時會自動放大頁面、而且縮不回來，操作區就被切掉。
+  // 道場開著的時候鎖住縮放，離開再放開，官網其他頁面不受影響。
+  var VIEWPORT_NORMAL = 'width=device-width, initial-scale=1.0';
+  function dojoLockZoom(lock){
+    try{
+      var m = document.querySelector('meta[name="viewport"]');
+      if(m) m.setAttribute('content', lock ? VIEWPORT_NORMAL + ', maximum-scale=1.0' : VIEWPORT_NORMAL);
+    }catch(e){}
+  }
   function enterDojo(){
     if(!DOJO_ENABLED){ openTempleIntro('tiIntro'); return; }
+    dojoLockZoom(true);
     var ov = document.getElementById('dojoOverlay');
     if(!dojoFrame){
       dojoFrame = document.createElement('iframe');
@@ -2335,6 +2345,7 @@
     var ov = document.getElementById('dojoOverlay');
     ov.classList.remove('open'); ov.setAttribute('aria-hidden','true');
     dojoOpen = false; document.body.classList.remove('dojo-open'); document.body.style.overflow = '';
+    dojoLockZoom(false);
     if(dojoFrame){ dojoFrame.remove(); dojoFrame = null; }   // 拆掉 iframe，3D 與音樂一起停止、省電
     if(dojoWasMusic && !bgPlaying) toggleBgMusic();
     dojoWasMusic = false;
