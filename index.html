@@ -661,7 +661,7 @@
     <div class="hero-eyebrow">02・道場</div>
     <h1 class="hero-title">三聖宮<img class="seal seal-hero" src="images/seal.png" alt="" aria-hidden="true"></h1>
     <p class="hero-sub">道在日常・心正則明</p>
-    <a href="javascript:void(0)" onclick="enterDojo()" class="btn"><span>進入道場</span><svg class="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+    <a href="javascript:void(0)" onclick="enterDojo()" class="btn"><span id="dojoBtnLabel">進入道場</span><svg class="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
   </div>
   <div class="hero-quick">
     <a href="javascript:void(0)" onclick="openFortune()">
@@ -2190,6 +2190,8 @@
   var DOJO_URL = '/dojo/';
   var DOJO_ENABLED = false;
   try{ if(/[?&]dojo=1(&|$)/.test(location.search)) DOJO_ENABLED = true; }catch(e){}
+  // 道場開放時，首頁按鈕改叫「進入線上道場」；未開放前維持「進入道場」（開宮廟介紹），文字與實際行為一致
+  (function(){ var l = document.getElementById('dojoBtnLabel'); if(l && DOJO_ENABLED) l.textContent = '進入線上道場'; })();
   var dojoOpen = false, dojoPendingModal = null, dojoFrame = null, dojoWasMusic = false;
   var DOJO_DEITY_ALIAS = {
     kaitai:'開臺聖王', guandi:'關聖帝君', mazu:'天上聖母',
